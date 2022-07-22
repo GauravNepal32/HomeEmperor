@@ -11,8 +11,8 @@ const SearchBox = () => {
   const { data: courseName } = useFetch("http://192.168.1.64:8000/courseName");
   return (
     <div className='search-box-container d-flex flex-column justify-content-center align-content-center'>
-      <div className='container px-sm-4 my-auto'>
-        <button className='uni-btn disable p-3'>
+      <div className='container px-sm-5 my-auto'>
+        <button className='uni-btn p-3' disabled>
           <i className='fa-solid fa-building-columns me-2'></i>Search for
           University
         </button>
@@ -25,7 +25,7 @@ const SearchBox = () => {
               <div className='col-lg-3 col-md-4 col-12'>
                 <Select options={countryName} placeholder='Select Country..' />
               </div>
-              <div className='col-lg-3 col-md-4 col-12'>
+              <div className='col-lg-4 col-md-4 col-12'>
                 <Select options={courseName} placeholder='Select Course..' />
               </div>
               <div className='col-lg-2 col-12 d-flex'>

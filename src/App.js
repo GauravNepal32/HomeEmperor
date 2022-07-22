@@ -14,32 +14,42 @@ import SearchResult from "./SearchResult";
 
 const App = () => {
   return (
+    // Creating Route for different Component
     <Router>
       <div id='scroll-container' className='App'>
+        {/* Calling Navbar Component */}
         <Navbar />
         <div className='content'>
           <Switch>
+            {/* Home Component */}
             <Route exact path='/HomeEmperor'>
               <Home />
             </Route>
+            {/* Major For every country */}
             <Route path='/major/:id'>
               <Major />
             </Route>
+            {/* Subject for every country */}
             <Route path='/subject/:id'>
               <Subject />
             </Route>
+            {/* Calling About Container */}
             <Route path='/about'>
               <About />
             </Route>
+            {/* Calling contanct container */}
             <Route path='/contact'>
               <Contact />
             </Route>
+            {/* Calling testPrep container */}
             <Route path='/testPrep'>
               <TestPrep />
             </Route>
+            {/* Calling search result container */}
             <Route path='/searchresult'>
               <SearchResult />
             </Route>
+            {/* Calling Test Container */}
             <Route path='/test/:id'>
               <TestChild />
             </Route>

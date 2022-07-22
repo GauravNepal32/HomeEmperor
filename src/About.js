@@ -11,7 +11,7 @@ import LocationMap from "./LocationMap";
 const About = () => {
   return (
     <div className='main-container my-5'>
-      <div className='container px-sm-4'>
+      <div className='container px-sm-5'>
         <div className='row mb-200'>
           <div className='container'>
             <div className='row row-cols-md-2 row-cols-1'>

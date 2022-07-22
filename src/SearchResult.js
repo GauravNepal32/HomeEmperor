@@ -42,7 +42,7 @@ const SearchResult = () => {
                     elit. Necessitatibus quaerat porro et vitae quae beatae
                     dolorem nisi obcaecati quisquam perferendis!
                   </p>
-                  <a href='#' class='btn btn-type-2 p-2'>
+                  <a href='#' class='btn btn-type-1 p-2'>
                     View Details
                   </a>
                 </div>
@@ -65,7 +65,7 @@ const SearchResult = () => {
                     elit. Necessitatibus quaerat porro et vitae quae beatae
                     dolorem nisi obcaecati quisquam perferendis!
                   </p>
-                  <a href='#' class='btn btn-type-2 p-2'>
+                  <a href='#' class='btn btn-type-1 p-2'>
                     View Details
                   </a>
                 </div>
@@ -88,7 +88,7 @@ const SearchResult = () => {
                     elit. Necessitatibus quaerat porro et vitae quae beatae
                     dolorem nisi obcaecati quisquam perferendis!
                   </p>
-                  <a href='#' class='btn btn-type-2 p-2'>
+                  <a href='#' class='btn btn-type-1 p-2'>
                     View Details
                   </a>
                 </div>
@@ -111,7 +111,7 @@ const SearchResult = () => {
                     elit. Necessitatibus quaerat porro et vitae quae beatae
                     dolorem nisi obcaecati quisquam perferendis!
                   </p>
-                  <a href='#' class='btn btn-type-2 p-2'>
+                  <a href='#' class='btn btn-type-1 p-2'>
                     View Details
                   </a>
                 </div>

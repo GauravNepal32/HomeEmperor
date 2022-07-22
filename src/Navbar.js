@@ -500,8 +500,8 @@ const Navbar = () => {
                 </li>
               </ul>
             </div>
-            <div className='p-lg-0 p-3'>
-              <button className='btn w-100 btn-type-2 text-nowrap p-2'>
+            <div className='p-lg-0'>
+              <button className='btn w-100 btn-type-1 text-nowrap p-2'>
                 Get Free Advice
               </button>
             </div>

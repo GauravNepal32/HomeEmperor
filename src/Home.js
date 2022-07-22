@@ -23,50 +23,50 @@ const Home = () => {
   return (
     <div id='' className='main-container'>
       <div className='front-main-container'>
-        <div className="search-container">
+        <div className='search-container'>
           <SearchBox />
         </div>
       </div>
-        <div className='main-container container mt-5 px-md-5'>
-          <div className='row mb-200 mt-5 pt-5 row-cols-sm-2 row-cols-1 landing-container'>
-            <div className='col d-flex pt-5 order-sm-0 order-1 justify-content-center'>
-              <div className='landing-page-container'>
-                <div className='container px-0'>
-                  <div className=''>
-                    <h1 className='main-heading'>
-                      Leading Consultancy <br /> in Nepal
-                    </h1>
-                    <h3 className='mt-5'>Emperor Education Network</h3>
-                    <button className='btn mt-5 btn-type-1'>
-                      JOIN US<i className='bi ms-3 bi-arrow-right'></i>
+      <div className='main-container container mt-5 px-md-5'>
+        <div className='row mb-200 mt-5 pt-5 row-cols-sm-2 row-cols-1 landing-container'>
+          <div className='col d-flex pt-5 order-sm-0 order-1'>
+            <div className='landing-page-container'>
+              <div className='container px-0'>
+                <div className=''>
+                  <h1 className='main-heading'>
+                    Leading Consultancy <br /> in Nepal
+                  </h1>
+                  <h3 className='mt-5'>Emperor Education Network</h3>
+                  <button className='btn mt-5 btn-type-1'>
+                    JOIN US<i className='bi ms-3 bi-arrow-right'></i>
                   </button>
-                  </div>
                 </div>
               </div>
             </div>
-            <div className='col d-sm-block d-none order-sm-1 order-0 ps-5 ps-sm-0 d-flex justify-content-center my-5'>
-              <div className='landing-image-wrapper ps-5'>
-                <img
-                  className='img-fluid landing-image'
-                  src={landingImage}
-                  alt='Connecting World'
-                />
-              </div>
+          </div>
+          <div className='col d-sm-block d-none order-sm-1 order-0 ps-5 ps-sm-0 d-flex justify-content-center my-5'>
+            <div className='landing-image-wrapper ps-5'>
+              <img
+                className='img-fluid landing-image'
+                src={landingImage}
+                alt='Connecting World'
+              />
             </div>
           </div>
+        </div>
 
-          {/* <!-- Popular Country Container --> */}
-          <div className='row mb-200 top-destination-container mt-5 d-flex align-content-center justify-content-center'>
-            <div className='container px-5'>
-              <h1 className='main-heading text-center fw-light'>
-                Popular Destination for the student
-              </h1>
-              <p className='info-paragraph text-center'>
-                Where Do You Want to Study?
-              </p>
-              <div className='all-country-container mt-5'>
-                {error && <div>{error}</div>}
-                {isPending && <div>Loading...</div>}
+        {/* <!-- Popular Country Container --> */}
+        <div className='row mb-200 top-destination-container mt-5 d-flex align-content-center justify-content-center'>
+          <div className='container'>
+            <h1 className='main-heading text-center'>
+              Popular Destination for the student
+            </h1>
+            <p className='info-paragraph text-center'>
+              Where Do You Want to Study?
+            </p>
+            <div className='all-country-container mt-5'>
+              {error && <div>{error}</div>}
+              {isPending && <div>Loading...</div>}
               {countries && <Country countryList={countries} />}
             </div>
           </div>

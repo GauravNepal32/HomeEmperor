@@ -1,6 +1,9 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import CallBack from "./CallBack";
+import ListWithIcons from "./ListWithLIcons";
+import TableBodyData from "./TableBodyData";
+import TableData from "./TableBodyData";
 import useFetch from "./useFetch";
 
 const Subject = () => {
@@ -27,36 +30,9 @@ const Subject = () => {
               </h2>
               <ul className='list-unstyled subject-info-list my-4'>
                 <li>
-                  <p className='text-paragraph'>
-                    <i className='fa-solid fa-graduation-cap golden-color'></i>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Ipsa eligendi assumenda tenetur culpa.
-                  </p>
-                  <p className='text-paragraph'>
-                    <i className='fa-solid fa-briefcase golden-color'></i>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Ipsa eligendi assumenda tenetur culpa.
-                  </p>
-                  <p className='text-paragraph'>
-                    <i className='fa-solid fa-money-bill golden-color'></i>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Ipsa eligendi assumenda tenetur culpa.
-                  </p>
-                  <p className='text-paragraph'>
-                    <i className='fa-solid fa-book-open-reader golden-color'></i>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Ipsa eligendi assumenda tenetur culpa.
-                  </p>
-                  <p className='text-paragraph'>
-                    <i className='fa-solid fa-briefcase golden-color'></i>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Ipsa eligendi assumenda tenetur culpa.
-                  </p>
-                  <p className='text-paragraph'>
-                    <i className='fa-solid fa-rupee-sign golden-color'></i>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Ipsa eligendi assumenda tenetur culpa.
-                  </p>
+                  {Courses.HighLights.map((HighLight) => (
+                    <ListWithIcons HighLight={HighLight} />
+                  ))}
                 </li>
               </ul>
               <div className='subject-image-container'>
@@ -79,76 +55,23 @@ const Subject = () => {
 
               <div className='university-course-info-container'>
                 <p className='subject-sub-heading'>
-                  University with MBA in Accounting
-                  <table className='table table-bordered mt-4 expand-table university-course-table'>
-                    <thead>
-                      <tr>
-                        <th scope='col'>
-                          Top Universities in {Courses.countryName} for{" "}
-                          {Courses.subjectName}
-                        </th>
-                        <th scope='col fw-bold'>Course Name</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                      </tr>
-                      <tr>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                      </tr>
-                      <tr>
-                        <td>Larry the Bird</td>
-                        <td>@twitter</td>
-                      </tr>
-                      <tr>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                      </tr>
-                      <tr>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                      </tr>
-                      <tr>
-                        <td>Larry the Bird</td>
-                        <td>@twitter</td>
-                      </tr>
-                      <tr>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                      </tr>
-                      <tr>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                      </tr>
-                      <tr>
-                        <td>Larry the Bird</td>
-                        <td>@twitter</td>
-                      </tr>
-                      <tr>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                      </tr>
-                      <tr>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                      </tr>
-                      <tr>
-                        <td>Larry the Bird</td>
-                        <td>@twitter</td>
-                      </tr>
-                    </tbody>
-                    <tbody>
-                      <tr>
-                        <td colspan='2'>
-                          <button id='table-btn'>Show More</button>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
+                  University with MBA in {Courses.subjectName}
                 </p>
+                <table className='table table-bordered mt-4 expand-table university-course-table'>
+                  <thead>
+                    <tr>
+                      <th scope='col'>{Courses.Table1[0].ColHeading1}</th>
+                      <th scope='col fw-bold'>
+                        {Courses.Table1[0].ColHeading2}
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {Courses.Table1[1].tableData.map((tableData) => (
+                      <TableBodyData varTableData={tableData} />
+                    ))}
+                  </tbody>
+                </table>
               </div>
             </div>
             <CallBack />
