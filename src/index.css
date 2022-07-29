@@ -208,21 +208,60 @@ header .long-dropdown {
 
 .landing-image {}
 
+
+
+
+
 .btn-type-1 {
-    background-color: #fff;
+    background: white;
     color: #0A2343;
-    font-weight: bold;
-    background: linear-gradient(to left, #fff 50%, #0A2343 50%);
+    background-image: linear-gradient(to left, #fff  50%, #0A2343 50%);
+    background-position: 100% 0;
     background-size: 200% 100%;
-    background-position: right bottom;
-    transition: all .3s ease-in-out;
+    transition: all .25s ease-in;
+    text-decoration:none;
     border: 2px solid #0A2343;
+    font-weight: bold;
+
 }
 
 .btn-type-1:hover {
-    background-position: left bottom;
-    color: white;
+    background-position: 0 0;
+    color: #fff;
     border: 2px solid #0A2343;
+
+}
+.btn-type-2 {
+    background: #0A2343;
+    color: white;
+    background-image: linear-gradient(to left, #0A2343  50%, #fff 50%);
+    background-position: 100% 0;
+    background-size: 200% 100%;
+    transition: all .25s ease-in;
+    text-decoration:none;
+    border: 2px solid #0A2343;
+    font-weight: bold;
+
+}
+
+.btn-type-2:hover {
+    background-position: 0 0;
+    color: #0A2343;
+    border: 2px solid #0A2343;
+
+}
+
+.navbar-toggler-icon{
+    border: 1px solid black;
+    padding: 3px;
+    border-radius: 4px;
+}
+.navbar-toggler-icon-open{
+    background-color: #0A2343;
+    color: white;
+    border: 1px solid #0A2343;
+    padding: 3px;
+    border-radius: 4px;
 }
 
 
@@ -230,23 +269,6 @@ header .long-dropdown {
 
 .mb-200 {
     margin-bottom: 120px;
-}
-
-.btn-type-2 {
-    background-color: #0A2343;
-    color: #fff;
-    font-weight: bold;
-    background: linear-gradient(to left, #0A2343 50%, #fff 50%);
-    background-size: 200% 100%;
-    background-position: right bottom;
-    border: 2px solid #0A2343;
-    transition: all .5s ease-in-out;
-}
-
-.btn-type-2:hover {
-    background-position: left bottom;
-    color: #0A2343;
-    border: 2px solid #0A2343;
 }
 
 .text-paragraph {
@@ -902,7 +924,8 @@ textarea{
 }
 
 .callback-online-request-container {
-    max-width: 300px;
+    width: 100%;
+    /* max-width: 300px; */
     height: 270px;
     border-radius: 10px;
     background-color: #fff;
@@ -1000,6 +1023,174 @@ max-height: 1000px;
 opacity: 1;
  }
 
+ .account-btn{
+    padding: 3px;
+ }
+
+.login-container{
+margin: 80px;
+border: 1px solid black;
+border-radius: 20px;
+overflow: hidden;
+/* height: 600px; */
+}
+
+
+.login-form{
+    max-width: 400px;
+}
+.sign-in-btn{
+    background-color: #0A2343;
+    color: white;
+}
+
+.login-problem{
+    line-height: 1.2em;
+color: #0A2343;
+cursor: pointer;
+}
+
+.login-input{
+    border-radius: 15px;
+    background-color: #fafafa;
+}
+
+.need-signup-container{
+    background-image: linear-gradient(180deg, #025E8D 20%, #0A2343 100%);
+}
+
+.sign-up-btn{
+    border: 1px solid white;
+    border-radius: 15px;
+    color: white;
+    font-weight: bold;
+}
+.sign-up-btn:hover{
+
+    background-color: white;
+    color: #0A2343;
+    font-weight: bold;
+}
+#login-container{
+    display: block;
+}
+
+#open-signup,#open-login{
+    transition: all 0.5s ease-in;
+}
+
+.password-container{
+    position: relative;
+}
+.password-container .btn{
+    position: absolute;
+    right: 10px;
+
+}
+#password-check-container{
+    display: none;
+}
+.password-check-container li{
+    margin: 13px 0px;
+}
+
+.disable-btn{
+
+}
+.error{
+    display: none;
+}
+
+.border-danger{
+    border: 2px solid red;
+}
+.login-error{
+    display: none;
+}
+
+
+/* try */
+
+.ad-container{
+    width: 100%;
+    border: 2px solid black;
+}
+
+.portal-container{
+    width: 100vw;
+    height: 92vh;
+    overflow-x: hidden;
+}
+
+.portal-container-right{
+    width: 100%;
+}
+.portal-left-container{
+    background-color: white;
+}
+.portal-nav-list li{
+    padding: 10px;
+    margin: 25px 0px;
+    width: 100%;
+    border-right: 3px solid transparent;
+
+
+}
+.portal-nav-list li:hover{
+    background-color: #afafaf;
+    border-right: 3px solid #0A2343;
+}
+.active-portal{
+    background-color: #0e0e0e;
+    color: white;
+}
+.portal-nav-list a{
+    text-decoration: none;
+    color: black;
+}
+
+.course-card{
+    max-width: 300px;
+}
+
+.card-thumbnail{
+    position: relative;
+}
+.course-completion-time{
+    position: absolute;
+    right: 0;
+    bottom: 5px;
+    background-color: #545454;
+    color: white;
+    font-weight: bold;
+}
+.portal-menu{
+
+}
+.portal-left-container{
+    position: relative;
+}
+.sub-menu-toggler{
+
+left: 0px;
+}
+
+
+
+.portal-left-container{
+    width: 300px;
+    border-right: 3px solid #cccccc;
+}
+
+.show-subnav{
+    display: block;
+}
+.hide-subnav{
+    display: none;
+}
+
+
+
 /* Mobile screen */
 
 @media only screen and (max-width: 576px) {
@@ -1045,6 +1236,35 @@ opacity: 1;
     .waves-image{
         display: none;
     }
+.login-container{
+    margin: 10px;
+}
+
+.portal-left-container{
+    width: 100%;
+    border: none;
+    border-bottom: 3px solid #cccccc;
+    position: sticky;
+    top: 40%;
+}
+.portal-container-left{
+    display: none;
+}
+.portal-nav-list li{
+    padding: 5px;
+    margin: 10px 0;
+}
+.portal-nav-list li:hover{
+    border: none;
+    background-color: none;
+}
+
+.active-portal{
+    border: none;
+    background-color: white;
+    color: black;
+    border-bottom: 3px solid black;
+}
 }
 
 
@@ -1112,6 +1332,9 @@ opacity: 1;
     .waves-image{
         z-index: -1;
     }
+    .login-container{
+        height: auto;
+    }
 }
 @media only screen and (max-width: 1080px) {
     .waves-image{
@@ -1120,7 +1343,13 @@ opacity: 1;
         z-index: -1;
 
     }
+
 }
+
+@media only screen and (max-width: 1200px) {
+    .main-navbar .nav-item {
+        margin: 0px 20px;
+    }}
 
 @media only screen and (min-width: 1080px) {
     header .long-dropdown {
@@ -1136,4 +1365,5 @@ opacity: 1;
         bottom: 230px;
         z-index: -1;
     }
+
 }

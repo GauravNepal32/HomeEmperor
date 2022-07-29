@@ -9,7 +9,7 @@ const Major = () => {
       data: Subject,
       error,
       isPending,
-    } = useFetch("http://192.168.1.64:8000/major/" + id);
+    } = useFetch("http://192.168.1.69:8000/major/" + id);
     return (
         <div className='main-container my-5'>
             <div className='container px-sm-5'>

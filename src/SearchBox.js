@@ -5,10 +5,10 @@ import useFetch from "./useFetch";
 
 const SearchBox = () => {
   const { data: countryName } = useFetch(
-    "http://192.168.1.64:8000/countryName"
+    "http://192.168.1.69:8000/countryName"
   );
-  const { data: degreeName } = useFetch("http://192.168.1.64:8000/degreeName");
-  const { data: courseName } = useFetch("http://192.168.1.64:8000/courseName");
+  const { data: degreeName } = useFetch("http://192.168.1.69:8000/degreeName");
+  const { data: courseName } = useFetch("http://192.168.1.69:8000/courseName");
   return (
     <div className='search-box-container d-flex flex-column justify-content-center align-content-center'>
       <div className='container px-sm-5 my-auto'>

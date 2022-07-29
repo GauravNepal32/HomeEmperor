@@ -21,6 +21,8 @@ const Contact = () => {
     },
   ]);
 
+  // Toggle FAQ section
+
   const toggleFAQ = (index) => {
     setfaqs(
       faqs.map((faq, i) => {
@@ -158,9 +160,11 @@ const Contact = () => {
             <h4 class='text-center mx-auto contact-heading underline main-heading'>
               FAQs
             </h4>
+
             <div class='faq-wrapper'>
               {faqs.map((faq, i) => (
                 <>
+                  {/* Passing faq object */}
                   <FAQ faq={faq} index={i} toggleFAQ={toggleFAQ} />
                 </>
               ))}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Country from "./Country";
 import assistantImage1 from "./images/assistant/consultant-ashwinnath-small.png";
 import assistantImage2 from "./images/assistant/consultant-disha-small.png";
@@ -12,24 +12,29 @@ import useFetch from "./useFetch";
 import SearchBox from "./SearchBox";
 import landingImage from "./images/landing.png";
 import LocationMap from "./LocationMap";
-
+import axios from "axios";
 const Home = () => {
-  const {
-    data: countries,
-    error,
-    isPending,
-  } = useFetch("http://192.168.1.64:8000/countries");
+  const [countries, setCountries] = useState(null);
+  useEffect(() => {
+    axios.get("http://192.168.1.69:8000/countries").then((response) => {
+      setCountries(response.data);
+    });
+  }, []);
 
   return (
+
+    // Search box container
     <div id='' className='main-container'>
       <div className='front-main-container'>
         <div className='search-container'>
+          {/* Calling search box components */}
           <SearchBox />
         </div>
       </div>
       <div className='main-container container mt-5 px-md-5'>
         <div className='row mb-200 mt-5 pt-5 row-cols-sm-2 row-cols-1 landing-container'>
           <div className='col d-flex pt-5 order-sm-0 order-1'>
+            {/* Landing page */}
             <div className='landing-page-container'>
               <div className='container px-0'>
                 <div className=''>
@@ -65,12 +70,9 @@ const Home = () => {
               Where Do You Want to Study?
             </p>
             <div className='all-country-container mt-5'>
-              {error && <div>{error}</div>}
-              {isPending && <div>Loading...</div>}
               {countries && <Country countryList={countries} />}
             </div>
           </div>
-
           <div className='row mb-200 emperor-stats-container mt-5'>
             <div className='container mt-5'>
               <h1 className='main-heading text-center'>Why Emperor?</h1>
@@ -127,7 +129,7 @@ const Home = () => {
               <div className='row row-cols-lg-4 row-col-md-2 row-cols-sm-2 row-cols-1 g-2 '>
                 <ServiceCard
                   cardTitle='carrer counseling'
-                  iconURL='FaGraduationCap'
+                  iconURL='school'
                   cardText='The great thing about our counsellors is they will not only give
                                         you information about the course or the university or the country
                                         a student has selected but will also provide information of what
@@ -137,7 +139,7 @@ const Home = () => {
                 />
                 <ServiceCard
                   cardTitle='TEST PREPRATION'
-                  iconURL='FaFile'
+                  iconURL='quiz'
                   cardText=' Our teachers make sure to provide students the
                                     platform to express themselves freely and become
                                     go-getters. The tips that are required to score good
@@ -148,7 +150,7 @@ const Home = () => {
                 />
                 <ServiceCard
                   cardTitle='DOCUMENT PROCESSING'
-                  iconURL='FaAddressBook'
+                  iconURL='description'
                   cardText=' At Emperor Education we also make sure that the
                                     documents submitted by students are kept in a highly
                                     secure manner. Every student should be aware that fake
@@ -159,7 +161,7 @@ const Home = () => {
                 />
                 <ServiceCard
                   cardTitle='Accommodation'
-                  iconURL='FaBuilding'
+                  iconURL='apartment'
                   cardText=' At Emperor Education we also make sure that the
                                     documents submitted by students are kept in a highly
                                     secure manner. Every student should be aware that fake
@@ -174,6 +176,7 @@ const Home = () => {
         </div>
       </div>
       <div className='row mb-200 p-0 mx-0 contact-container'>
+        <div className='contact-sub-container'></div>
         <div className='px-sm-5'>
           <div className='px-sm-5'>
             <h1 className='main-heading'>Get the Global Education Abroad</h1>

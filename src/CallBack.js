@@ -18,7 +18,7 @@ const CallBack = () => {
                   placeholder='Mobile Number'
                 />
                 <div className=''>
-                  <button className='btn btn-type-1 mt-3 text-nowrap p-2 w-100'>
+                  <button className='btn btn-type-2 mt-3 text-nowrap p-2 w-100'>
                     Request callback
                   </button>
                 </div>

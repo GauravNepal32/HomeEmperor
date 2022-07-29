@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  withRouter,
+} from "react-router-dom";
 import Home from "./Home";
 import Major from "./Major";
 import Subject from "./subject";
@@ -11,6 +16,15 @@ import Contact from "./Contact";
 import TestPrep from "./testPrep";
 import TestChild from "./TestChild";
 import SearchResult from "./SearchResult";
+import Login from "./Login";
+import SignUp from "./SignUp";
+import Dashboard from "./portals/Dashboard";
+import Portal from "./portals/portal";
+import Courses from "./portals/Courses";
+import DocumentDetails from "./portals/Document";
+import Processing from "./portals/Processing";
+import Profile from "./portals/Profile";
+import University from "./portals/University";
 
 const App = () => {
   return (
@@ -20,43 +34,40 @@ const App = () => {
         {/* Calling Navbar Component */}
         <Navbar />
         <div className='content'>
-          <Switch>
+          <Routes>
             {/* Home Component */}
-            <Route exact path='/HomeEmperor'>
-              <Home />
-            </Route>
+            <Route path='/HomeEmperor' element={<Home />}></Route>
+
             {/* Major For every country */}
-            <Route path='/major/:id'>
-              <Major />
-            </Route>
+            <Route path='/major/:id' element={<Major />}></Route>
             {/* Subject for every country */}
-            <Route path='/subject/:id'>
-              <Subject />
-            </Route>
+            <Route path='/subject/:id' element={<Subject />}></Route>
             {/* Calling About Container */}
-            <Route path='/about'>
-              <About />
-            </Route>
+            <Route path='/about' element={<About />}></Route>
             {/* Calling contanct container */}
-            <Route path='/contact'>
-              <Contact />
-            </Route>
+            <Route path='/contact' element={<Contact />}></Route>
             {/* Calling testPrep container */}
-            <Route path='/testPrep'>
-              <TestPrep />
-            </Route>
+            <Route path='/testPrep' element={<TestPrep />}></Route>
             {/* Calling search result container */}
-            <Route path='/searchresult'>
-              <SearchResult />
+            <Route path='/searchresult' element={<SearchResult />}></Route>
+            {/* Calling Login container */}
+            <Route path='/login' element={<Login />}></Route>
+            <Route path='/portal' element={<Portal />}>
+              <Route path='courses' element={<Courses />}></Route>
+              <Route path='dashboard' element={<Dashboard />}></Route>
+              <Route path='university' element={<University />}></Route>
+              <Route path='processing' element={<Processing />}></Route>
+              <Route path='document' element={<DocumentDetails />}></Route>
+              <Route path='profile' element={<Profile />}></Route>
             </Route>
+            {/* Calling SignUP container */}
+            <Route path='/signup' element={<SignUp />}></Route>
+            {/* Calling dashboard container */}
+            <Route path='/dashboard' element={<Dashboard />}></Route>
             {/* Calling Test Container */}
-            <Route path='/test/:id'>
-              <TestChild />
-            </Route>
-            <Route path='*'>
-              <Lost />
-            </Route>
-          </Switch>
+            <Route path='/test/:id' element={<TestChild />}></Route>
+            <Route path='*' element={<Lost />}></Route>
+          </Routes>
         </div>
         <Footer />
       </div>

@@ -4,7 +4,7 @@ import useFetch from "./useFetch";
 import TestList from "./TestList";
 
 const TestPrep = () => {
-  const { data: test } = useFetch("http://192.168.1.64:8000/Test");
+  const { data: test } = useFetch("http://192.168.1.69:8000/Test");
 
   return (
     <div class='main-container px-0'>

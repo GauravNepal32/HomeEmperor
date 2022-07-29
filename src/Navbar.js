@@ -4,11 +4,11 @@ import MajorList from "./MajorList";
 import useFetch from "./useFetch";
 import SubjectList from "./SubjectList";
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
-  const { data: countrySub } = useFetch(" http://192.168.1.64:8000/major");
-  const { data: USCourses } = useFetch("http://192.168.1.64:8000/subject");
+  const { data: countrySub } = useFetch(" http://192.168.1.69:8000/major");
+  const { data: USCourses } = useFetch("http://192.168.1.69:8000/subject");
   const [navOpen, setNavOpen] = useState(false);
 
   // if (document.getElementsByClassName('navbar-dropdown-container').style.display = 'none') {
@@ -39,9 +39,19 @@ const Navbar = () => {
               className='d-inline-block img-fluid align-text-top'
             />
           </NavLink>
+
+          <button className='btn d-lg-none d-block my-auto ms-auto p-0 account-btn'>
+            <span className=' my-auto material-symbols-outlined'>
+              account_circle
+            </span>
+          </button>
           <button
             onClick={toggleNav}
-            className={navOpen ? "navbar-toggler" : "navbar-toggler collapsed"}
+            className={
+              navOpen
+                ? "navbar-toggler text-balck"
+                : "navbar-toggler collapsed text-black"
+            }
             type='button'
             data-bs-toggle='collapse'
             data-bs-target='#navbarNavDropdown'
@@ -62,7 +72,10 @@ const Navbar = () => {
             <div className='collapse-toggler-container d-lg-none '>
               <nav className='navbar navbar-expand-lg main-navbar d-flex justify-content-between align-item-center'>
                 <div className='container-md  px-sm-5'>
-                  <NavLink className='navbar-brand' to='/HomeEmperor'>
+                  <NavLink
+                    onClick={toggleNav}
+                    className='navbar-brand'
+                    to='/HomeEmperor'>
                     <img
                       src={NavbarMainLogo}
                       alt='Company Logo'
@@ -80,7 +93,7 @@ const Navbar = () => {
                     aria-controls='navbarNavDropdown'
                     aria-expanded='false'
                     aria-label='Toggle navigation'>
-                    <span className='navbar-toggler-icon'>
+                    <span className='navbar-toggler-icon-open'>
                       <i className='bi bi-list'></i>
                     </span>
                   </button>
@@ -330,7 +343,10 @@ const Navbar = () => {
                   </ul>
                 </li>
                 <li className='nav-item canada-dropDown'>
-                  <div className='nav-link d-flex canada-dropDown'>
+                  <div
+                    className='nav-link dropdown-link dropDownTrigger d-flex canada-dropDown'
+                    id='canada-dropDown'
+                    role='button'>
                     Canada
                     <span className='drop-icon'>
                       <i className='bi bi-chevron-down'></i>
@@ -414,7 +430,7 @@ const Navbar = () => {
                   </ul>
                 </li>
                 <li className='nav-item aus-dropDown'>
-                  <div className='nav-link d-flex aus-dropDown'>
+                  <div className='nav-link d-flex aus-dropDown' role='button'>
                     Australia
                     <span className='drop-icon'>
                       <i className='bi bi-chevron-down'></i>
@@ -500,10 +516,17 @@ const Navbar = () => {
                 </li>
               </ul>
             </div>
-            <div className='p-lg-0'>
-              <button className='btn w-100 btn-type-1 text-nowrap p-2'>
+            <div className='p-lg-0 p-2 pe-3 d-flex '>
+              <Link
+                to='/login'
+                className='btn btn-type-2 p-2 me-3 d-lg-block d-none text-nowrap w-100'>
+                Log In
+              </Link>
+              <Link
+                to='/signup'
+                className='btn btn-type-1 p-2  text-nowrap w-100'>
                 Get Free Advice
-              </button>
+              </Link>
             </div>
           </div>
         </div>

@@ -12,7 +12,7 @@ const Subject = () => {
     data: Courses,
     error,
     isPending,
-  } = useFetch("http://192.168.1.64:8000/subject/" + id);
+  } = useFetch("http://192.168.1.69:8000/subject/" + id);
 
   return (
     <div className='main-container my-5'>

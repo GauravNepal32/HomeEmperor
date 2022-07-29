@@ -9,7 +9,7 @@ const ServiceCard = (props) => {
         <div className='card-body'>
           <h5 className='card-title d-flex justify-content-between'>
             <span className='fw-light text-uppercase'>{props.cardTitle}</span>
-            <Icons iconName={props.iconURL} />
+            <span className='material-symbols-outlined'>{props.iconURL}</span>
           </h5>
           <div className='service-card-text mt-4'>
             <p className='text-justify'>{props.cardText}</p>
