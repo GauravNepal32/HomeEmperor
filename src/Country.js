@@ -11,14 +11,7 @@ const Country = (countryList) => {
               <img className='card-img' src={country.image} alt={country.alt} />
               <div className='con-text'>
                 <h2>{country.name}</h2>
-                <p>
-                  {country.text}
-                  <button className='btn btn-type-1'>
-                    <Link className='text-decoration-none' to={country.URL}>
-                      See More <i className='bi bi-arrow-right ms-2'></i>
-                    </Link>
-                  </button>
-                </p>
+                <p>{country.description}</p>
               </div>
             </div>
           </div>

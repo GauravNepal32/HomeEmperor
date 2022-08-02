@@ -28,13 +28,16 @@ const Subject = () => {
               <h2 className='mt-4 fw-light text-sm-start text-center'>
                 Why study {Courses.subjectName} in {Courses.country}?
               </h2>
-              <ul className='list-unstyled subject-info-list my-4'>
+
+              <p className='subject-paragraph mb-5'>{Courses.text1}</p>
+
+              {/* <ul className='list-unstyled subject-info-list my-4'>
                 <li>
                   {Courses.HighLights.map((HighLight) => (
                     <ListWithIcons HighLight={HighLight} />
                   ))}
                 </li>
-              </ul>
+              </ul> */}
               <div className='subject-image-container'>
                 <img
                   className='img-fluid'
@@ -42,18 +45,18 @@ const Subject = () => {
                   alt={Courses.subjectImageAlt}
                 />
               </div>
-              <p className='subject-sub-heading mt-5'>
+              {/* <p className='subject-sub-heading mt-5'>
                 {Courses.subjectName} in {Courses.country}
-              </p>
+              </p> */}
               <div className='subject-about-container'>
                 <p className='subject-paragraph text-justify mb-5'>
                   {Courses.text1}
                 </p>
 
-                <p className='subject-paragraph mb-5'>{Courses.test2}</p>
+                <p className='subject-paragraph mb-5'>{Courses.text2}</p>
               </div>
 
-              <div className='university-course-info-container'>
+              {/* <div className='university-course-info-container'>
                 <p className='subject-sub-heading'>
                   University with MBA in {Courses.subjectName}
                 </p>
@@ -72,7 +75,7 @@ const Subject = () => {
                     ))}
                   </tbody>
                 </table>
-              </div>
+              </div> */}
             </div>
             <CallBack />
           </div>

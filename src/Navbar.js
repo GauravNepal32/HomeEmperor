@@ -3,13 +3,14 @@ import NavbarMainLogo from "./images/emperor/companyLogo.png";
 import MajorList from "./MajorList";
 import useFetch from "./useFetch";
 import SubjectList from "./SubjectList";
-import { useState } from "react";
+import { useState, useLocation, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
   const { data: countrySub } = useFetch(" http://192.168.1.69:8000/major");
   const { data: USCourses } = useFetch("http://192.168.1.69:8000/subject");
   const [navOpen, setNavOpen] = useState(false);
+  const [isLogin, setIsLogin] = useState(true);
 
   // if (document.getElementsByClassName('navbar-dropdown-container').style.display = 'none') {
 
@@ -40,11 +41,13 @@ const Navbar = () => {
             />
           </NavLink>
 
-          <button className='btn d-lg-none d-block my-auto ms-auto p-0 account-btn'>
+          <Link
+            to={!isLogin ? "/login" : "/portal/dashboard"}
+            className='btn d-lg-none d-block my-auto ms-auto p-0 account-btn'>
             <span className=' my-auto material-symbols-outlined'>
               account_circle
             </span>
-          </button>
+          </Link>
           <button
             onClick={toggleNav}
             className={
@@ -516,17 +519,29 @@ const Navbar = () => {
                 </li>
               </ul>
             </div>
-            <div className='p-lg-0 p-2 pe-3 d-flex '>
-              <Link
-                to='/login'
-                className='btn btn-type-2 p-2 me-3 d-lg-block d-none text-nowrap w-100'>
-                Log In
-              </Link>
-              <Link
-                to='/signup'
-                className='btn btn-type-1 p-2  text-nowrap w-100'>
-                Get Free Advice
-              </Link>
+            <div className='p-lg-0 p-2 pe-3 d-lg-flex d-none '>
+              {isLogin ? (
+                <>
+                  <Link to='/portal/dashboard' className='text-black'>
+                    <span class='material-symbols-outlined'>
+                      account_circle
+                    </span>
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <Link
+                    to='/portal/dashboard'
+                    className='btn btn-type-2 p-2 me-3 d-lg-block d-none text-nowrap w-100'>
+                    Log In
+                  </Link>
+                  <Link
+                    to='/signup'
+                    className='btn btn-type-1 p-2  text-nowrap w-100'>
+                    Get Free Advice
+                  </Link>
+                </>
+              )}
             </div>
           </div>
         </div>

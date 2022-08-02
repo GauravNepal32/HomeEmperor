@@ -1,12 +1,7 @@
 import React, { useState } from "react";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  withRouter,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./Home";
 import Major from "./Major";
 import Subject from "./subject";
@@ -25,6 +20,7 @@ import DocumentDetails from "./portals/Document";
 import Processing from "./portals/Processing";
 import Profile from "./portals/Profile";
 import University from "./portals/University";
+import Setting from "./portals/Setting";
 
 const App = () => {
   return (
@@ -59,6 +55,7 @@ const App = () => {
               <Route path='processing' element={<Processing />}></Route>
               <Route path='document' element={<DocumentDetails />}></Route>
               <Route path='profile' element={<Profile />}></Route>
+              <Route path='setting' element={<Setting />}></Route>
             </Route>
             {/* Calling SignUP container */}
             <Route path='/signup' element={<SignUp />}></Route>

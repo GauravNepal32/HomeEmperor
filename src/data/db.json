@@ -194,20 +194,6 @@
           "point": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa eligendi assumenda tenetur culpa."
         }
       ],
-      "Table1": [
-        {
-          "ColHeading1": "Hello",
-          "ColHeading2": "HighLights"
-        },
-        {
-          "tableData": [
-            {
-              "data1": "Something",
-              "data2": "Nothing"
-            }
-          ]
-        }
-      ],
       "text1": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui expedita nostrum repudiandae consequatur, ipsam odit facere eligendi maiores at porro commodi necessitatibus ipsum,minima corporis.",
       "country": "USA",
       "id": 1

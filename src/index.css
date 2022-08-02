@@ -1120,41 +1120,35 @@ cursor: pointer;
     width: 100vw;
     height: 92vh;
     overflow-x: hidden;
+    /* scroll-behavior: smooth; */
+    /* scroll-snap-align: start; */
 }
 
-.portal-container-right{
-    width: 100%;
-}
-.portal-left-container{
-    background-color: white;
-}
-.portal-nav-list li{
-    padding: 10px;
-    margin: 25px 0px;
-    width: 100%;
-    border-right: 3px solid transparent;
 
 
+
+.course-card,.university-card{
+    width: 300px;
+    margin: 0px 20px 0px 0px;
+    scroll-snap-align: start;
 }
-.portal-nav-list li:hover{
-    background-color: #afafaf;
-    border-right: 3px solid #0A2343;
+.course-card .card,.university-card .card{
+    width: 300px;
+height: 100%;
 }
-.active-portal{
-    background-color: #0e0e0e;
-    color: white;
-}
-.portal-nav-list a{
-    text-decoration: none;
-    color: black;
+.course-card .card-body,.university-card .card-body{
+display: flex;
+flex-direction: column;
+justify-content: end;
 }
 
-.course-card{
-    max-width: 300px;
-}
 
 .card-thumbnail{
     position: relative;
+    width:100%;
+    height: auto;
+    overflow: hidden;
+
 }
 .course-completion-time{
     position: absolute;
@@ -1167,21 +1161,6 @@ cursor: pointer;
 .portal-menu{
 
 }
-.portal-left-container{
-    position: relative;
-}
-.sub-menu-toggler{
-
-left: 0px;
-}
-
-
-
-.portal-left-container{
-    width: 300px;
-    border-right: 3px solid #cccccc;
-}
-
 .show-subnav{
     display: block;
 }
@@ -1189,8 +1168,99 @@ left: 0px;
     display: none;
 }
 
+.portal-container-left{
 
+    background-color: white;
 
+}
+#portal-menu li{
+    color: black;
+
+}
+#portal-menu a{
+    text-decoration: none;
+}
+
+.course-card-wrapper,.university-card-wrapper{
+    width: 100%;
+    overflow-x: scroll;
+}
+.more-content-link{
+    text-decoration: none;
+}
+.more-content-link:hover{
+    text-decoration: underline;
+
+}
+.active-portal span{
+      font-variation-settings:
+      'FILL' 1,
+      'wght' 400,
+      'GRAD' 0,
+      'opsz' 48
+}
+.active-portal{
+    font-weight: bold;
+}
+#processing {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  #processing td, #processing th {
+    border: 1px solid #ddd;
+    padding: 5px;
+  }
+
+  #processing tr:nth-child(even){background-color: #f2f2f2;}
+
+  #processing tr:hover {background-color: #ddd;}
+
+  #processing th {
+  }
+  .status-data img{
+    margin: auto;
+    width: 20px;
+    height: 20px;
+  }
+  .courses-card-container{
+    width: 100%;
+    overflow-x: scroll;
+  }
+  .processing-status-details{
+    background-color: #efefef;
+    border-radius: 20px;
+  }
+  .timeline-checkpoint{
+    width: 9px;
+    height: 9px;
+    background-color: #025E8D;
+    border-radius: 50%;
+  }
+  .processing-timline-child{
+    font-size: 12px;
+  }
+  .straight-line-container{
+    width: 3px;
+    padding: 1px;
+    height: 30px;
+    background-color: #025E8D;
+    position: relative;
+    left: -30px;
+  }
+  .date-container{
+    width: 50px;
+  }
+
+  .change-pass-container{
+    background-color: #efefef;
+    border-radius: 20px;
+  }
+  .perosnal-info-wrapper{
+    background-color: #efefef;
+    border-radius: 20px;
+  }
 /* Mobile screen */
 
 @media only screen and (max-width: 576px) {
@@ -1227,6 +1297,39 @@ left: 0px;
     .contact-sub-container{
         bottom: 80px;
     }
+#portal-menu li{
+    font-size: 12px;
+}
+.straight-line-container{
+    position: relative;
+    left: -30px;
+  }
+  .processing-timline-child{
+    font-size: 10px;
+  }
+}
+
+.document-sub-container{
+    background-color: #efefef;
+    padding: 10px;
+    border-radius: 20px;
+}
+.no-images-container{
+    width: 300px;
+    height: auto;
+}
+
+.profile-image-container{
+width: 60px;
+height: 60px;
+object-fit: contain;
+border-radius: 50%;
+overflow: hidden;
+border: 1px solid black;
+}
+.course-card-wrapper {
+    scroll-snap-type:x mandatory ;
+    scroll-padding: 10px;
 }
 
 
@@ -1239,31 +1342,14 @@ left: 0px;
 .login-container{
     margin: 10px;
 }
-
-.portal-left-container{
-    width: 100%;
-    border: none;
-    border-bottom: 3px solid #cccccc;
-    position: sticky;
-    top: 40%;
-}
 .portal-container-left{
-    display: none;
-}
-.portal-nav-list li{
-    padding: 5px;
-    margin: 10px 0;
-}
-.portal-nav-list li:hover{
-    border: none;
-    background-color: none;
-}
 
-.active-portal{
-    border: none;
+    position: fixed;
     background-color: white;
-    color: black;
-    border-bottom: 3px solid black;
+    top: auto;
+    z-index: 3;
+    bottom: 0;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 }
 

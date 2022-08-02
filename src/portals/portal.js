@@ -5,25 +5,18 @@ import PortalRight from "./portalRight";
 
 
 const Portal = () => {
-
-
-    //choose the screen size
-
-
-
-    return (
-        <div className="main-container p-0 container-fluid">
-            <div className="portal-container d-md-flex p-0 container-fluid">
-                <div className="portal-container-left d-block">
-                    <PortalLeft />
-                </div>
-                <div className="portal-container-right">
-
-                    <Outlet />
-                </div>
-            </div>
+  return (
+    <div className='main-container p-0 container-fluid'>
+      <div className='portal-container d-flex position-relative flex-column p-0 container-fluid'>
+        <div className='portal-container-left order-1 w-100 order-md-0 d-block'>
+          <PortalLeft />
         </div>
-    );
-}
+        <div className='portal-container-right order-0 order-md-1'>
+          <Outlet />
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default Portal;

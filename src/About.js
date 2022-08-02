@@ -1,14 +1,20 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Testimonials from "./Testimonials";
-import raviImg from "./images/clients/ravi.png";
-import shreyaImg from "./images/clients/43.png";
-import krishnaImg from "./images/clients/three.png";
 import team from "./images/emperor/team.png";
 import ceo from "./images/emperor/ceo.png";
 import LocationMap from "./LocationMap";
-
+import axios from "axios";
 
 const About = () => {
+  const [testimonials, setTestimonials] = useState(null);
+  useEffect(() => {
+    axios
+      .get("https://elscript.co/github/emperor-backend/api/testimonials")
+      .then((response) => {
+        setTestimonials(response.data.data);
+      });
+  }, []);
+
   return (
     <div className='main-container my-5'>
       <div className='container px-sm-5'>
@@ -68,19 +74,17 @@ const About = () => {
                   <h4 className='text-center mt-4'>Keshav Dhungana</h4>
                 </div>
                 <p className='info-paragraph mt-5'>
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Provident sapiente, possimus at, eius reiciendis pariatur
-                  architecto quos asperiores enim dolor animi quidem sunt
-                  dignissimos. Tempore nihil nisi, quas vitae qui perferendis,
-                  maxime laudantium illo perspiciatis ullam esse natus corrupti
-                  debitis assumenda, suscipit similique voluptate obcaecati quis
-                  sint sit delectus inventore.
+                  Everyone tells you that the world appears a certain way.
+                  Parents influence you on how to think. Schools teach students
+                  how to think. And then, if you're lucky, you learn you can
+                  make your own decisions. Nobody except you can make the rules
+                  and you have the ability to create your own
                 </p>
               </div>
             </div>
           </div>
         </div>
-        <div className='row mb-200'>
+        {/* <div className='row mb-200'>
           <div className='row row-cols-md-2 row-cols-1'>
             <div className='col order-1 p-md-5'>
               <div className='row row-cols-2 g-4'>
@@ -125,7 +129,7 @@ const About = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
         {/* <!-- Testimonals Container --> */}
         <div className='row mb-200 mt-5'>
           <h3 className='sub-heading text-center text-uppercase'>
@@ -136,7 +140,9 @@ const About = () => {
           </h1>
           <div className='testimonials-container'>
             <div className='row mt-5 row-cols-lg-3 row-col-md-2 row-cols-sm-2 row-cols-1 g-2 '>
-              <Testimonials
+              <Testimonials testimonials={testimonials} />
+
+              {/* <Testimonials
                 clientText='Emperor Education is a premier educational consulting firm located in Kathmandu, Nepal. They provide real and legitimate information on studying overseas. If you are searching for admission to a prestigious university in Australia, I strongly advise prospective students to visit Emperor Education.'
                 clientName='Ravi Shrestha'
                 clientImg={raviImg}
@@ -156,7 +162,7 @@ const About = () => {
                 clientImg={krishnaImg}
                 cilentDestination='USA'
                 cardNum='3'
-              />
+              /> */}
             </div>
           </div>
         </div>
