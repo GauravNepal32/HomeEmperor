@@ -1,14 +1,39 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Select from "react-select";
 import useFetch from "./useFetch";
+import axios from "axios";
+import NoResponse from "./NoResponse";
 
 const SearchBox = () => {
-  const { data: countryName } = useFetch(
-    "http://192.168.1.69:8000/countryName"
+  const [countryName, setCountryName] = useState([]);
+  const countryList = [];
+  const [degree, setDegree] = useState({});
+  useEffect(() => {
+    axios
+      .get("https://elscript.co/github/emperor-backend/api/countries")
+      .then((response) => {
+        {
+          response.data.data.map((countryArray) => {
+            const countryListObject = {
+              label: `${countryArray.name}`,
+              value: `${countryArray.id}`,
+            };
+            countryList.push(countryListObject);
+          });
+          setCountryName(countryList);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+  const { data: degreeName } = useFetch("http://localhost:8000/degreeName");
+  const { data: countryNameList } = useFetch(
+    "http://localhost:8000/countryName"
   );
-  const { data: degreeName } = useFetch("http://192.168.1.69:8000/degreeName");
   const { data: courseName } = useFetch("http://192.168.1.69:8000/courseName");
+  console.log(countryName);
   return (
     <div className='search-box-container d-flex flex-column justify-content-center align-content-center'>
       <div className='container px-sm-5 my-auto'>
@@ -23,7 +48,7 @@ const SearchBox = () => {
                 <Select options={degreeName} placeholder='Select Degree..' />
               </div>
               <div className='col-lg-3 col-md-4 col-12'>
-                <Select options={countryName} placeholder='Select Country..' />
+                <Select options={countryList} placeholder='Select Country..' />
               </div>
               <div className='col-lg-4 col-md-4 col-12'>
                 <Select options={courseName} placeholder='Select Course..' />
@@ -45,6 +70,6 @@ const SearchBox = () => {
       </p>
     </div>
   );
-};;;;
+};
 
 export default SearchBox;

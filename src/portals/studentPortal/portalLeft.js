@@ -3,7 +3,6 @@ import { Link, useLocation } from "react-router-dom";
 
 const PortalLeft = () => {
   const location = useLocation().pathname;
-  console.log(location);
   const [activePortal, setActivePortal] = useState("Dashboard");
   useEffect(() => {
     if (location == "/portal/courses") {

@@ -1,16 +1,52 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useEffect } from "react";
 import PasswordChecklist from "react-password-checklist";
 import { Link } from "react-router-dom";
+import Login from "./Login";
 import RegisterSuccess from "./RegisterSuccess";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import axios from "axios";
 const SignUp = () => {
   const [password, setPassword] = useState("");
-  const [passwordAgain, setPasswordAgain] = useState("");
   const [visibleIcon, setVisibleIcon] = useState("visibility");
   const [visibility, setVisibility] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [passwordAgain, setPasswordAgain] = useState("");
+  const registerURL = "https://elscript.co/github/emperor-backend/api/register";
+  const [errMsg, setErrMsg] = useState("");
+  const errRef = useRef();
 
+  const registerStudent = async (
+    studentFullName,
+    studentEmail,
+    studentPhone,
+    studentPassword
+  ) => {
+    try {
+      const response = await axios.post(
+        registerURL,
+        {
+          name: studentFullName,
+          email: studentEmail,
+          phone: studentPhone,
+          password: studentPassword,
+          password_confirmation: studentPassword,
+        },
+        {
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+      if (response.data.statusCode === 200) {
+        setSuccess(true);
+      } else if (response.data.statusCode === 401) {
+        setErrMsg(response.data.message);
+      }
+      console.log(JSON.stringify(response?.data));
+    } catch (err) {
+      console.log(err);
+    }
+  };
   const visiblePassword = (e) => {
     e.preventDefault();
     setVisibility(!visibility);
@@ -110,32 +146,22 @@ const SignUp = () => {
       validFname &&
       validLname
     ) {
-      const studentFirstName = document.getElementById("studentFname").value;
-      const studentLastName = document.getElementById("studentLname").value;
+      const studentFullName =
+        document.getElementById("studentFname").value +
+        document.getElementById("studentLname").value;
       const studentEmail = document.getElementById("registeredEmail").value;
       const studentPhone = document.getElementById("registeredPhone").value;
       const studentPassword = document.getElementById("signupPassword").value;
-
-      const userDetails = {
-        studentFirstName,
-        studentLastName,
+      registerStudent(
+        studentFullName,
         studentEmail,
         studentPhone,
-        studentPassword,
-      };
-      console.log(userDetails);
-      fetch("http://192.168.1.69:8000/userDetails", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(userDetails),
-      }).then(() => {
-        setSuccess(true);
-      });
+        studentPassword
+      );
     }
   };
   return (
     <div>
-      {success && <RegisterSuccess />}
       {!success && (
         <div id='signup-container' className='login-container'>
           <div className='container-fluid'>
@@ -274,6 +300,12 @@ const SignUp = () => {
                           Please agree to terms and conditions to continue
                         </div>
                       </div>
+                      <p
+                        ref={errRef}
+                        className={errMsg ? "errMsg" : "offscreen"}
+                        aria-live='assertive'>
+                        {errMsg}
+                      </p>
                       <div className='text-center mb-3'>
                         <input
                           type='submit'

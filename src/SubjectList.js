@@ -11,9 +11,9 @@ const SubjectList = (props) => {
     return (
       <div
         //
-        className='countrySub-List1'>
+        className='majorList-List1'>
         {countryCourses.map((Courses) => (
-          <div className='countrySub-List-item' key={Courses.id}>
+          <div className='majorList-List-item' key={Courses.id}>
             {colNumber === "1" &&
               startsWithLetter(Courses.subjectName) &&
               Courses.country === countryName && (

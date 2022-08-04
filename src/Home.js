@@ -9,10 +9,14 @@ import SearchBox from "./SearchBox";
 import landingImage from "./images/landing.png";
 import LocationMap from "./LocationMap";
 import axios from "axios";
+import Loading from "./Loading";
+import NoResponse from "./NoResponse";
+
 const Home = () => {
   const [countries, setCountries] = useState();
   const [testimonials, setTestimonials] = useState();
   const [renderApp, setRenderApp] = useState(false);
+
   useEffect(() => {
     axios
       .get("https://elscript.co/github/emperor-backend/api/countries")
@@ -24,12 +28,16 @@ const Home = () => {
       .then((response) => {
         setTestimonials(response.data.data);
         setRenderApp(true);
+      })
+      .catch((err) => {
+        console.log(err);
+        <NoResponse />;
       });
   }, []);
   return (
     // Search box container
     <>
-      {renderApp && (
+      {renderApp ? (
         <div id='' className='main-container'>
           <div className='front-main-container'>
             <div className='search-container'>
@@ -305,6 +313,10 @@ const Home = () => {
             </div>
           </div>
         </div>
+      ) : (
+        <>
+          <Loading />
+        </>
       )}
     </>
   );

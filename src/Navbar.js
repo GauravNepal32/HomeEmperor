@@ -1,20 +1,38 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import NavbarMainLogo from "./images/emperor/companyLogo.png";
 import MajorList from "./MajorList";
 import useFetch from "./useFetch";
 import SubjectList from "./SubjectList";
-import { useState, useLocation, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
+import axios from "axios";
+import { useAuth } from "./auth";
 
 const Navbar = () => {
-  const { data: countrySub } = useFetch(" http://192.168.1.69:8000/major");
+  const auth = useAuth();
+  const [majorList, setMajorList] = useState();
   const { data: USCourses } = useFetch("http://192.168.1.69:8000/subject");
   const [navOpen, setNavOpen] = useState(false);
-  const [isLogin, setIsLogin] = useState(true);
+  const [isLogin, setIsLogin] = useState(false);
+  const userData = JSON.parse(sessionStorage.getItem("token"));
 
-  // if (document.getElementsByClassName('navbar-dropdown-container').style.display = 'none') {
+  useEffect(() => {
+    axios
+      .get("https://elscript.co/github/emperor-backend/api/degrees")
+      .then((response) => {
+        setMajorList(response.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
-  // }
+  useEffect(() => {
+    if (userData == null) {
+      setIsLogin(false);
+    } else {
+      setIsLogin(true);
+    }
+  });
 
   function disableScroll() {
     document.getElementById("scroll-container").classList.add("avoid-Scroll");
@@ -181,9 +199,9 @@ const Navbar = () => {
                           onMouseLeave={enableScroll}
                           className='col sub-first-col p-3'>
                           <div className='long-sub-1'>
-                            {countrySub && (
+                            {majorList && (
                               <MajorList
-                                countrySub={countrySub}
+                                majorList={majorList}
                                 countryName='USA'
                                 disableScroll={disableScroll}
                                 enableScroll={enableScroll}
@@ -278,9 +296,9 @@ const Navbar = () => {
                           onMouseLeave={enableScroll}
                           className='col sub-first-col p-3'>
                           <div className='long-sub-1'>
-                            {countrySub && (
+                            {majorList && (
                               <MajorList
-                                countrySub={countrySub}
+                                majorList={majorList}
                                 countryName='UK'
                                 toggleNav={toggleNav}
                               />
@@ -365,9 +383,9 @@ const Navbar = () => {
                           onMouseLeave={enableScroll}
                           className='col sub-first-col p-3'>
                           <div className='long-sub-1'>
-                            {countrySub && (
+                            {majorList && (
                               <MajorList
-                                countrySub={countrySub}
+                                majorList={majorList}
                                 countryName='Canada'
                                 toggleNav={toggleNav}
                               />
@@ -449,9 +467,9 @@ const Navbar = () => {
                           onMouseLeave={enableScroll}
                           className='col sub-first-col p-3'>
                           <div className='long-sub-1'>
-                            {countrySub && (
+                            {majorList && (
                               <MajorList
-                                countrySub={countrySub}
+                                majorList={majorList}
                                 countryName='Australia'
                                 toggleNav={toggleNav}
                               />
@@ -520,9 +538,20 @@ const Navbar = () => {
               </ul>
             </div>
             <div className='p-lg-0 p-2 pe-3 d-lg-flex d-none '>
-              {isLogin ? (
+              {!isLogin ? (
+                <Link
+                  to='/login'
+                  className='btn btn-type-2 p-2 me-3 d-lg-block d-none text-nowrap w-100'>
+                  Log In
+                </Link>
+              ) : (
+                <Link to='/portal' className='text-black'>
+                  <span class='material-symbols-outlined'>account_circle</span>
+                </Link>
+              )}
+              {/* {isLogin ? (
                 <>
-                  <Link to='/portal/dashboard' className='text-black'>
+                  <Link to='/portal' className='text-black'>
                     <span class='material-symbols-outlined'>
                       account_circle
                     </span>
@@ -531,7 +560,7 @@ const Navbar = () => {
               ) : (
                 <>
                   <Link
-                    to='/portal/dashboard'
+                    to='/portal'
                     className='btn btn-type-2 p-2 me-3 d-lg-block d-none text-nowrap w-100'>
                     Log In
                   </Link>
@@ -541,7 +570,7 @@ const Navbar = () => {
                     Get Free Advice
                   </Link>
                 </>
-              )}
+              )} */}
             </div>
           </div>
         </div>
