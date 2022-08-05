@@ -8,7 +8,11 @@ import NoResponse from "./NoResponse";
 const SearchBox = () => {
   const [countryName, setCountryName] = useState([]);
   const countryList = [];
-  const [degree, setDegree] = useState({});
+  const degreeList = [];
+  const [degree, setDegree] = useState([]);
+  const courseList = [];
+  const [courses, setCourses] = useState([]);
+
   useEffect(() => {
     axios
       .get("https://elscript.co/github/emperor-backend/api/countries")
@@ -28,12 +32,47 @@ const SearchBox = () => {
         console.log(err);
       });
   }, []);
-  const { data: degreeName } = useFetch("http://localhost:8000/degreeName");
-  const { data: countryNameList } = useFetch(
-    "http://localhost:8000/countryName"
-  );
-  const { data: courseName } = useFetch("http://192.168.1.69:8000/courseName");
-  console.log(countryName);
+
+  useEffect(() => {
+    axios
+      .get("https://elscript.co/github/emperor-backend/api/degrees")
+      .then((response) => {
+        {
+          response.data.data.map((degreeArray) => {
+            const degreeListObject = {
+              label: `${degreeArray.title}`,
+              value: `${degreeArray.id}`,
+            };
+            degreeList.push(degreeListObject);
+          });
+          setDegree(degreeList);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get("https://elscript.co/github/emperor-backend/api/courses")
+      .then((response) => {
+        {
+          response.data.data.map((courseArray) => {
+            const courseListObject = {
+              label: `${courseArray.title}`,
+              value: `${courseArray.id}`,
+            };
+            courseList.push(courseListObject);
+          });
+          setCourses(courseList);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   return (
     <div className='search-box-container d-flex flex-column justify-content-center align-content-center'>
       <div className='container px-sm-5 my-auto'>
@@ -45,13 +84,13 @@ const SearchBox = () => {
           <div className=''>
             <div className='row g-1'>
               <div className='col-lg-3 col-md-4 col-12'>
-                <Select options={degreeName} placeholder='Select Degree..' />
+                <Select options={degree} placeholder='Select Degree..' />
               </div>
               <div className='col-lg-3 col-md-4 col-12'>
-                <Select options={countryList} placeholder='Select Country..' />
+                <Select options={countryName} placeholder='Select Country..' />
               </div>
               <div className='col-lg-4 col-md-4 col-12'>
-                <Select options={courseName} placeholder='Select Course..' />
+                <Select options={courses} placeholder='Select Course..' />
               </div>
               <div className='col-lg-2 col-12 d-flex'>
                 {" "}

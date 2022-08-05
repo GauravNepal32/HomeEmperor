@@ -22,7 +22,12 @@ import University from "./portals/studentPortal/University";
 import Setting from "./portals/studentPortal/Setting";
 import { AuthProvider } from "./auth";
 import { RequireAuth } from "./RequireAuth";
-import PortalLeftAgent from "./portals/portalLeftAgent";
+import PortalLeftAgent from "./portals/agent/portalLeftAgent";
+import PortalSelection from "./portals/portalSelction";
+import PortalAgent from "./portals/agent/PortalAgent";
+import AgentDashboard from "./portals/agent/AgentDashboard";
+import MyStudent from "./portals/agent/MyStudent";
+import AddStudent from "./portals/agent/AddStudent";
 
 const App = () => {
   return (
@@ -52,6 +57,13 @@ const App = () => {
               {/* Calling Login container */}
               {/* <Route path='/login' element={<Login />}></Route> */}
               <Route path='/login' element={<Login />}></Route>
+              <Route
+                path='/portalSelection'
+                element={
+                  <RequireAuth>
+                    <PortalSelection />
+                  </RequireAuth>
+                }></Route>
 
               <Route path='/portal' element={<Portal />}>
                 <Route
@@ -103,13 +115,13 @@ const App = () => {
 
               {/* Agent Portal */}
 
-              <Route path='/portalAgent' element={<Portal />}>
+              <Route path='/portalAgent' element={<PortalAgent />}>
                 <Route
                   index
                   element={
                     <RequireAuth>
                       {" "}
-                      <Dashboard />
+                      <AgentDashboard />
                     </RequireAuth>
                   }
                 />
@@ -117,21 +129,21 @@ const App = () => {
                   path='dashboard'
                   element={
                     <RequireAuth>
-                      <Dashboard />
+                      <AgentDashboard />
                     </RequireAuth>
                   }></Route>
                 <Route
-                  path='processing'
+                  path='studentList'
                   element={
                     <RequireAuth>
-                      <Processing />
+                      <MyStudent />
                     </RequireAuth>
                   }></Route>
                 <Route
-                  path='document'
+                  path='addStudent'
                   element={
                     <RequireAuth>
-                      <DocumentDetails />
+                      <AddStudent />
                     </RequireAuth>
                   }></Route>
                 <Route path='setting' element={<Setting />}></Route>

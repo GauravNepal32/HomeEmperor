@@ -47,16 +47,13 @@ const Login = () => {
         }
       );
       console.log(JSON.stringify(response?.data));
-      const accessToken = response?.data?.token;
       if (response.data.statusCode === 200) {
         auth.login(response.data.data);
         sessionStorage.setItem("token", JSON.stringify(response.data.data));
-        navigate("/portal/dashboard", { replace: true });
+        navigate("/portalSelection", { replace: true });
+        setUserID("");
+        setPwd("");
       }
-
-      setUserID("");
-      setPwd("");
-      console.log(response.data.statusCode);
       if (response.data.statusCode === 401) {
         setErrMsg("Invalid Username/Password");
       }
@@ -117,7 +114,7 @@ const Login = () => {
                         </span>
                       </button>
                     </div>
-                    <div className='mb-5'>
+                    <div className='mb-2'>
                       <input
                         type='checkbox'
                         className='me-3'

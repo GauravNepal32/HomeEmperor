@@ -13,6 +13,8 @@ const Setting = () => {
   const [password, setPassword] = useState("");
   const [passwordAgain, setPasswordAgain] = useState("");
   const [editInfo, setEditInfo] = useState(true);
+  const [editedName, setEditedName] = useState("");
+  const [editedPhone, setEditedPhone] = useState("");
   const [visibleIcon, setVisibleIcon] = useState("visibility");
   const [enableSubmit, setEnableSubmit] = useState(false);
   const [visibility, setVisibility] = useState(false);
@@ -26,8 +28,8 @@ const Setting = () => {
       position: toast.POSITION.BOTTOM_RIGHT,
     });
   };
-
-  useEffect(() => {});
+  const changeProfileURL =
+    "https://elscript.co/github/emperor-backend/api/edit-profile";
 
   const changePassURL =
     "https://elscript.co/github/emperor-backend/api/change-password/" + userID;
@@ -86,7 +88,42 @@ const Setting = () => {
     }
   };
 
-  const submitHandle = () => {};
+  const submitEditProfile = async (editedName, editedPhone) => {
+    console.log(editedName);
+    console.log(editedPhone);
+    try {
+      const response = await axios.post(
+        changeProfileURL,
+        {
+          name: editedName,
+          phone: editedPhone,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${userToken}`,
+          },
+        }
+      );
+      console.log(response);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const submitHandle = () => {
+    setEditedName(document.getElementById("editedName"));
+    setEditedPhone(document.getElementById("editedPhone"));
+
+    if (editedName == "") {
+      setEditedName(userData.name);
+    }
+    if (editedPhone == "") {
+      setEditedPhone(userData.phone);
+    }
+
+    submitEditProfile(editedName, editedPhone);
+  };
   const handlePasswordChange = (e) => {
     e.preventDefault();
     const current_password = document.getElementById("oldPassword").value;
@@ -121,38 +158,31 @@ const Setting = () => {
                   <label htmlFor='firstName'>First Name</label>
                   <input
                     type='text'
+                    id='editedName'
                     className='form-control'
                     placeholder={userData.name}
                     disabled={editInfo}
                   />
                 </div>
                 <div className='col'>
-                  <label htmlFor='lastName'>Last Name</label>
+                  <label htmlFor='phoneNumber'>Phone Number</label>
                   <input
                     type='text'
                     className='form-control'
-                    placeholder={userData.name}
+                    id='editedPhone'
+                    placeholder={userData.phone}
                     disabled={editInfo}
                   />
                 </div>
               </div>
               <div className='row mt-3 row-cols-sm-2 row-cols-1'>
                 <div className='col'>
-                  <label htmlFor='phoneNumber'>Phone Number</label>
-                  <input
-                    type='text'
-                    className='form-control'
-                    placeholder={userData.phone}
-                    disabled={editInfo}
-                  />
-                </div>
-                <div className='col'>
                   <label htmlFor='lastName'>Email</label>
                   <input
                     type='email'
                     className='form-control'
                     placeholder={userData.email}
-                    disabled={editInfo}
+                    disabled
                   />
                 </div>
               </div>
@@ -169,8 +199,9 @@ const Setting = () => {
                   ) : (
                     <button
                       className='btn btn-type-2'
-                      onClick={() => {
+                      onClick={(e) => {
                         setEditInfo(!editInfo);
+                        e.preventDefault();
                         submitHandle();
                       }}>
                       Save
