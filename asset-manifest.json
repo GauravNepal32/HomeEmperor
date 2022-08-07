@@ -1,31 +1,33 @@
 {
   "files": {
-    "main.css": "/HomeEmperor/static/css/main.9ab57419.css",
-    "main.js": "/HomeEmperor/static/js/main.69b924c4.js",
+    "main.css": "/HomeEmperor/static/css/main.c5d17455.css",
+    "main.js": "/HomeEmperor/static/js/main.998fa3d3.js",
     "static/media/people-office.jpg": "/HomeEmperor/static/media/people-office.38c97f9e03b2a36f7e7d.jpg",
     "static/media/testStudent.png": "/HomeEmperor/static/media/testStudent.98e6cf0536a4d27a4168.png",
     "static/media/ceo.png": "/HomeEmperor/static/media/ceo.9d63f6954eb054b00dc4.png",
-    "static/media/companyLogo.png": "/HomeEmperor/static/media/companyLogo.d59b06afa60f0822b003.png",
+    "static/media/satThumbnail.png": "/HomeEmperor/static/media/satThumbnail.cd844fd5bf282edf0da4.png",
     "static/media/contact.jpeg": "/HomeEmperor/static/media/contact.24a4c4979eb2822340c4.jpeg",
-    "static/media/43.png": "/HomeEmperor/static/media/43.3967b498e2cf5f45452f.png",
-    "static/media/ravi.png": "/HomeEmperor/static/media/ravi.f4c2067226c8789cffb5.png",
-    "static/media/three.png": "/HomeEmperor/static/media/three.8d3c860cb7a893133b0e.png",
     "static/media/consultant-ashwinnath-small.png": "/HomeEmperor/static/media/consultant-ashwinnath-small.0324480d9b9af131a270.png",
     "static/media/companyLogoWhite.png": "/HomeEmperor/static/media/companyLogoWhite.4460fc80f4a4ae742a16.png",
+    "static/media/profileImg.webp": "/HomeEmperor/static/media/profileImg.78f3482c68dc3fd1655f.webp",
     "static/media/consultant-disha-small.png": "/HomeEmperor/static/media/consultant-disha-small.3b13ffa57f74be7fd0a4.png",
     "static/media/landing.png": "/HomeEmperor/static/media/landing.95d5c5a6d5da60af1107.png",
+    "static/media/companyLogo.png": "/HomeEmperor/static/media/companyLogo.bcba7f8eac1a5cdf9e51.png",
     "static/media/consultant-mohit-small.png": "/HomeEmperor/static/media/consultant-mohit-small.0ac0b6cb6b3842e0a389.png",
+    "static/media/success.png": "/HomeEmperor/static/media/success.2d8f6751bab8fa597194.png",
     "static/media/partner.jpg": "/HomeEmperor/static/media/partner.cd759f28f0bb525a3754.jpg",
     "static/media/ielts.png": "/HomeEmperor/static/media/ielts.271e6cb81dba428b5171.png",
     "static/media/team.png": "/HomeEmperor/static/media/team.fc6a37dd09ac6a0a03d5.png",
+    "static/media/noData.png": "/HomeEmperor/static/media/noData.419e75d4a6e59adf8e6b.png",
+    "static/media/hardvard.png": "/HomeEmperor/static/media/hardvard.63f56e5a68d96e5957ed.png",
     "static/media/new-nepal-map.png": "/HomeEmperor/static/media/new-nepal-map.8df3e3ea2966e5a836a9.png",
-    "static/media/lost.svg": "/HomeEmperor/static/media/lost.15950e4cca9c4502cdf71574291b390e.svg",
+    "static/media/lost.svg": "/HomeEmperor/static/media/lost.ec370f7907d21f0631f4bae1a0b7c66f.svg",
     "index.html": "/HomeEmperor/index.html",
-    "main.9ab57419.css.map": "/HomeEmperor/static/css/main.9ab57419.css.map",
-    "main.69b924c4.js.map": "/HomeEmperor/static/js/main.69b924c4.js.map"
+    "main.c5d17455.css.map": "/HomeEmperor/static/css/main.c5d17455.css.map",
+    "main.998fa3d3.js.map": "/HomeEmperor/static/js/main.998fa3d3.js.map"
   },
   "entrypoints": [
-    "static/css/main.9ab57419.css",
-    "static/js/main.69b924c4.js"
+    "static/css/main.c5d17455.css",
+    "static/js/main.998fa3d3.js"
   ]
 }
