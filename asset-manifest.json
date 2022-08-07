@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/HomeEmperor/static/css/main.c5d17455.css",
-    "main.js": "/HomeEmperor/static/js/main.998fa3d3.js",
+    "main.css": "/HomeEmperor/static/css/main.e1f2d63a.css",
+    "main.js": "/HomeEmperor/static/js/main.05723630.js",
     "static/media/people-office.jpg": "/HomeEmperor/static/media/people-office.38c97f9e03b2a36f7e7d.jpg",
     "static/media/testStudent.png": "/HomeEmperor/static/media/testStudent.98e6cf0536a4d27a4168.png",
     "static/media/ceo.png": "/HomeEmperor/static/media/ceo.9d63f6954eb054b00dc4.png",
@@ -23,11 +23,11 @@
     "static/media/new-nepal-map.png": "/HomeEmperor/static/media/new-nepal-map.8df3e3ea2966e5a836a9.png",
     "static/media/lost.svg": "/HomeEmperor/static/media/lost.ec370f7907d21f0631f4bae1a0b7c66f.svg",
     "index.html": "/HomeEmperor/index.html",
-    "main.c5d17455.css.map": "/HomeEmperor/static/css/main.c5d17455.css.map",
-    "main.998fa3d3.js.map": "/HomeEmperor/static/js/main.998fa3d3.js.map"
+    "main.e1f2d63a.css.map": "/HomeEmperor/static/css/main.e1f2d63a.css.map",
+    "main.05723630.js.map": "/HomeEmperor/static/js/main.05723630.js.map"
   },
   "entrypoints": [
-    "static/css/main.c5d17455.css",
-    "static/js/main.998fa3d3.js"
+    "static/css/main.e1f2d63a.css",
+    "static/js/main.05723630.js"
   ]
 }
