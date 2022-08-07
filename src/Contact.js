@@ -1,25 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import contactTop from "./images/contact/contact.jpeg";
 import FAQ from "./FAQ";
+import axios from "axios";
 
 const Contact = () => {
-  const [faqs, setfaqs] = useState([
-    {
-      question: "lorem fnajfna kajn fknfa akjnfajksf fjnajk",
-      answer: "lfnao kjnfja kjnfa akjfnak",
-      open: false,
-    },
-    {
-      question: "lorem fnajfna kajn fknfa akjnfajksf fjnajk",
-      answer: "lfnao kjnfja kjnfa akjfnak",
-      open: false,
-    },
-    {
-      question: "lorem fnajfna kajn fknfa akjnfajksf fjnajk",
-      answer: "lfnao kjnfja kjnfa akjfnak",
-      open: false,
-    },
-  ]);
+  const faqList = [];
+  const [faqs, setfaqs] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("https://elscript.co/github/emperor-backend/api/faqs")
+      .then((response) => {
+        {
+          response.data.data.map((faqArray) => {
+            const faqListObject = {
+              question: `${faqArray.title}`,
+              answer: `${faqArray.description}`,
+              open: false,
+            };
+            faqList.push(faqListObject);
+          });
+          setfaqs(faqList);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   // Toggle FAQ section
 

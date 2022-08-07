@@ -24,7 +24,19 @@ const Footer = () => {
       setWithNav(false);
     } else if (location === "/portal/setting") {
       setWithNav(false);
-    } else {
+    }
+    else if (location === "/PortalAgent/dashboard") {
+      setWithNav(false);
+    } else if (location === "/PortalAgent") {
+      setWithNav(false);
+    } else if (location === "/PortalAgent/studentList") {
+      setWithNav(false);
+    } else if (location === "/PortalAgent/addStudent") {
+      setWithNav(false);
+    }
+    else if (location === "/PortalAgent/setting") {
+      setWithNav(false);
+    }else {
       setWithNav(true);
     }
   });

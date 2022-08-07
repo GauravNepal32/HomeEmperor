@@ -76,10 +76,16 @@ const SearchBox = () => {
   return (
     <div className='search-box-container d-flex flex-column justify-content-center align-content-center'>
       <div className='container px-sm-5 my-auto'>
-        <button className='uni-btn p-3' disabled>
+        <div className="d-flex">
+          <button className='uni-btn p-md-3 p-2' disabled>
           <i className='fa-solid fa-building-columns me-2'></i>Search for
           University
         </button>
+          <Link to="/UniList" className='uni-btn p-md-3 p-2 ms-3' disabled>
+            <i className='fa-solid fa-building-columns me-2'></i>View All University
+          </Link>
+        </div>
+
         <div className='search-form-container text-center mt-4'>
           <div className=''>
             <div className='row g-1'>

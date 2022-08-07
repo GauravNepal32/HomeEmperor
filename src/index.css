@@ -1,11 +1,13 @@
 * {
     border: 0;
     padding: 0;
+    -webkit-tap-highlight-color: transparent;
 }
 
 body {
     font-family: 'Roboto Condensed', sans-serif;
 }
+
 
 
 /* Header CSS */
@@ -1244,13 +1246,13 @@ justify-content: end;
   .straight-line-container{
     width: 3px;
     padding: 1px;
-    height: 30px;
+    height: 40px;
     background-color: #025E8D;
     position: relative;
     left: -30px;
   }
   .date-container{
-    width: 50px;
+    width: 70px;
   }
 
   .change-pass-container{
@@ -1356,6 +1358,77 @@ justify-content: end;
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+.my-student-table-container {
+    background-color: white;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.my-student-table-container {
+    width: 100%;
+    overflow-x: scroll;
+}
+
+.my-student-table-container tr {
+    border: 40px solid transparent;
+}
+
+.my-student-table-container thead {
+    background-color: #0e0e0e;
+    color: white;
+}
+
+.my-student-table-container thead tr:hover {
+    background-color: #0e0e0e;
+    color: white;
+}
+
+.my-student-table-container tr:hover {
+    background-color: #afafaf;
+}
+
+.student-link-anchor a {
+    color: #0A2343;
+}
+
+.student-link-anchor a:hover {
+    color: #00a096;
+}
+
+
+.addedItem {
+    font-variation-settings:
+        'FILL' 1,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 48
+}
+
+
+
+.dashboard-card {
+    background-color: white;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    padding: 20px;
+    border-radius: 10px;
+    min-height: 300px;
+
+
+}
+
+.uni-btn {
+    text-decoration: none;
+}
+
+.uni-btn:hover {
+    color: white;
+    text-decoration: none;
+}
+
+.more-contain-btn {
+    color: black;
+    font-size: 12px;
+    margin-top: 10px;
 }
 /* Test End */
 /* Mobile screen */

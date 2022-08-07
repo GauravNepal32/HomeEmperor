@@ -3,12 +3,16 @@ import { Link, useNavigate } from "react-router-dom";
 import useFetch from "./useFetch";
 import axios from "axios";
 import { useAuth } from "./auth";
+import { ToastContainer, toast } from "react-toastify";
+
 
 const LOGIN_URL = "https://elscript.co/github/emperor-backend/api/login";
 const Login = () => {
   // Password visibility toggler
+  const[success,setSuccess]=useState(false)
   const [visibleIcon, setVisibleIcon] = useState("visibility");
   const [visibility, setVisibility] = useState(false);
+  const [loadBtn, setLoadBtn] = useState(false);
   const visiblePassword = (e) => {
     e.preventDefault();
     setVisibility(!visibility);
@@ -29,6 +33,12 @@ const Login = () => {
   const [errMsg, setErrMsg] = useState("");
   const auth = useAuth();
   const navigate = useNavigate();
+
+  useEffect(()=>{
+    toast.success("Registered Successfully. Please Login !", {
+      position: toast.POSITION.BOTTOM_RIGHT,
+    });
+  },[])
   useEffect(() => {
     userRef.current.focus();
   }, []);
@@ -39,6 +49,7 @@ const Login = () => {
   const HandleSubmit = async (e) => {
     e.preventDefault();
     try {
+      setLoadBtn(true)
       const response = await axios.post(
         LOGIN_URL,
         { email: userID, password: pwd },
@@ -53,20 +64,17 @@ const Login = () => {
         navigate("/portalSelection", { replace: true });
         setUserID("");
         setPwd("");
+        setLoadBtn(false)
       }
       if (response.data.statusCode === 401) {
         setErrMsg("Invalid Username/Password");
+        setLoadBtn(false)
       }
     } catch (response) {
+      setLoadBtn(false)
       console.log(response);
       if (!response) {
         setErrMsg("No Server Response");
-      } else if (response?.statusCode === 400) {
-        setErrMsg("Missing username or password");
-      } else if (response?.statusCode === 401) {
-        setErrMsg("Unauthorized");
-      } else {
-        setErrMsg("Login Failed");
       }
       errRef.current.focus();
     }
@@ -74,6 +82,7 @@ const Login = () => {
   return (
     <div className='main-container'>
       <div id='login-container' className='login-container'>
+        {success &&  <ToastContainer />}
         <div className='container-fluid '>
           <div className='row d-flex px-0'>
             <div className='col-sm-8 '>
@@ -130,11 +139,15 @@ const Login = () => {
                       {errMsg}
                     </p>
                     <div className='text-center mb-3'>
-                      <input
+                      {loadBtn ? <button className="btn btn-type-2 px-5" type="button" disabled>
+                        <span className="spinner-border spinner-border-sm me-3" role="status" aria-hidden="true"></span>
+                        Loading...
+                      </button> : <input
                         type='submit'
                         className='btn btn-type-2 px-5'
                         value='SIGN IN'
-                      />
+                      />}
+
                     </div>
                     <p className='text-center text-decoration-underline login-problem'>
                       Having trouble to Log In?

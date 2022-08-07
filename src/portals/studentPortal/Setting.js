@@ -28,11 +28,16 @@ const Setting = () => {
       position: toast.POSITION.BOTTOM_RIGHT,
     });
   };
+  const showErrorToastMessage = () => {
+    toast.error("Unable to change password !", {
+      position: toast.POSITION.BOTTOM_RIGHT,
+    });
+  };
   const changeProfileURL =
     "https://elscript.co/github/emperor-backend/api/edit-profile";
 
   const changePassURL =
-    "https://elscript.co/github/emperor-backend/api/change-password/" + userID;
+    "https://elscript.co/github/emperor-backend/api/change-password";
 
   const navigate = useNavigate();
 
@@ -64,7 +69,9 @@ const Setting = () => {
         setInvalidPass(true);
       }
     } catch (err) {
+      showErrorToastMessage();
       console.log(err);
+
     }
   };
   const visiblePassword = (e) => {

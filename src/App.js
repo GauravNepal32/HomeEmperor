@@ -28,6 +28,7 @@ import PortalAgent from "./portals/agent/PortalAgent";
 import AgentDashboard from "./portals/agent/AgentDashboard";
 import MyStudent from "./portals/agent/MyStudent";
 import AddStudent from "./portals/agent/AddStudent";
+import AllUniv from "./AllUniv";
 
 const App = () => {
   return (
@@ -54,6 +55,8 @@ const App = () => {
               <Route path='/testPrep' element={<TestPrep />}></Route>
               {/* Calling search result container */}
               <Route path='/searchresult' element={<SearchResult />}></Route>
+
+                 <Route path='/UniList' element={<AllUniv />}></Route>
               {/* Calling Login container */}
               {/* <Route path='/login' element={<Login />}></Route> */}
               <Route path='/login' element={<Login />}></Route>

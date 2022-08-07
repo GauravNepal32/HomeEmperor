@@ -1,18 +1,46 @@
+import React,{useEffect,useState} from "react";
 import courseImg from "../../images/coursesThumbnail/satThumbnail.png";
 import { Link } from "react-router-dom";
 // import acceptedImg from "../images/process/accepted.png";
 import uniImg from "../../images/university/hardvard.png";
 import uniImg1 from "../../images/university/londonmet.png";
+import Loading from "../../Loading"
+
+import axios from "axios";
+import ActivityGraph from "./ActivityGraph";
 
 const Dashboard = () => {
   // const userData = sessionStorage.getItem("token");
   const userData = JSON.parse(sessionStorage.getItem("token"));
+  const userToken=userData.token
+  const activities="https://elscript.co/github/emperor-backend/api/activities"
+  const [activity,setActivity]=useState();
+  const [loading,setLoading]=useState(true)
+
+  useEffect(() => {
+    axios.get(activities,{
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${userToken}`,
+          }}).then((response)=>{
+            setActivity(response.data.data)
+            setLoading(false)
+    }).catch((err)=>{
+      setLoading(false)
+      console.log(err)
+    })
+  }, []);
+
+
+
 
   return (
-    <div className='main-container px-sm-5 p-4 p-0 mb-5 container'>
-      <div className='row row-cols-1'>
+    <div className='main-container '>
+      {loading ? <Loading/>: (
+        <div className="px-sm-5 p-4 p-0 mb-5 container">
+         <div className='row row-cols-1'>
         <div className='col order-1'>
-          <h4>Welcome {userData.name}</h4>
+
           <h4 className='mt-4'>Continue Watching</h4>
           <div className='courses-card-container d-flex mt-3'>
             <div className='course-card'>
@@ -78,47 +106,12 @@ const Dashboard = () => {
             <div className='processing-status-container'>
               <div className='process-heading'>Visa Processing</div>
               <div className='latest-upadte-container'>
-                Latest Update: Processing on our end
+                Latest Update:{activity.at(0).title}
               </div>
               <div className='processing-timeline-container mt-4'>
                 <div className='d-flex'>
-                  <div className='d-flex flex-column'>
-                    <div className='processing-timline-child d-flex align-items-center'>
-                      <div className='date-container'>17th Jul</div>
-                      <div className='timeline-checkpoint mx-4'></div>
-                      <div className='straight-line-container'></div>
-                      <div className='timeline-description'>
-                        You uploaded the document
-                      </div>
-                    </div>
-                    <div className='processing-timline-child d-flex align-items-center'>
-                      <div className='date-container'>07th May</div>
-                      <div className='timeline-checkpoint mx-4'></div>
-                      <div className='straight-line-container'></div>
+                  {<ActivityGraph userActivity={activity}/>}
 
-                      <div className='timeline-description'>
-                        You uploaded the document
-                      </div>
-                    </div>
-                    <div className='processing-timline-child d-flex align-items-center'>
-                      <div className='date-container'>17th Sep</div>
-                      <div className='timeline-checkpoint mx-4'></div>
-                      <div className='straight-line-container'></div>
-
-                      <div className='timeline-description'>
-                        You uploaded the document
-                      </div>
-                    </div>
-                    <div className='processing-timline-child d-flex align-items-center'>
-                      <div className='date-container'>17th Jul</div>
-                      <div className='timeline-checkpoint mx-4'></div>
-                      <div className='straight-line-container'></div>
-
-                      <div className='timeline-description'>
-                        You uploaded the document
-                      </div>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
@@ -275,6 +268,10 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
+        </div>
+
+      ) }
+
     </div>
   );
 };

@@ -15,6 +15,7 @@ const SignUp = () => {
   const [passwordAgain, setPasswordAgain] = useState("");
   const registerURL = "https://elscript.co/github/emperor-backend/api/register";
   const [errMsg, setErrMsg] = useState("");
+
   const errRef = useRef();
   const navigate = useNavigate();
 
@@ -47,7 +48,7 @@ const SignUp = () => {
       if (response.data.statusCode === 200) {
         setSuccess(true);
         showToastMessage();
-        navigate("/login");
+        navigate("/login",{success: true});
       } else if (response.data.statusCode === 401) {
         setErrMsg(response.data.message);
       }
@@ -259,7 +260,7 @@ const SignUp = () => {
                         />
                       </div>
                     </div>
-                    <div className='mb-5'>
+                    <div className='mb-2'>
                       <input
                         type='checkbox'
                         className='me-3'
@@ -277,7 +278,7 @@ const SignUp = () => {
                     </div>
                     <p
                       ref={errRef}
-                      className={errMsg ? "errMsg" : "offscreen"}
+                      className={errMsg ? "errMsg text-center" : "offscreen"}
                       aria-live='assertive'>
                       {errMsg}
                     </p>
