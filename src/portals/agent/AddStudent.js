@@ -8,6 +8,7 @@ import axios from "axios";
 
 
 const AddStudent = () => {
+    const userData = JSON.parse(sessionStorage.getItem("token"));
   const [password, setPassword] = useState("");
   const [visibleIcon, setVisibleIcon] = useState("visibility");
   const [visibility, setVisibility] = useState(false);
@@ -17,9 +18,10 @@ const AddStudent = () => {
   const [errMsg, setErrMsg] = useState("");
   const errRef = useRef();
   const navigate = useNavigate();
+  const referredBy= userData.id;
 
   const showToastMessage = () => {
-    toast.success("Password Changed Successfully !", {
+    toast.success("Student Added Successfully !", {
       position: toast.POSITION.BOTTOM_RIGHT,
     });
   };
@@ -39,6 +41,8 @@ const AddStudent = () => {
           phone: studentPhone,
           password: studentPassword,
           password_confirmation: studentPassword,
+          referred_by:referredBy
+
         },
         {
           headers: { "Content-Type": "application/json" },
@@ -145,7 +149,7 @@ const AddStudent = () => {
         studentFullName,
         studentEmail,
         studentPhone,
-        studentPassword
+        studentPassword,referredBy
       );
     }
   };

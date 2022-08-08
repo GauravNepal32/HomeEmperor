@@ -1502,6 +1502,15 @@ border: 1px solid black;
     scroll-padding: 10px;
 }
 
+.loading-container {
+    position: relative;
+}
+
+.landing-container .loader {
+    position: absolute;
+    top: 50%;
+    right: 50%;
+}
 
 /* Landscape Mobile screen */
 
@@ -1593,6 +1602,7 @@ border: 1px solid black;
     }
 }
 @media only screen and (max-width: 1080px) {
+
     .waves-image{
 
         bottom: 200px;
@@ -1600,12 +1610,14 @@ border: 1px solid black;
 
     }
 
+
 }
 
 @media only screen and (max-width: 1200px) {
     .main-navbar .nav-item {
         margin: 0px 20px;
     }}
+
 
 @media only screen and (min-width: 1080px) {
     header .long-dropdown {

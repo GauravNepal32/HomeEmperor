@@ -82,7 +82,6 @@ const Login = () => {
   return (
     <div className='main-container'>
       <div id='login-container' className='login-container'>
-        {success &&  <ToastContainer />}
         <div className='container-fluid '>
           <div className='row d-flex px-0'>
             <div className='col-sm-8 '>

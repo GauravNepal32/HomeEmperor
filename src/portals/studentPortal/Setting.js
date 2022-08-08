@@ -1,26 +1,24 @@
 import { useEffect, useState } from "react";
-import profileImg from "../../images/portal/profileImg.webp";
 import PasswordChecklist from "react-password-checklist";
 import { useAuth } from "../../auth";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Loading from "../../Loading";
+import ChangeProfile from "./ChangeProfile"
 
 const Setting = () => {
   const userData = JSON.parse(sessionStorage.getItem("token"));
   const auth = useAuth();
   const [password, setPassword] = useState("");
   const [passwordAgain, setPasswordAgain] = useState("");
-  const [editInfo, setEditInfo] = useState(true);
-  const [editedName, setEditedName] = useState("");
-  const [editedPhone, setEditedPhone] = useState("");
   const [visibleIcon, setVisibleIcon] = useState("visibility");
   const [enableSubmit, setEnableSubmit] = useState(false);
   const [visibility, setVisibility] = useState(false);
-  const [changePassSuccess, setChangePassSuccess] = useState(false);
   const [invalidPass, setInvalidPass] = useState(false);
-  const userID = userData.id;
+  const [changePassSuccess, setChangePassSuccess] = useState(false);
+
   const userToken = userData.token;
 
   const showToastMessage = () => {
@@ -33,8 +31,7 @@ const Setting = () => {
       position: toast.POSITION.BOTTOM_RIGHT,
     });
   };
-  const changeProfileURL =
-    "https://elscript.co/github/emperor-backend/api/edit-profile";
+
 
   const changePassURL =
     "https://elscript.co/github/emperor-backend/api/change-password";
@@ -94,43 +91,6 @@ const Setting = () => {
       setEnableSubmit(false);
     }
   };
-
-  const submitEditProfile = async (editedName, editedPhone) => {
-    console.log(editedName);
-    console.log(editedPhone);
-    try {
-      const response = await axios.post(
-        changeProfileURL,
-        {
-          name: editedName,
-          phone: editedPhone,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${userToken}`,
-          },
-        }
-      );
-      console.log(response);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  const submitHandle = () => {
-    setEditedName(document.getElementById("editedName"));
-    setEditedPhone(document.getElementById("editedPhone"));
-
-    if (editedName == "") {
-      setEditedName(userData.name);
-    }
-    if (editedPhone == "") {
-      setEditedPhone(userData.phone);
-    }
-
-    submitEditProfile(editedName, editedPhone);
-  };
   const handlePasswordChange = (e) => {
     e.preventDefault();
     const current_password = document.getElementById("oldPassword").value;
@@ -155,69 +115,7 @@ const Setting = () => {
         </div>
         <div className='col-md-7 perosnal-info-wrapper p-3 col-12'>
           <h3>Personal Information</h3>
-          <div className='profile-info-container mt-5'>
-            <div className='profile-image-container'>
-              <img className='img-fluid' src={profileImg} alt='' />
-            </div>
-            <div className='text-info-container mt-2'>
-              <div className='row row-cols-sm-2 row-cols-1'>
-                <div className='col'>
-                  <label htmlFor='firstName'>First Name</label>
-                  <input
-                    type='text'
-                    id='editedName'
-                    className='form-control'
-                    placeholder={userData.name}
-                    disabled={editInfo}
-                  />
-                </div>
-                <div className='col'>
-                  <label htmlFor='phoneNumber'>Phone Number</label>
-                  <input
-                    type='text'
-                    className='form-control'
-                    id='editedPhone'
-                    placeholder={userData.phone}
-                    disabled={editInfo}
-                  />
-                </div>
-              </div>
-              <div className='row mt-3 row-cols-sm-2 row-cols-1'>
-                <div className='col'>
-                  <label htmlFor='lastName'>Email</label>
-                  <input
-                    type='email'
-                    className='form-control'
-                    placeholder={userData.email}
-                    disabled
-                  />
-                </div>
-              </div>
-              <div className='row mt-3'>
-                <div className='text-end'>
-                  {editInfo ? (
-                    <button
-                      className='btn btn-type-2'
-                      onClick={() => {
-                        setEditInfo(!editInfo);
-                      }}>
-                      Edit
-                    </button>
-                  ) : (
-                    <button
-                      className='btn btn-type-2'
-                      onClick={(e) => {
-                        setEditInfo(!editInfo);
-                        e.preventDefault();
-                        submitHandle();
-                      }}>
-                      Save
-                    </button>
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
+          <ChangeProfile />
         </div>
         <div className=' col-md-4 col-12 my-md-0 my-5 change-pass-container p-3'>
           <h3>Change Password</h3>

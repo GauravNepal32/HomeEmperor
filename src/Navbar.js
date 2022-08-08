@@ -10,10 +10,11 @@ import { useAuth } from "./auth";
 const Navbar = () => {
   const auth = useAuth();
   const [majorList, setMajorList] = useState();
-  const { data: USCourses } = useFetch("http://192.168.1.69:8000/subject");
+  const [coursesList,setCoursesList]=useState();
   const [navOpen, setNavOpen] = useState(false);
   const [isLogin, setIsLogin] = useState(false);
   const userData = JSON.parse(sessionStorage.getItem("token"));
+  const [renderApp,setRenderApp]=useState(false);
 
   useEffect(() => {
     axios
@@ -24,6 +25,16 @@ const Navbar = () => {
       .catch((err) => {
         console.log(err);
       });
+    axios
+      .get("https://elscript.co/github/emperor-backend/api/courses")
+      .then((response) => {
+        setCoursesList(response.data.data);
+        setRenderApp(true)
+      })
+      .catch((err) => {
+        setRenderApp(true)
+        console.log(err);
+      });
   }, []);
 
   useEffect(() => {
@@ -32,7 +43,7 @@ const Navbar = () => {
     } else {
       setIsLogin(true);
     }
-  });
+  },[userData]);
 
   function disableScroll() {
     document.getElementById("scroll-container").classList.add("avoid-Scroll");
@@ -49,7 +60,7 @@ const Navbar = () => {
 
   return (
     <header className='mx-0 px-0'>
-      <nav className='navbar navbar-expand-lg main-navbar'>
+      {renderApp && <nav className='navbar navbar-expand-lg main-navbar'>
         <div className='container-md  px-sm-5'>
           <NavLink className='navbar-brand' to='/HomeEmperor'>
             <img
@@ -217,10 +228,10 @@ const Navbar = () => {
                           <div className='long-sub-2'>
                             <ul className='list-unstyled'>
                               <li className='alphabet-heading'>A-H</li>
-                              {USCourses && (
+                              {coursesList && (
                                 <SubjectList
                                   colNumber='1'
-                                  countryCourses={USCourses}
+                                  countryCourses={coursesList}
                                   countryName='USA'
                                   disableScroll={disableScroll}
                                   enableScroll={enableScroll}
@@ -237,10 +248,10 @@ const Navbar = () => {
                           <div className='long-sub-2'>
                             <ul className='list-unstyled'>
                               <li className='alphabet-heading'>I-O</li>
-                              {USCourses && (
+                              {coursesList && (
                                 <SubjectList
                                   colNumber='2'
-                                  countryCourses={USCourses}
+                                  countryCourses={coursesList}
                                   countryName='USA'
                                   disableScroll={disableScroll}
                                   enableScroll={enableScroll}
@@ -257,10 +268,10 @@ const Navbar = () => {
                           <div className='long-sub-2'>
                             <ul className='list-unstyled'>
                               <li className='alphabet-heading'>P-Z</li>
-                              {USCourses && (
+                              {coursesList && (
                                 <SubjectList
                                   colNumber='3'
-                                  countryCourses={USCourses}
+                                  countryCourses={coursesList}
                                   countryName='USA'
                                   disableScroll={disableScroll}
                                   enableScroll={enableScroll}
@@ -312,10 +323,10 @@ const Navbar = () => {
                           <div className='long-sub-2'>
                             <ul className='list-unstyled'>
                               <li className='alphabet-heading'>A-H</li>
-                              {USCourses && (
+                              {coursesList && (
                                 <SubjectList
                                   colNumber='1'
-                                  countryCourses={USCourses}
+                                  countryCourses={coursesList}
                                   countryName='UK'
                                   toggleNav={toggleNav}
                                 />
@@ -330,10 +341,10 @@ const Navbar = () => {
                           <div className='long-sub-2'>
                             <ul className='list-unstyled'>
                               <li className='alphabet-heading'>I-O</li>
-                              {USCourses && (
+                              {coursesList && (
                                 <SubjectList
                                   colNumber='2'
-                                  countryCourses={USCourses}
+                                  countryCourses={coursesList}
                                   countryName='UK'
                                   toggleNav={toggleNav}
                                 />
@@ -348,10 +359,10 @@ const Navbar = () => {
                           <div className='long-sub-2'>
                             <ul className='list-unstyled'>
                               <li className='alphabet-heading'>P-Z</li>
-                              {USCourses && (
+                              {coursesList && (
                                 <SubjectList
                                   colNumber='3'
-                                  countryCourses={USCourses}
+                                  countryCourses={coursesList}
                                   countryName='UK'
                                   toggleNav={toggleNav}
                                 />
@@ -399,10 +410,10 @@ const Navbar = () => {
                           <div className='long-sub-2'>
                             <ul className='list-unstyled'>
                               <li className='alphabet-heading'>A-H</li>
-                              {USCourses && (
+                              {coursesList && (
                                 <SubjectList
                                   colNumber='1'
-                                  countryCourses={USCourses}
+                                  countryCourses={coursesList}
                                   countryName='Canada'
                                   toggleNav={toggleNav}
                                 />
@@ -417,10 +428,10 @@ const Navbar = () => {
                           <div className='long-sub-2'>
                             <ul className='list-unstyled'>
                               <li className='alphabet-heading'>I-O</li>
-                              {USCourses && (
+                              {coursesList && (
                                 <SubjectList
                                   colNumber='2'
-                                  countryCourses={USCourses}
+                                  countryCourses={coursesList}
                                   countryName='Canada'
                                   toggleNav={toggleNav}
                                 />
@@ -435,10 +446,10 @@ const Navbar = () => {
                           <div className='long-sub-2'>
                             <ul className='list-unstyled'>
                               <li className='alphabet-heading'>P-Z</li>
-                              {USCourses && (
+                              {coursesList && (
                                 <SubjectList
                                   colNumber='3'
-                                  countryCourses={USCourses}
+                                  countryCourses={coursesList}
                                   countryName='Canada'
                                   toggleNav={toggleNav}
                                 />
@@ -483,10 +494,10 @@ const Navbar = () => {
                           <div className='long-sub-2'>
                             <ul className='list-unstyled'>
                               <li className='alphabet-heading'>A-H</li>
-                              {USCourses && (
+                              {coursesList && (
                                 <SubjectList
                                   colNumber='1'
-                                  countryCourses={USCourses}
+                                  countryCourses={coursesList}
                                   countryName='Australia'
                                   toggleNav={toggleNav}
                                 />
@@ -501,10 +512,10 @@ const Navbar = () => {
                           <div className='long-sub-2'>
                             <ul className='list-unstyled'>
                               <li className='alphabet-heading'>I-O</li>
-                              {USCourses && (
+                              {coursesList && (
                                 <SubjectList
                                   colNumber='2'
-                                  countryCourses={USCourses}
+                                  countryCourses={coursesList}
                                   countryName='Australia'
                                   enableScroll={enableScroll}
                                   toggleNav={toggleNav}
@@ -520,10 +531,10 @@ const Navbar = () => {
                           <div className='long-sub-2'>
                             <ul className='list-unstyled'>
                               <li className='alphabet-heading'>P-Z</li>
-                              {USCourses && (
+                              {coursesList && (
                                 <SubjectList
                                   colNumber='3'
-                                  countryCourses={USCourses}
+                                  countryCourses={coursesList}
                                   countryName='Australia'
                                   toggleNav={toggleNav}
                                 />
@@ -574,7 +585,8 @@ const Navbar = () => {
             </div>
           </div>
         </div>
-      </nav>
+      </nav> }
+
     </header>
   );
 };

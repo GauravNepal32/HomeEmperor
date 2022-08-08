@@ -13,40 +13,41 @@ const SubjectList = (props) => {
         //
         className='majorList-List1'>
         {countryCourses.map((Courses) => (
-          <div className='majorList-List-item' key={Courses.id}>
+          <div className='majorList-List-item' key={Courses.id.toString()}>
+
             {colNumber === "1" &&
-              startsWithLetter(Courses.subjectName) &&
-              Courses.country === countryName && (
+              startsWithLetter(Courses.title) &&
+              Courses.country.name === countryName && (
                 <ul className='list-unstyled'>
                   <Link
                     onClick={toggleNav}
                     className='text-decoration-none'
-                    to={`/subject/${Courses.id}`}>
-                    <li>{Courses.subjectName}</li>
+                    to={`/subject/${Courses.id.toString()}`}>
+                    <li>{Courses.title}</li>
                   </Link>
                 </ul>
               )}
             {colNumber === "2" &&
-              startsWithLetter2(Courses.subjectName) &&
-              Courses.country === countryName && (
-                <ul className='list-unstyled' key={Courses.id}>
+              startsWithLetter2(Courses.title) &&
+              Courses.country.name === countryName && (
+                <ul className='list-unstyled' key={Courses.id.toString()}>
                   <Link
                     onClick={toggleNav}
                     className='text-decoration-none'
-                    to={`/subject/${Courses.id}`}>
-                    <li>{Courses.subjectName}</li>
+                    to={`/subject/${Courses.id.toString()}`}>
+                    <li>{Courses.title}</li>
                   </Link>
                 </ul>
               )}
             {colNumber === "3" &&
-              startsWithLetter3(Courses.subjectName) &&
-              Courses.country === countryName && (
-                <ul className='list-unstyled' key={Courses.id}>
+              startsWithLetter3(Courses.title) &&
+              Courses.country.name === countryName && (
+                <ul className='list-unstyled' key={Courses.id.toString()}>
                   <Link
                     onClick={toggleNav}
                     className='text-decoration-none'
-                    to={`/subject/${Courses.id}`}>
-                    <li>{Courses.subjectName}</li>
+                    to={`/subject/${Courses.id.toString()}`}>
+                    <li>{Courses.title}</li>
                   </Link>
                 </ul>
               )}

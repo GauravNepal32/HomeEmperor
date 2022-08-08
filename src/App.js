@@ -29,6 +29,7 @@ import AgentDashboard from "./portals/agent/AgentDashboard";
 import MyStudent from "./portals/agent/MyStudent";
 import AddStudent from "./portals/agent/AddStudent";
 import AllUniv from "./AllUniv";
+import Loading from "./Loading";
 
 const App = () => {
   return (

@@ -12,12 +12,12 @@ const PortalSelection = () => {
     const [student, setStudent] = useState(false)
     const [subAgent, setSubAgent] = useState(false)
     const [admin, setAdmin] = useState(false)
-    const userID = userData.id;
+    const role = userData.role;
     useEffect(() => {
         {
-            if (userID === 14) {
+            if (role === "agent") {
                 setAgent(true)
-            } else {
+            } else if (role === "student") {
                 setStudent(true)
             }
         }

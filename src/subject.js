@@ -1,35 +1,46 @@
-import React, { useEffect } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import CallBack from "./CallBack";
 import ListWithIcons from "./ListWithLIcons";
 import TableBodyData from "./TableBodyData";
 import TableData from "./TableBodyData";
 import useFetch from "./useFetch";
+import Loading from "./Loading"
 
 const Subject = () => {
-  const { id } = useParams();
-  const {
-    data: Courses,
-    error,
-    isPending,
-  } = useFetch("http://192.168.1.69:8000/subject/" + id);
+  const {id}  = useParams();
+  const [allSubject,setAllSubject]=useState();
+  const [renderApp,setRenderApp]=useState(false);
+useEffect(()=>{
+  axios.get("https://elscript.co/github/emperor-backend/api/courses").then((response)=>{
+    response.data.data.map((subject)=>{
+      if(subject.id.toString() === id.toString() ){
+        setAllSubject(subject)
+        setRenderApp(true);
+      }else{
+      }
+    })
+  })
+},[id])
+
 
   return (
     <div className='main-container my-5'>
-      <div className='container px-md-5 px-2'>
-        {isPending && <div>Loading...</div>}
-        {error && <div>{error}</div>}
-        {Courses && (
+      {!renderApp ? <Loading/> : (
+         <div className='container px-md-5 px-2'>
+        {console.log(allSubject)}
+        {allSubject && (
           <div className='row m-0 '>
             <div className='col-md-8 col-12'>
               <h1 className='fw-bold text-sm-start text-center'>
-                {Courses.subjectName} in {Courses.country}
+                {allSubject.title} in {allSubject.country.name}
               </h1>
               <h2 className='mt-4 fw-light text-sm-start text-center'>
-                Why study {Courses.subjectName} in {Courses.country}?
+                Why study {allSubject.title} in {allSubject.country.name}?
               </h2>
 
-              <p className='subject-paragraph mb-5'>{Courses.text1}</p>
+              <p className='subject-paragraph mb-5'>{allSubject.description}</p>
 
               {/* <ul className='list-unstyled subject-info-list my-4'>
                 <li>
@@ -39,22 +50,22 @@ const Subject = () => {
                 </li>
               </ul> */}
               <div className='subject-image-container'>
-                <img
+                {/* <img
                   className='img-fluid'
                   src={Courses.subjectImage}
                   alt={Courses.subjectImageAlt}
-                />
+                /> */}
               </div>
               {/* <p className='subject-sub-heading mt-5'>
                 {Courses.subjectName} in {Courses.country}
               </p> */}
-              <div className='subject-about-container'>
+              {/* <div className='subject-about-container'>
                 <p className='subject-paragraph text-justify mb-5'>
                   {Courses.text1}
                 </p>
 
                 <p className='subject-paragraph mb-5'>{Courses.text2}</p>
-              </div>
+              </div> */}
 
               {/* <div className='university-course-info-container'>
                 <p className='subject-sub-heading'>
@@ -81,6 +92,8 @@ const Subject = () => {
           </div>
         )}
       </div>
+      ) }
+
     </div>
   );
 };
