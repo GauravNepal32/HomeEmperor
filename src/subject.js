@@ -34,10 +34,12 @@ useEffect(()=>{
           <div className='row m-0 '>
             <div className='col-md-8 col-12'>
               <h1 className='fw-bold text-sm-start text-center'>
-                {allSubject.title} in {allSubject.country.name}
+                {allSubject.title} in
+                {/* {allSubject.country.name} */}
               </h1>
               <h2 className='mt-4 fw-light text-sm-start text-center'>
-                Why study {allSubject.title} in {allSubject.country.name}?
+                Why study {allSubject.title} in
+                {/* {allSubject.country.name}? */}
               </h2>
 
               <p className='subject-paragraph mb-5'>{allSubject.description}</p>

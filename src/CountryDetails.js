@@ -4,18 +4,17 @@ import CallBack from "./CallBack";
 import useFetch from "./useFetch";
 import axios from "axios";
 import Loading from "./Loading";
+const CountryDetails = () => {
 
-const Major = () => {
-  const { id } = useParams();
-  console.log(id)
+      const { id } = useParams();
   const [major, setMajor] = useState();
   const [renderApp,setRenderApp]=useState(false)
   useEffect(() => {
     axios
-      .get("https://heuristic-wescoff.128-199-28-111.plesk.page/api/degrees")
+      .get("https://heuristic-wescoff.128-199-28-111.plesk.page/api/countries")
       .then((response) => {
         response.data.data.map((major)=>{
-          if(major.id.toString()===id.toString()){
+          if(major.name.toString()===id.toString()){
              setMajor(major);
             setRenderApp(true)
           }
@@ -26,14 +25,14 @@ const Major = () => {
         console.log(error);
       });
   }, [id]);
-
-
-  return (
-    <div className='main-container my-5'>
+    return (
+        <>
+            <div className='main-container my-5'>
       <div className='container px-sm-5'>
         {!renderApp ? <Loading/> : (
           <div className='row justify-content-between'>
             <div className='col-md-8 col-12'>
+                {console.log(major)}
               <div className='d-flex'>
                 <div className='color-container'></div>
                 <div className='major-content-holder pt-5 pb-3'>
@@ -47,20 +46,15 @@ const Major = () => {
                         </a>
                       </li>
                       <li
-                        className='breadcrumb-item text-black'
-                        aria-current='page'>
-                        {/* {major.country} */}
-                      </li>
-                      <li
                         className='breadcrumb-item text-grey'
                         aria-current='page'>
-                        {major.title}
+                        {major.name}
                       </li>
                     </ol>
                   </nav>
                   <div>
                     <h1 className='main-heading'>
-                      {major.title}
+                      {major.name}
                     </h1>
                     {/* <h3 className='major-sub-heading mt-4'>
                                             Highlights of {Subject.majorName} in {Subject.country}
@@ -77,7 +71,7 @@ const Major = () => {
               </div>
               <div className='mt-4 ps-md-4'>
                 <h3 className='major-sub-heading my-4'>
-                  Why study in {major.title}?
+                  Why study in {major.name}?
                 </h3>
                 <p className='subject-paragraph'>{major.description}</p>
                 <div className='mt-4 subject-image-container'>
@@ -106,7 +100,9 @@ const Major = () => {
         )}
       </div>
     </div>
-  );
-};
 
-export default Major;
+        </>
+    );
+}
+
+export default CountryDetails;

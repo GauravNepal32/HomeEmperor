@@ -36,6 +36,8 @@ import SubAgentAddStudent from "./portals/subagent/SubAgentAddStudent"
 import SubAgentSetting from "./portals/subagent/SubAgentSetting"
 import Loading from "./Loading";
 import SubAgentOverView from "./portals/subagent/SubAgentOverView";
+import CountryDetails from "./CountryDetails";
+
 
 const App = () => {
   return (
@@ -62,7 +64,6 @@ const App = () => {
               <Route path='/testPrep' element={<TestPrep />}></Route>
               {/* Calling search result container */}
               <Route path='/searchresult' element={<SearchResult />}></Route>
-
                  <Route path='/UniList' element={<AllUniv />}></Route>
               {/* Calling Login container */}
               {/* <Route path='/login' element={<Login />}></Route> */}
@@ -198,6 +199,7 @@ const App = () => {
               </Route>
               {/* Calling SignUP container */}
               <Route path='/signup' element={<SignUp />}></Route>
+              <Route path='/country/:id' element={<CountryDetails/>}/>
               <Route path='/portalAgent' element={<PortalLeftAgent />}></Route>
               {/* Calling Test Container */}
               <Route path='/test/:id' element={<TestChild />}></Route>

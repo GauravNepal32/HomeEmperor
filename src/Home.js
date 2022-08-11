@@ -21,7 +21,7 @@ const Home = () => {
     axios
       .get("https://heuristic-wescoff.128-199-28-111.plesk.page/api/countries")
       .then((response) => {
-        setCountries(response.data.data);
+        setCountries(response.data.data.slice(response.data.data.length-4,response.data.data.length));
       });
     axios
       .get("https://heuristic-wescoff.128-199-28-111.plesk.page/api/testimonials")

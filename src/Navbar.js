@@ -28,38 +28,10 @@ Promise.all([
 
 ]).then(allResponse =>{
   setMajorList(allResponse[0].data.data);
-  setCountries(allResponse[1].data.data);
+  setCountries(allResponse[1].data.data.slice(0,allResponse[1].data.data.length-4));
   setCoursesList(allResponse[2].data.data);
   setRenderApp(true)
 })
-
-    // axios
-    //   .get("https://heuristic-wescoff.128-199-28-111.plesk.page/api/degrees")
-    //   .then((response) => {
-    //     setMajorList(response.data.data);
-    //     setRenderApp(false)
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //     setRenderApp(false)
-    //   });
-    //   axios.get('https://heuristic-wescoff.128-199-28-111.plesk.page/api/countries').then(response=>{
-    //     setCountries(response.data.data.slice(0,response.data.data.length-4))
-    //     setRenderApp(true)
-    //   }).catch(err=>{
-    //     console.log(err)
-    //     setRenderApp(false)
-    //   })
-    // axios
-    //   .get("https://heuristic-wescoff.128-199-28-111.plesk.page/api/courses")
-    //   .then((response) => {
-    //     setCoursesList(response.data.data);
-    //     setRenderApp(true)
-    //   })
-    //   .catch((err) => {
-    //     setRenderApp(true)
-    //     console.log(err);
-    //   });
 
   }, []);
 
