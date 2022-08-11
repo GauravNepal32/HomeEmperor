@@ -29,7 +29,13 @@ import AgentDashboard from "./portals/agent/AgentDashboard";
 import MyStudent from "./portals/agent/MyStudent";
 import AddStudent from "./portals/agent/AddStudent";
 import AllUniv from "./AllUniv";
+import SubAgentDashboard from "./portals/subagent/SubAgentDashboard"
+import PortalSubAgent from "./portals/subagent/PortalSubAgent"
+import SubAgentMyStudent from "./portals/subagent/SubAgentMyStudent"
+import SubAgentAddStudent from "./portals/subagent/SubAgentAddStudent"
+import SubAgentSetting from "./portals/subagent/SubAgentSetting"
 import Loading from "./Loading";
+import SubAgentOverView from "./portals/subagent/SubAgentOverView";
 
 const App = () => {
   return (
@@ -114,7 +120,9 @@ const App = () => {
                       <DocumentDetails />
                     </RequireAuth>
                   }></Route>
-                <Route path='setting' element={<Setting />}></Route>
+                <Route path='setting' element={<RequireAuth>
+                  <Setting />
+                </RequireAuth>}></Route>
               </Route>
 
               {/* Agent Portal */}
@@ -151,6 +159,42 @@ const App = () => {
                     </RequireAuth>
                   }></Route>
                 <Route path='setting' element={<Setting />}></Route>
+              </Route>
+              {/* Sub Agent Portal */}
+              <Route path="/portalSubAgent" element={<PortalSubAgent/>}>
+                  <Route index element={
+                    <RequireAuth>
+                      <SubAgentDashboard/>
+                    </RequireAuth>
+                  }/>
+                    <Route path='overview' element={
+                    <RequireAuth>
+                      <SubAgentOverView/>
+                    </RequireAuth>
+                  }/>
+                  <Route path='dashboard' element={
+                    <RequireAuth>
+                      <SubAgentDashboard/>
+                    </RequireAuth>
+                  }/>
+                  <Route path='studentList'
+                  element={
+                    <RequireAuth>
+                      <SubAgentMyStudent/>
+                    </RequireAuth>
+                  }/>
+                   <Route path='addStudent'
+                  element={
+                    <RequireAuth>
+                      <SubAgentAddStudent/>
+                    </RequireAuth>
+                  }/>
+                   <Route path='setting'
+                  element={
+                    <RequireAuth>
+                      <SubAgentSetting/>
+                    </RequireAuth>
+                  }/>
               </Route>
               {/* Calling SignUP container */}
               <Route path='/signup' element={<SignUp />}></Route>

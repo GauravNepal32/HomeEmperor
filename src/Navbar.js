@@ -6,6 +6,7 @@ import SubjectList from "./SubjectList";
 import { Link, NavLink } from "react-router-dom";
 import axios from "axios";
 import { useAuth } from "./auth";
+import OtherCountry from "./OtherCountry";
 
 const Navbar = () => {
   const auth = useAuth();
@@ -13,20 +14,30 @@ const Navbar = () => {
   const [coursesList,setCoursesList]=useState();
   const [navOpen, setNavOpen] = useState(false);
   const [isLogin, setIsLogin] = useState(false);
+  const [countries,setCountries]=useState();
   const userData = JSON.parse(sessionStorage.getItem("token"));
   const [renderApp,setRenderApp]=useState(false);
 
   useEffect(() => {
     axios
-      .get("https://elscript.co/github/emperor-backend/api/degrees")
+      .get("https://heuristic-wescoff.128-199-28-111.plesk.page/api/degrees")
       .then((response) => {
         setMajorList(response.data.data);
+        setRenderApp(false)
       })
       .catch((err) => {
         console.log(err);
+        setRenderApp(false)
       });
+      axios.get('https://heuristic-wescoff.128-199-28-111.plesk.page/api/countries').then(response=>{
+        setCountries(response.data.data.slice(0,response.data.data.length-4))
+        setRenderApp(false)
+      }).catch(err=>{
+        console.log(err)
+        setRenderApp(false)
+      })
     axios
-      .get("https://elscript.co/github/emperor-backend/api/courses")
+      .get("https://heuristic-wescoff.128-199-28-111.plesk.page/api/courses")
       .then((response) => {
         setCoursesList(response.data.data);
         setRenderApp(true)
@@ -35,6 +46,7 @@ const Navbar = () => {
         setRenderApp(true)
         console.log(err);
       });
+
   }, []);
 
   useEffect(() => {
@@ -232,7 +244,7 @@ const Navbar = () => {
                                 <SubjectList
                                   colNumber='1'
                                   countryCourses={coursesList}
-                                  countryName='USA'
+                                  countryName='3'
                                   disableScroll={disableScroll}
                                   enableScroll={enableScroll}
                                   toggleNav={toggleNav}
@@ -252,7 +264,7 @@ const Navbar = () => {
                                 <SubjectList
                                   colNumber='2'
                                   countryCourses={coursesList}
-                                  countryName='USA'
+                                  countryName='3'
                                   disableScroll={disableScroll}
                                   enableScroll={enableScroll}
                                   toggleNav={toggleNav}
@@ -272,7 +284,7 @@ const Navbar = () => {
                                 <SubjectList
                                   colNumber='3'
                                   countryCourses={coursesList}
-                                  countryName='USA'
+                                  countryName='3'
                                   disableScroll={disableScroll}
                                   enableScroll={enableScroll}
                                   toggleNav={toggleNav}
@@ -327,7 +339,7 @@ const Navbar = () => {
                                 <SubjectList
                                   colNumber='1'
                                   countryCourses={coursesList}
-                                  countryName='UK'
+                                  countryName='2'
                                   toggleNav={toggleNav}
                                 />
                               )}
@@ -345,7 +357,7 @@ const Navbar = () => {
                                 <SubjectList
                                   colNumber='2'
                                   countryCourses={coursesList}
-                                  countryName='UK'
+                                  countryName='2'
                                   toggleNav={toggleNav}
                                 />
                               )}
@@ -363,7 +375,7 @@ const Navbar = () => {
                                 <SubjectList
                                   colNumber='3'
                                   countryCourses={coursesList}
-                                  countryName='UK'
+                                  countryName='2'
                                   toggleNav={toggleNav}
                                 />
                               )}
@@ -414,7 +426,7 @@ const Navbar = () => {
                                 <SubjectList
                                   colNumber='1'
                                   countryCourses={coursesList}
-                                  countryName='Canada'
+                                  countryName='4'
                                   toggleNav={toggleNav}
                                 />
                               )}
@@ -432,7 +444,7 @@ const Navbar = () => {
                                 <SubjectList
                                   colNumber='2'
                                   countryCourses={coursesList}
-                                  countryName='Canada'
+                                  countryName='4'
                                   toggleNav={toggleNav}
                                 />
                               )}
@@ -450,7 +462,7 @@ const Navbar = () => {
                                 <SubjectList
                                   colNumber='3'
                                   countryCourses={coursesList}
-                                  countryName='Canada'
+                                  countryName='4'
                                   toggleNav={toggleNav}
                                 />
                               )}
@@ -498,7 +510,7 @@ const Navbar = () => {
                                 <SubjectList
                                   colNumber='1'
                                   countryCourses={coursesList}
-                                  countryName='Australia'
+                                  countryName='5'
                                   toggleNav={toggleNav}
                                 />
                               )}
@@ -516,7 +528,7 @@ const Navbar = () => {
                                 <SubjectList
                                   colNumber='2'
                                   countryCourses={coursesList}
-                                  countryName='Australia'
+                                  countryName='5'
                                   enableScroll={enableScroll}
                                   toggleNav={toggleNav}
                                 />
@@ -535,7 +547,7 @@ const Navbar = () => {
                                 <SubjectList
                                   colNumber='3'
                                   countryCourses={coursesList}
-                                  countryName='Australia'
+                                  countryName='5'
                                   toggleNav={toggleNav}
                                 />
                               )}
@@ -545,6 +557,22 @@ const Navbar = () => {
                       </div>
                     </li>
                   </ul>
+                </li>
+                <li className='nav-item home-dropDown dropdown'>
+                  <div
+                    className='nav-link dropdown-link d-flex dropDownTrigger'
+                    id='navbarDropdownMenuLink'
+                    role='button'
+                    data-bs-toggle='dropdown'
+                    onMouseOver={disableScroll}
+                    onMouseLeave={enableScroll}>
+                      Other
+                    <span className='drop-icon'>
+                      <i className='bi bi-chevron-down'></i>
+                    </span>
+                  </div>
+                  {console.log(countries)}
+                 <OtherCountry countries={countries} disableScroll={disableScroll} enableScroll={enableScroll} toggleNav={toggleNav}/>
                 </li>
               </ul>
             </div>
@@ -556,7 +584,7 @@ const Navbar = () => {
                   Log In
                 </Link>
               ) : (
-                <Link to='/portal' className='text-black'>
+                <Link to='/portalSelection' className='text-black'>
                   <span class='material-symbols-outlined'>account_circle</span>
                 </Link>
               )}

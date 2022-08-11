@@ -9,7 +9,7 @@ const Contact = () => {
 
   useEffect(() => {
     axios
-      .get("https://elscript.co/github/emperor-backend/api/faqs")
+      .get("https://heuristic-wescoff.128-199-28-111.plesk.page/api/faqs")
       .then((response) => {
         {
           response.data.data.map((faqArray) => {

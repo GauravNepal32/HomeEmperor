@@ -19,6 +19,8 @@ const PortalSelection = () => {
                 setAgent(true)
             } else if (role === "student") {
                 setStudent(true)
+            }else if(role ==="sub agent"){
+                setSubAgent(true)
             }
         }
     }, []);
@@ -27,6 +29,8 @@ const PortalSelection = () => {
             navigate('/portal')
         } else if (agent) {
             navigate('/PortalAgent')
+        }else if (subAgent){
+            navigate('/PortalSubAgent')
         }
     })
     return <div>

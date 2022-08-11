@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const ActivityGraph = (userActivity) => {
-    console.log(userActivity)
     return (
         <>
             <div className='d-flex flex-column'>

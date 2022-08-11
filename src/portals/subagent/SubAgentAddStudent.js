@@ -6,8 +6,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 
-
-const AddStudent = () => {
+const SubAgentAddStudent = () => {
     const userData = JSON.parse(sessionStorage.getItem("token"));
   const [password, setPassword] = useState("");
   const [visibleIcon, setVisibleIcon] = useState("visibility");
@@ -303,6 +302,6 @@ const AddStudent = () => {
       )
     </div>
   );
-};
+}
 
-export default AddStudent;
+export default SubAgentAddStudent;

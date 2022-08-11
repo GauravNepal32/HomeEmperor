@@ -18,9 +18,9 @@ const ChangeProfile = () => {
 
 
 
-  const getProfileURL = "https://elscript.co/github/emperor-backend/api/profile";
+  const getProfileURL = "https://heuristic-wescoff.128-199-28-111.plesk.page/api/profile";
   const changeProfileURL =
-    "https://elscript.co/github/emperor-backend/api/edit-profile";
+    "https://heuristic-wescoff.128-199-28-111.plesk.page/api/edit-profile";
 
 
     useEffect(() => {
@@ -70,18 +70,16 @@ const ChangeProfile = () => {
   // };
 
   // Profile edited function
-  const submitHandle = () => {
-    if (editedName === "") {
-      setEditedName(profileDetails.name);
+  const submitHandle = (a,b) => {
+    if (a === "") {
+      a = profileDetails.name;
     }
-    if (editedPhone === "") {
-      setEditedPhone(profileDetails.phone);
+    if (b === "") {
+      b = profileDetails.phone;
     }
-    console.log(editedName);
-    console.log(editedPhone)
     axios.post(changeProfileURL,{
-      name:editedName,
-      phone:editedPhone,
+      name:a,
+      phone:b,
     },
      {
           headers: {
@@ -136,23 +134,13 @@ const ChangeProfile = () => {
               </div>
               <div className='row mt-3'>
                 <div className='text-end'>
-                  {/* {editInfo ? (
-                    <button
-                      className='btn btn-type-2'
-                          onClick={(e) => {
-                            e.preventDefault()
-                        setEditInfo(!editInfo);
-                      }}>
-                      Edit
-                    </button>
-                  ) : ( */}
                     <button
                       className='btn btn-type-2'
                             onClick={(e) => {
-                              setEditedName(document.getElementById('editedName').value);
-                              setEditedPhone(document.getElementById('editedPhone').value);
-                              submitHandle(editedName,editedPhone);
-                              setEditInfo(!editInfo);
+                              var a=document.getElementById('editedName').value;
+                              var b=document.getElementById('editedPhone').value
+                              e.preventDefault();
+                              submitHandle(a,b)
                       }}>
                       Save
                     </button>

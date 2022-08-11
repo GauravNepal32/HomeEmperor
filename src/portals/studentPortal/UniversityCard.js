@@ -40,10 +40,11 @@ const UniversityCard = (university) => {
         <>
             {
                 university.university.map((uni) => (
-                    <div class='col' key={uni.id} >
+                    <div class='col' key={uni.university_id} >
+                        {console.log(uni.university)}
                         <div class='search-result-card card p-2'>
                             <div className="d-flex justify-content-end">
-                                <button onClick={()=>{handleFav(uni.id)}} className="btn favourite-btn">
+                                <button onClick={()=>{handleFav(uni.university_id)}} className="btn favourite-btn">
                                     <span id="favourite-icon" class="material-symbols-outlined favourite-icon text-danger text-end">
                                         favorite
                                     </span>
@@ -52,16 +53,16 @@ const UniversityCard = (university) => {
                             </div>
 
                             <img
-                                src={uni.image}
+                                src={uni}
                                 class='card-img-top'
                                 alt='...'
                             />
                             <div class='card-body'>
                                 <h5 class='card-title d-flex justify-content-between'>
-                                    <p class='college-name'>{uni.name}</p>
+                                    <p class='college-name'>{uni.university.name}</p>
                                 </h5>
                                 <p class='card-text'>
-                                    {uni.description}
+                                    {uni.university.description}
                                 </p>
                             </div>
                         </div>

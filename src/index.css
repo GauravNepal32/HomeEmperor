@@ -67,6 +67,9 @@ header {
     box-shadow: 0px 5px 10px #afafaf;
 }
 
+.country-small-dropdown {
+    right: 300px;
+}
 header .long-dropdown {
     z-index: 1000;
     position: fixed;
@@ -1430,6 +1433,10 @@ justify-content: end;
     font-size: 12px;
     margin-top: 10px;
 }
+.logout-btn {
+    background-color: black;
+    color: white;
+}
 /* Test End */
 /* Mobile screen */
 
@@ -1529,6 +1536,9 @@ border: 1px solid black;
     z-index: 3;
     bottom: 0;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.country-small-dropdown {
+    right: 0;
 }
 }
 

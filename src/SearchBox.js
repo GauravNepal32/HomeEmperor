@@ -15,7 +15,7 @@ const SearchBox = () => {
 
   useEffect(() => {
     axios
-      .get("https://elscript.co/github/emperor-backend/api/countries")
+      .get("https://heuristic-wescoff.128-199-28-111.plesk.page/api/countries")
       .then((response) => {
         {
           response.data.data.map((countryArray) => {
@@ -35,7 +35,7 @@ const SearchBox = () => {
 
   useEffect(() => {
     axios
-      .get("https://elscript.co/github/emperor-backend/api/degrees")
+      .get("https://heuristic-wescoff.128-199-28-111.plesk.page/api/degrees")
       .then((response) => {
         {
           response.data.data.map((degreeArray) => {
@@ -55,7 +55,7 @@ const SearchBox = () => {
 
   useEffect(() => {
     axios
-      .get("https://elscript.co/github/emperor-backend/api/courses")
+      .get("https://heuristic-wescoff.128-199-28-111.plesk.page/api/courses")
       .then((response) => {
         {
           response.data.data.map((courseArray) => {

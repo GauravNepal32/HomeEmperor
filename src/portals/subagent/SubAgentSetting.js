@@ -1,16 +1,16 @@
 import axios from "axios";
 import React, { useEffect } from "react";
 import { useState } from "react";
-import StudentProfileUpdate from "./StudentProfileUpdate";
+import SubAgentProfileUpdate from "./SubAgentProfileUpdate";
 import { useAuth } from "../../auth";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import StudentUpdatePass from "./StudentUpdatePass";
-import Loading from "../../Loading";
+import SubAgentUpdatePass from "./SubAgentUpdatePass";
+import Loading from "../../Loading"
 
 
-const Setting = () => {
+const SubAgentSetting = () => {
     const userToken = JSON.parse(sessionStorage.getItem('token')).token;
     const [userDetails, setUserDetails] = useState();
     const [renderApp, setRenderApp] = useState(false)
@@ -19,7 +19,6 @@ const Setting = () => {
     const navigate = useNavigate()
     const profileURL = "https://heuristic-wescoff.128-199-28-111.plesk.page/api/profile"
     const updateProfileURL = "https://heuristic-wescoff.128-199-28-111.plesk.page/api/edit-profile";
-
 
     const showErrorMessage = (message) => {
         toast.error(message, {
@@ -95,7 +94,7 @@ const Setting = () => {
 
     return (
         <>
-            {renderApp ? (
+            {!renderApp ? <Loading/> : (
                 <>
                     <div className='main-contianer container my-5 px-md-5'>
                         <ToastContainer />
@@ -112,22 +111,20 @@ const Setting = () => {
                             </div>
                             <div className='col-md-7 perosnal-info-wrapper p-3 col-12'>
                                 <h3>Personal Information</h3>
-                                <StudentProfileUpdate userDetails={userDetails} handleSubmit={handleSubmit} />
+                                <SubAgentProfileUpdate userDetails={userDetails} handleSubmit={handleSubmit} />
 
                             </div>
                             <div className=' col-md-4 col-12 my-md-0 my-5 change-pass-container p-3'>
-                                <StudentUpdatePass userToken={userToken} showErrorToastMessage={showErrorToastMessage} showToastMessage={showToastMessage} />
+                                <SubAgentUpdatePass userToken={userToken} showErrorToastMessage={showErrorToastMessage} showToastMessage={showToastMessage} />
                             </div>
                         </div>
                     </div>
                 </>
 
-            ):(
-                <Loading/>
             )}
 
         </>
     );
 }
 
-export default Setting;
+export default SubAgentSetting;

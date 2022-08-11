@@ -13,7 +13,7 @@ const Subject = () => {
   const [allSubject,setAllSubject]=useState();
   const [renderApp,setRenderApp]=useState(false);
 useEffect(()=>{
-  axios.get("https://elscript.co/github/emperor-backend/api/courses").then((response)=>{
+  axios.get("https://heuristic-wescoff.128-199-28-111.plesk.page/api/courses").then((response)=>{
     response.data.data.map((subject)=>{
       if(subject.id.toString() === id.toString() ){
         setAllSubject(subject)

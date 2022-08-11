@@ -19,12 +19,12 @@ const Home = () => {
 
   useEffect(() => {
     axios
-      .get("https://elscript.co/github/emperor-backend/api/countries")
+      .get("https://heuristic-wescoff.128-199-28-111.plesk.page/api/countries")
       .then((response) => {
         setCountries(response.data.data);
       });
     axios
-      .get("https://elscript.co/github/emperor-backend/api/testimonials")
+      .get("https://heuristic-wescoff.128-199-28-111.plesk.page/api/testimonials")
       .then((response) => {
         setTestimonials(response.data.data);
         setRenderApp(true);

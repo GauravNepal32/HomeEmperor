@@ -3,30 +3,34 @@ import { useParams } from "react-router-dom";
 import CallBack from "./CallBack";
 import useFetch from "./useFetch";
 import axios from "axios";
+import Loading from "./Loading";
 
 const Major = () => {
   const { id } = useParams();
   const [major, setMajor] = useState();
+  const [renderApp,setRenderApp]=useState(false)
   useEffect(() => {
     axios
-      .get("https://elscript.co/github/emperor-backend/api/degrees")
+      .get("https://heuristic-wescoff.128-199-28-111.plesk.page/api/degrees")
       .then((response) => {
+        response.data.data.map((major)=>{
+          if(major.id.toString()===id.toString()){
+             setMajor(major);
+            setRenderApp(true)
+          }
+        })
         // if(id== response.data.data.id)
-        setMajor(response.data.data);
       })
       .catch((error) => {
         console.log(error);
       });
-  }, []);
-  // useEffect(()=>{
-  //     if (major.)
-  // })
+  }, [id]);
+
 
   return (
     <div className='main-container my-5'>
       <div className='container px-sm-5'>
-        {console.log(major)}
-        {major && (
+        {!renderApp ? <Loading/> : (
           <div className='row justify-content-between'>
             <div className='col-md-8 col-12'>
               <div className='d-flex'>
@@ -55,7 +59,7 @@ const Major = () => {
                   </nav>
                   <div>
                     <h1 className='main-heading'>
-                      {major.title} in {major.title}
+                      {major.title}
                     </h1>
                     {/* <h3 className='major-sub-heading mt-4'>
                                             Highlights of {Subject.majorName} in {Subject.country}

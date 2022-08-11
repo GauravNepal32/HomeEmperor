@@ -6,7 +6,7 @@ import { useAuth } from "./auth";
 import { ToastContainer, toast } from "react-toastify";
 
 
-const LOGIN_URL = "https://elscript.co/github/emperor-backend/api/login";
+const LOGIN_URL = "https://heuristic-wescoff.128-199-28-111.plesk.page/api/login";
 const Login = () => {
   // Password visibility toggler
   const[success,setSuccess]=useState(false)

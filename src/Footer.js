@@ -8,35 +8,16 @@ const Footer = () => {
   const [withNav, setWithNav] = useState(true);
 
   useEffect(() => {
-    if (location === "/portal/courses") {
-      setWithNav(false);
-    } else if (location === "/portal/dashboard") {
-      setWithNav(false);
-    } else if (location === "/portal") {
-      setWithNav(false);
-    } else if (location === "/portal/university") {
-      setWithNav(false);
-    } else if (location === "/portal/profile") {
-      setWithNav(false);
-    } else if (location === "/portal/document") {
-      setWithNav(false);
-    } else if (location === "/portal/processing") {
-      setWithNav(false);
-    } else if (location === "/portal/setting") {
-      setWithNav(false);
+if(location.substring(1,7)==="portal"){
+      setWithNav(false)
     }
-    else if (location === "/PortalAgent/dashboard") {
-      setWithNav(false);
-    } else if (location === "/PortalAgent") {
-      setWithNav(false);
-    } else if (location === "/PortalAgent/studentList") {
-      setWithNav(false);
-    } else if (location === "/PortalAgent/addStudent") {
-      setWithNav(false);
+     else if(location.substring(1,12)==="PortalAgent"){
+      setWithNav(false)
     }
-    else if (location === "/PortalAgent/setting") {
-      setWithNav(false);
-    }else {
+    else if(location.substring(1,15)==="PortalSubAgent"){
+      setWithNav(false)
+    }
+    else {
       setWithNav(true);
     }
   });

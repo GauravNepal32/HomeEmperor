@@ -14,10 +14,9 @@ const SubjectList = (props) => {
         className='majorList-List1'>
         {countryCourses.map((Courses) => (
           <div className='majorList-List-item' key={Courses.id.toString()}>
-
             {colNumber === "1" &&
               startsWithLetter(Courses.title) &&
-              Courses.country.name === countryName && (
+              Courses.country_id.toString() === countryName && (
                 <ul className='list-unstyled'>
                   <Link
                     onClick={toggleNav}
@@ -29,7 +28,7 @@ const SubjectList = (props) => {
               )}
             {colNumber === "2" &&
               startsWithLetter2(Courses.title) &&
-              Courses.country.name === countryName && (
+              Courses.country_id.toString() === countryName && (
                 <ul className='list-unstyled' key={Courses.id.toString()}>
                   <Link
                     onClick={toggleNav}
@@ -41,7 +40,7 @@ const SubjectList = (props) => {
               )}
             {colNumber === "3" &&
               startsWithLetter3(Courses.title) &&
-              Courses.country.name === countryName && (
+              Courses.country_id.toString() === countryName && (
                 <ul className='list-unstyled' key={Courses.id.toString()}>
                   <Link
                     onClick={toggleNav}
