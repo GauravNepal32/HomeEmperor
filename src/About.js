@@ -37,14 +37,7 @@ const About = () => {
                     <div className='h-100 d-flex flex-column justify-content-center align-content-center'>
                       <h1 className='main-heading'>We're result driven team</h1>
                       <p className='info-paragraph mt-5'>
-                        Lorem ipsum dolor, sit amet consectetur adipisicing
-                        elit. Provident sapiente, possimus at, eius reiciendis
-                        pariatur architecto quos asperiores enim dolor animi
-                        quidem sunt dignissimos. Tempore nihil nisi, quas vitae
-                        qui perferendis, maxime laudantium illo perspiciatis
-                        ullam esse natus corrupti debitis assumenda, suscipit
-                        similique voluptate obcaecati quis sint sit delectus
-                        inventore.
+                      A team with highly experienced, certified consultants to provide you with absolutely reliable information ensuring personalized, unbiased and quality service for education across the globe. Our friendly & sincere consultants follow a strategic approach, working towards the admission & visa process while being committed to success.
                       </p>
                     </div>
                   </div>
@@ -57,9 +50,7 @@ const About = () => {
                 own future.
               </h1>
               <p className='text-center mt-5 info-paragraph'>
-                We adhere to six success pillars. These check that everyone is
-                headed in the same direction and inspire students to plan their
-                future.
+                Mission is to provide opportunities to students to have experiences which are academically challenging and professionally relevant.
               </p>
             </div>
             <div className='row mb-200 ceo-message-container'>

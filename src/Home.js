@@ -247,13 +247,7 @@ const Home = () => {
                       Friendly, Cooperative & Knowldegable Team
                     </h1>
                     <p className='info-paragraph mt-5'>
-                      Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                      Provident sapiente, possimus at, eius reiciendis pariatur
-                      architecto quos asperiores enim dolor animi quidem sunt
-                      dignissimos. Tempore nihil nisi, quas vitae qui
-                      perferendis, maxime laudantium illo perspiciatis ullam
-                      esse natus corrupti debitis assumenda, suscipit similique
-                      voluptate obcaecati quis sint sit delectus inventore.
+                     A team with highly experienced, certified consultants to provide you with absolutely reliable information ensuring personalized, unbiased and quality service for education across the globe. Our friendly & sincere consultants follow a strategic approach, working towards the admission & visa process while being committed to success.
                     </p>
                   </div>
                 </div>

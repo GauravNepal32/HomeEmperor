@@ -20,29 +20,28 @@ const Dashboard = () => {
   const getUni="https://heuristic-wescoff.128-199-28-111.plesk.page/api/get-universities"
 
   useEffect(() => {
-    axios.get(activities,{
+    Promise.all([
+       axios.get(activities,{
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${userToken}`,
-          }}).then((response)=>{
-            setActivity(response.data.data)
-    }).catch((err)=>{
-      setActivityAvailable(false)
-      console.log(err)
-    })
+          }}),
+           axios.get(getUni,{
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${userToken}`,
+          }})
 
-    axios.get(getUni,{
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${userToken}`,
-          }}).then((response)=>{
-            setUniInfo(response.data.data)
-            setLoading(false)
-    }).catch((err)=>{
+    ]).then(allResponse =>{
+      setActivity(allResponse[0].data.data);
+      setUniInfo(allResponse[1].data.data)
       setLoading(false)
-      console.log(err)
-    })
 
+    }).catch((err)=>{
+      console.log(err)
+      setLoading(false)
+
+    })
   }, []);
 
 useEffect(()=>{

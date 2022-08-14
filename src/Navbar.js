@@ -35,14 +35,6 @@ Promise.all([
 
   }, []);
 
-  useEffect(() => {
-    if (userData == null) {
-      setIsLogin(false);
-    } else {
-      setIsLogin(true);
-    }
-  },[userData]);
-
   function disableScroll() {
     document.getElementById("scroll-container").classList.add("avoid-Scroll");
   }
@@ -59,6 +51,7 @@ Promise.all([
   return (
     <header className='mx-0 px-0'>
       {renderApp && <nav className='navbar navbar-expand-lg main-navbar'>
+        {console.log(isLogin)}
         <div className='container-md  px-sm-5'>
           <NavLink className='navbar-brand' to='/HomeEmperor'>
             <img
@@ -68,9 +61,14 @@ Promise.all([
             />
           </NavLink>
 
+          <button className="btn d-lg-none d-block my-auto ms-auto me-3 p-0 account-btn">
+            <span class="material-symbols-outlined">
+              notifications
+            </span>
+          </button>
           <Link
-            to={!isLogin ? "/login" : "/portal/dashboard"}
-            className='btn d-lg-none d-block my-auto ms-auto p-0 account-btn'>
+            to={!auth.isLogin ? "/login" : "/portal/dashboard"}
+            className='btn d-lg-none d-block my-auto p-0 account-btn'>
             <span className=' my-auto material-symbols-outlined'>
               account_circle
             </span>
@@ -563,16 +561,24 @@ Promise.all([
               </ul>
             </div>
             <div className='p-lg-0 p-2 pe-3 d-lg-flex d-none '>
-              {!isLogin ? (
+              {!auth.isLogin ? (
                 <Link
                   to='/login'
                   className='btn btn-type-2 p-2 me-3 d-lg-block d-none text-nowrap w-100'>
                   Log In
                 </Link>
               ) : (
-                <Link to='/portalSelection' className='text-black'>
-                  <span class='material-symbols-outlined'>account_circle</span>
-                </Link>
+                  <div className="d-flex align-items-center">
+                    <button className="btn me-md-3">
+                      <span class="material-symbols-outlined">
+                        notifications
+                      </span>
+                    </button>
+                    <Link to='/portalSelection' className='text-black'>
+                      <span class='material-symbols-outlined'>account_circle</span>
+                    </Link>
+                  </div>
+
               )}
               {/* {isLogin ? (
                 <>

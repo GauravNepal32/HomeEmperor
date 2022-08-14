@@ -99,6 +99,7 @@ const Setting = () => {
                 <>
                     <div className='main-contianer container my-5 px-md-5'>
                         <ToastContainer />
+                        {console.log(userDetails)}
                         <div className='row justify-content-between'>
                             <div className='logout-container text-end mb-3'>
                                 <button
@@ -112,6 +113,7 @@ const Setting = () => {
                             </div>
                             <div className='col-md-7 perosnal-info-wrapper p-3 col-12'>
                                 <h3>Personal Information</h3>
+                                {console.log(userDetails)}
                                 <StudentProfileUpdate userDetails={userDetails} handleSubmit={handleSubmit} />
 
                             </div>
