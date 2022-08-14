@@ -639,17 +639,34 @@ header .long-dropdown {
     line-height: 40px;
 }
 
-.search-box-btn,.uni-btn {
+.uni-btn {
     background-color: #0F7A9B;
     color: white;
     border-radius: 3px;
     padding: 7px 20px;
 
 }
-.search-box-btn:hover{
-    color: white;
+.degree-btn {
+    color: #0F7A9B;
+    background-color: white;
+    border: 3px solid #0F7A9B;
+    border-radius: 3px;
+    padding: 7px 10px;
 }
 
+.search-box-btn .active,
+.search-box-active-btn {
+    background-color: #0F7A9B;
+    color: white;
+    border-radius: 3px;
+        padding: 7px 10px;
+}
+
+.search-box-active-btn {
+    padding: 7px 20px;
+    width: 160px;
+
+}
 .bootstrap-select .dropdown-menu li a{
     padding: 10px;
 }

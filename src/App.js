@@ -37,6 +37,7 @@ import SubAgentSetting from "./portals/subagent/SubAgentSetting"
 import Loading from "./Loading";
 import SubAgentOverView from "./portals/subagent/SubAgentOverView";
 import CountryDetails from "./CountryDetails";
+import {Helmet} from "react-helmet";
 
 
 const App = () => {
@@ -45,6 +46,11 @@ const App = () => {
       {/* // Creating Route for different Component */}
       <Router>
         <div id='scroll-container' className='App'>
+            <Helmet>
+              <title>App Title</title>
+              <meta name="description" content="App Description" />
+              <meta name="theme-color" content="#008f68" />
+          </Helmet>
           {/* Calling Navbar Component */}
           <Navbar />
           <div className='content'>

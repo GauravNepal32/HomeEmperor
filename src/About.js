@@ -5,6 +5,7 @@ import ceo from "./images/emperor/ceo.png";
 import LocationMap from "./LocationMap";
 import axios from "axios";
 import Loading from "./Loading";
+import {Helmet} from "react-helmet";
 
 const About = () => {
   const [testimonials, setTestimonials] = useState(null);
@@ -26,6 +27,11 @@ const About = () => {
     <>
       {renderApp ? (
         <div className='main-container my-5'>
+          <Helmet>
+            <title>About | Emperor</title>
+            <meta name="description" content="About application" />
+             <link rel="canonical" href="http://mysite.com/example" />
+          </Helmet>
           <div className='container px-sm-5'>
             <div className='row mb-200'>
               <div className='container'>

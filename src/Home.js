@@ -11,6 +11,7 @@ import LocationMap from "./LocationMap";
 import axios from "axios";
 import Loading from "./Loading";
 import NoResponse from "./NoResponse";
+import {Helmet} from "react-helmet";
 
 const Home = () => {
   const [countries, setCountries] = useState();
@@ -39,6 +40,11 @@ const Home = () => {
     <>
       {renderApp ? (
         <div id='' className='main-container'>
+          <Helmet>
+            <title>Home | Emperor</title>
+            <meta name="description" content="Helmet application" />
+             <link rel="canonical" href="http://mysite.com/example" />
+          </Helmet>
           <div className='front-main-container'>
             <div className='search-container'>
               {/* Calling search box components */}
