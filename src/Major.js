@@ -7,12 +7,11 @@ import Loading from "./Loading";
 
 const Major = () => {
   const { id } = useParams();
-  console.log(id)
   const [major, setMajor] = useState();
   const [renderApp,setRenderApp]=useState(false)
   useEffect(() => {
     axios
-      .get("https://heuristic-wescoff.128-199-28-111.plesk.page/api/degrees")
+      .get("https://elscript.co/github/emperor-backend/api/degrees")
       .then((response) => {
         response.data.data.map((major)=>{
           if(major.id.toString()===id.toString()){

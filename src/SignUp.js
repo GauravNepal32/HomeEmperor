@@ -1,30 +1,29 @@
 import React, { useState, useRef } from "react";
-import { useEffect } from "react";
 import PasswordChecklist from "react-password-checklist";
 import { Link, useNavigate } from "react-router-dom";
-import Login from "./Login";
-import RegisterSuccess from "./RegisterSuccess";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
+
 const SignUp = () => {
   const [password, setPassword] = useState("");
   const [visibleIcon, setVisibleIcon] = useState("visibility");
   const [visibility, setVisibility] = useState(false);
-  const [success, setSuccess] = useState(false);
   const [passwordAgain, setPasswordAgain] = useState("");
-  const registerURL = "https://heuristic-wescoff.128-199-28-111.plesk.page/api/register";
+  const registerURL = "https://elscript.co/github/emperor-backend/api/register";
   const [errMsg, setErrMsg] = useState("");
 
   const errRef = useRef();
   const navigate = useNavigate();
 
+  // Displaying toast message
   const showToastMessage = () => {
-    toast.success("Password Changed Successfully !", {
+    toast.success("You have registered successfully !", {
       position: toast.POSITION.BOTTOM_RIGHT,
     });
   };
 
+  // Register new student
   const registerStudent = async (
     studentFullName,
     studentEmail,
@@ -32,6 +31,7 @@ const SignUp = () => {
     studentPassword
   ) => {
     try {
+      // sending request to url
       const response = await axios.post(
         registerURL,
         {
@@ -46,13 +46,11 @@ const SignUp = () => {
         }
       );
       if (response.data.statusCode === 200) {
-        setSuccess(true);
         showToastMessage();
-        navigate("/login",{success: true});
+        setTimeout(()=>{navigate("/login")},1000)
       } else if (response.data.statusCode === 401) {
         setErrMsg(response.data.message);
       }
-      console.log(JSON.stringify(response?.data));
     } catch (err) {
       console.log(err);
     }

@@ -13,7 +13,7 @@ const About = () => {
 
   useEffect(() => {
     axios
-      .get("https://heuristic-wescoff.128-199-28-111.plesk.page/api/testimonials")
+      .get("https://elscript.co/github/emperor-backend/api/testimonials")
       .then((response) => {
         setTestimonials(response.data.data);
         setRenderApp(true);

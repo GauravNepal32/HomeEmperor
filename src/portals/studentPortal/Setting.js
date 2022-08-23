@@ -16,9 +16,8 @@ const Setting = () => {
     const [renderApp, setRenderApp] = useState(false)
     const auth = useAuth();
     const [errMessage, setErrMsg] = useState({});
-    const navigate = useNavigate()
-    const profileURL = "https://heuristic-wescoff.128-199-28-111.plesk.page/api/profile"
-    const updateProfileURL = "https://heuristic-wescoff.128-199-28-111.plesk.page/api/edit-profile";
+    const profileURL = "https://elscript.co/github/emperor-backend/api/profile"
+    const updateProfileURL = "https://elscript.co/github/emperor-backend/api/edit-profile";
 
 
     const showErrorMessage = (message) => {
@@ -99,21 +98,13 @@ const Setting = () => {
                 <>
                     <div className='main-contianer container my-5 px-md-5'>
                         <ToastContainer />
-                        {console.log(userDetails)}
+
                         <div className='row justify-content-between'>
                             <div className='logout-container text-end mb-3'>
-                                <button
-                                    className='btn btn-type-1'
-                                    onClick={() => {
-                                        auth.logout();
-                                        navigate("/HomeEmperor", { replace: true });
-                                    }}>
-                                    Logout
-                                </button>
                             </div>
                             <div className='col-md-7 perosnal-info-wrapper p-3 col-12'>
                                 <h3>Personal Information</h3>
-                                {console.log(userDetails)}
+
                                 <StudentProfileUpdate userDetails={userDetails} handleSubmit={handleSubmit} />
 
                             </div>

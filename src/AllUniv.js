@@ -5,7 +5,7 @@ import UniversityCard from "./UniversityCard";
 
 const AllUniv = () => {
     const [university, setUniversity] = useState({});
-    const uniURL = "https://heuristic-wescoff.128-199-28-111.plesk.page/api/universities"
+    const uniURL = "https://elscript.co/github/emperor-backend/api/universities"
     const [loading, setLoading] = useState(true)
     useEffect(() => {
         axios.get(uniURL).then((response) => {

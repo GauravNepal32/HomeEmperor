@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React,{useEffect, useState} from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -6,7 +6,10 @@ const UniversityCard = (university) => {
     const [fav,setFav]=useState();
     const navigate = useNavigate();
     const userData = JSON.parse(sessionStorage.getItem("token"));
-    const uniPostURL="https://heuristic-wescoff.128-199-28-111.plesk.page/api/add-university"
+    const uniPostURL="https://elscript.co/github/emperor-backend/api/add-university"
+    const getUniURL="https://elscript.co/github/emperor-backend/api/get-universities"
+    const [uniInfo,setUniInfo]=useState({});
+    const [renderApp,setRenderApp]=useState(false)
 
     const addUniv=async(UniID)=>{
          try {
@@ -22,12 +25,28 @@ const UniversityCard = (university) => {
                 if (response.data.statusCode===200){
                     document.getElementById('favourite-icon').classList.add('addedItem')
                 }
-            console.log(response)
+
         } catch (err) {
             console.log(err);
         }
     }
+    const loadData=async ()=>{
+        try{
+            const response=await axios.get(getUniURL,{
+                    headers: {
+                        Authorization: `Bearer ${userData.token}`,
+                    }
+                })
+            setUniInfo(response.data.data)
+            setRenderApp(true)
+        }catch(err){
+            console.log(err)
+        }
+    }
 
+    useEffect(()=>{
+        loadData();
+    },[])
 
     const handleFav = (UniID) => {
         if (userData=== null) {
@@ -36,16 +55,31 @@ const UniversityCard = (university) => {
                  addUniv(UniID);
             }
     }
+
+    // const checkFav=(UniID)=>{
+    //     var found=false
+    //     while (true){
+    //         uniInfo.map((uni)=>{
+    //             if(uni.university_id===UniID){
+    //                 found=true
+    //             } else{
+    //                 found=false
+    //             }
+    //         })
+    //     }
+    // }
+    // }
     return (
         <>
-            {
-                university.university.map((uni) => (
-                    <div class='col' key={uni.university_id} >
-                        {console.log(uni.university)}
-                        <div class='search-result-card card p-2'>
+        {renderApp && <>
+        {
+                uniInfo.map((uni,index) => (
+                    <div className='uni-search-card' key={index} >
+                        <div className='search-result-card card p-2'>
                             <div className="d-flex justify-content-end">
+                                {/* {chechFav(uni.university_id)} */}
                                 <button onClick={()=>{handleFav(uni.university_id)}} className="btn favourite-btn">
-                                    <span id="favourite-icon" class="material-symbols-outlined favourite-icon text-danger text-end">
+                                    <span id="favourite-icon" className="material-symbols-outlined text-end favourite-icon text-danger">
                                         favorite
                                     </span>
                                 </button>
@@ -53,7 +87,7 @@ const UniversityCard = (university) => {
                             </div>
 
                             <img
-                                src={uni}
+                                src={uni.university.image}
                                 class='card-img-top'
                                 alt='...'
                             />
@@ -69,6 +103,8 @@ const UniversityCard = (university) => {
                     </div>
                 ))
             }
+        </>}
+
         </>
     );
 }

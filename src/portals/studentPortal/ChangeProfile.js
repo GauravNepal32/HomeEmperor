@@ -18,9 +18,9 @@ const ChangeProfile = () => {
 
 
 
-  const getProfileURL = "https://heuristic-wescoff.128-199-28-111.plesk.page/api/profile";
+  const getProfileURL = "https://elscript.co/github/emperor-backend/api/profile";
   const changeProfileURL =
-    "https://heuristic-wescoff.128-199-28-111.plesk.page/api/edit-profile";
+    "https://elscript.co/github/emperor-backend/api/edit-profile";
 
 
     useEffect(() => {
@@ -32,7 +32,6 @@ const ChangeProfile = () => {
         },
       }
     ).then((response) => {
-      console.log(response.data.data);
       setProfileDetails(response.data.data);
       setLoading(false);
     }).catch((err) => {
@@ -43,9 +42,7 @@ const ChangeProfile = () => {
 
 
 
-  const submitEditProfile = (editedName,editedPhone) =>{
-    console.log(editedName)
-  }
+
 
   // } = async (editedName, editedPhone) => {
   //   try {

@@ -14,7 +14,7 @@ const AddStudent = () => {
   const [visibility, setVisibility] = useState(false);
   const [success, setSuccess] = useState(false);
   const [passwordAgain, setPasswordAgain] = useState("");
-  const registerURL = "https://heuristic-wescoff.128-199-28-111.plesk.page/api/register";
+  const registerURL = "https://elscript.co/github/emperor-backend/api/register";
   const [errMsg, setErrMsg] = useState("");
   const errRef = useRef();
   const navigate = useNavigate();
@@ -54,7 +54,6 @@ const AddStudent = () => {
       } else if (response.data.statusCode === 401) {
         setErrMsg(response.data.message);
       }
-      console.log(JSON.stringify(response?.data));
     } catch (err) {
       console.log(err);
     }

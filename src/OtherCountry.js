@@ -8,7 +8,7 @@ const OtherCountry = ({disableScroll,enableScroll,toggleNav,countries}) => {
                     className='list-unstyled small-dropdown country-small-dropdown navbar-dropdown-container home-dropdown-container'
                     aria-labelledby='navbarDropdownMenuLink'>
                         {countries.map((country)=>(
-                        <li>
+                        <li key={country.id}>
                         <NavLink
                             onClick={toggleNav}
                             data-toggle='collapse'

@@ -11,7 +11,7 @@ const CountryDetails = () => {
   const [renderApp,setRenderApp]=useState(false)
   useEffect(() => {
     axios
-      .get("https://heuristic-wescoff.128-199-28-111.plesk.page/api/countries")
+      .get("https://elscript.co/github/emperor-backend/api/countries")
       .then((response) => {
         response.data.data.map((major)=>{
           if(major.name.toString()===id.toString()){
@@ -32,7 +32,6 @@ const CountryDetails = () => {
         {!renderApp ? <Loading/> : (
           <div className='row justify-content-between'>
             <div className='col-md-8 col-12'>
-                {console.log(major)}
               <div className='d-flex'>
                 <div className='color-container'></div>
                 <div className='major-content-holder pt-5 pb-3'>

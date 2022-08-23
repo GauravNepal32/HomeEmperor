@@ -2,7 +2,7 @@ const StudentProfileUpdate = ({ userDetails, handleSubmit }) => {
     return (
         <div className='profile-info-container mt-5'>
             <div className='profile-image-container'>
-                {console.log(userDetails)}
+
             </div>
             <form action="" onSubmit={handleSubmit}>
                 <div className='text-info-container mt-2'>

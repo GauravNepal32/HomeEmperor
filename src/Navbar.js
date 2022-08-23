@@ -1,12 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
 import NavbarMainLogo from "./images/emperor/companyLogo.png";
 import MajorList from "./MajorList";
-import useFetch from "./useFetch";
 import SubjectList from "./SubjectList";
 import { Link, NavLink } from "react-router-dom";
 import axios from "axios";
 import { useAuth } from "./auth";
 import OtherCountry from "./OtherCountry";
+import Notification from "./Notification";
+
+
 
 const Navbar = () => {
   const auth = useAuth();
@@ -14,17 +16,23 @@ const Navbar = () => {
   const [coursesList,setCoursesList]=useState();
   const [navOpen, setNavOpen] = useState(false);
   const [isLogin, setIsLogin] = useState(false);
-  const [countries,setCountries]=useState();
-  const userData = JSON.parse(sessionStorage.getItem("token"));
+  const [countries, setCountries] = useState();
   const [renderApp,setRenderApp]=useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const myRef = useRef();
+
+
+  const handleLogout = () => {
+    auth.logout();
+  }
 
   useEffect(() => {
 
 Promise.all([
   axios
-      .get("https://heuristic-wescoff.128-199-28-111.plesk.page/api/degrees"),
-        axios.get('https://heuristic-wescoff.128-199-28-111.plesk.page/api/countries'),
-          axios.get('https://heuristic-wescoff.128-199-28-111.plesk.page/api/courses')
+    .get("https://elscript.co/github/emperor-backend/api/degrees"),
+  axios.get('https://elscript.co/github/emperor-backend/api/countries'),
+  axios.get('https://elscript.co/github/emperor-backend/api/courses')
 
 ]).then(allResponse =>{
   setMajorList(allResponse[0].data.data);
@@ -48,10 +56,20 @@ Promise.all([
     enableScroll();
   }
 
+  function toggleDiv(id, event) {
+    setIsOpen(!isOpen);
+    var div = document.getElementById(id);
+    div.style.display = div.style.display === "block" ? "none" : "block";
+    if (!div.contains(event.target)) {
+      div.style.display = 'none';
+    }
+
+  }
+
+
   return (
     <header className='mx-0 px-0'>
       {renderApp && <nav className='navbar navbar-expand-lg main-navbar'>
-        {console.log(isLogin)}
         <div className='container-md  px-sm-5'>
           <NavLink className='navbar-brand' to='/HomeEmperor'>
             <img
@@ -61,18 +79,42 @@ Promise.all([
             />
           </NavLink>
 
-          <button className="btn d-lg-none d-block my-auto ms-auto me-3 p-0 account-btn">
-            <span class="material-symbols-outlined">
-              notifications
-            </span>
-          </button>
-          <Link
-            to={!auth.isLogin ? "/login" : "/portal/dashboard"}
-            className='btn d-lg-none d-block my-auto p-0 account-btn'>
-            <span className=' my-auto material-symbols-outlined'>
-              account_circle
-            </span>
-          </Link>
+          <div className='p-lg-0 p-md-1 order-lg-2 ms-auto d-flex'>
+            {!auth.isLogin ? (
+              <Link
+                to='/login'
+                className='btn btn-type-2 p-2 me-3 d-block text-nowrap w-100'>
+                Log In
+              </Link>
+            ) : (
+              <div className="d-flex align-items-center">
+                <div className="">
+                  <div className="btn my-auto ms-auto p-0 account-btn">
+                    <button ref={myRef} onClick={() => {
+                      toggleDiv('notification-container')
+                    }} className="btn notification-bell me-md-2">
+                      <span className={isOpen ? "material-symbols-outlined material-symbols-outlined-active " : "material-symbols-outlined"}>
+                        notifications
+                      </span>
+                        <span className="d-flex justify-content-center align-items-center" id="notification-num">3</span>
+                      </button>
+                      <div id="notification-container" className="notification-container">
+                        <Notification />
+                      </div>
+                    </div>
+
+                  </div>
+                  <div onClick={handleLogout} className="btn my-auto me-md-3 me-2 p-0">
+                    <span class="material-symbols-outlined">
+                      logout
+                    </span>
+                  </div>
+                  <Link to='/portalSelection' className='text-black'>
+                    <span className='material-symbols-outlined'>account_circle</span>
+                  </Link>
+              </div>
+            )}
+          </div>
           <button
             onClick={toggleNav}
             className={
@@ -97,7 +139,7 @@ Promise.all([
                 : "collapse navbar-collapse"
             }
             id='navbarNavDropdown'>
-            <div className='collapse-toggler-container d-lg-none '>
+            <div className='collapse-toggler-container d-lg-none order-lg-1 '>
               <nav className='navbar navbar-expand-lg main-navbar d-flex justify-content-between align-item-center'>
                 <div className='container-md  px-sm-5'>
                   <NavLink
@@ -555,53 +597,9 @@ Promise.all([
                       <i className='bi bi-chevron-down'></i>
                     </span>
                   </div>
-                  {console.log(countries)}
                  <OtherCountry countries={countries} disableScroll={disableScroll} enableScroll={enableScroll} toggleNav={toggleNav}/>
                 </li>
               </ul>
-            </div>
-            <div className='p-lg-0 p-2 pe-3 d-lg-flex d-none '>
-              {!auth.isLogin ? (
-                <Link
-                  to='/login'
-                  className='btn btn-type-2 p-2 me-3 d-lg-block d-none text-nowrap w-100'>
-                  Log In
-                </Link>
-              ) : (
-                  <div className="d-flex align-items-center">
-                    <button className="btn me-md-3">
-                      <span class="material-symbols-outlined">
-                        notifications
-                      </span>
-                    </button>
-                    <Link to='/portalSelection' className='text-black'>
-                      <span class='material-symbols-outlined'>account_circle</span>
-                    </Link>
-                  </div>
-
-              )}
-              {/* {isLogin ? (
-                <>
-                  <Link to='/portal' className='text-black'>
-                    <span class='material-symbols-outlined'>
-                      account_circle
-                    </span>
-                  </Link>
-                </>
-              ) : (
-                <>
-                  <Link
-                    to='/portal'
-                    className='btn btn-type-2 p-2 me-3 d-lg-block d-none text-nowrap w-100'>
-                    Log In
-                  </Link>
-                  <Link
-                    to='/signup'
-                    className='btn btn-type-1 p-2  text-nowrap w-100'>
-                    Get Free Advice
-                  </Link>
-                </>
-              )} */}
             </div>
           </div>
         </div>

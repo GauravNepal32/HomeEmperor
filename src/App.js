@@ -34,7 +34,6 @@ import PortalSubAgent from "./portals/subagent/PortalSubAgent"
 import SubAgentMyStudent from "./portals/subagent/SubAgentMyStudent"
 import SubAgentAddStudent from "./portals/subagent/SubAgentAddStudent"
 import SubAgentSetting from "./portals/subagent/SubAgentSetting"
-import Loading from "./Loading";
 import SubAgentOverView from "./portals/subagent/SubAgentOverView";
 import CountryDetails from "./CountryDetails";
 import {Helmet} from "react-helmet";

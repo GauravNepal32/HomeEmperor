@@ -6,7 +6,7 @@ import { useAuth } from "./auth";
 import { ToastContainer, toast } from "react-toastify";
 
 
-const LOGIN_URL = "https://heuristic-wescoff.128-199-28-111.plesk.page/api/login";
+const LOGIN_URL = "https://elscript.co/github/emperor-backend/api/login";
 const Login = () => {
   // Password visibility toggler
   const[success,setSuccess]=useState(false)
@@ -34,11 +34,11 @@ const Login = () => {
   const auth = useAuth();
   const navigate = useNavigate();
 
-  useEffect(()=>{
-    toast.success("Registered Successfully. Please Login !", {
-      position: toast.POSITION.BOTTOM_RIGHT,
-    });
-  },[])
+  // useEffect(()=>{
+  //   toast.success("Registered Successfully. Please Login !", {
+  //     position: toast.POSITION.BOTTOM_RIGHT,
+  //   });
+  // },[])
   useEffect(() => {
     userRef.current.focus();
   }, []);
@@ -57,7 +57,6 @@ const Login = () => {
           headers: { "Content-Type": "application/json" },
         }
       );
-      console.log(JSON.stringify(response?.data));
       if (response.data.statusCode === 200) {
         auth.login(response.data.data);
         sessionStorage.setItem("token", JSON.stringify(response.data.data));
@@ -72,7 +71,6 @@ const Login = () => {
       }
     } catch (response) {
       setLoadBtn(false)
-      console.log(response);
       if (!response) {
         setErrMsg("No Server Response");
       }
@@ -175,7 +173,6 @@ const Login = () => {
           </div>
         </div>
       </div>
-      )
     </div>
   );
 };

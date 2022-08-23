@@ -9,7 +9,7 @@ const Contact = () => {
 
   useEffect(() => {
     axios
-      .get("https://heuristic-wescoff.128-199-28-111.plesk.page/api/faqs")
+      .get("https://elscript.co/github/emperor-backend/api/faqs")
       .then((response) => {
         {
           response.data.data.map((faqArray) => {
@@ -32,13 +32,13 @@ const Contact = () => {
 
   const toggleFAQ = (index) => {
     setfaqs(
-      faqs.map((faq, i) => {
+      faqs.map((faqopen, i) => {
         if (i === index) {
-          faq.open = !faq.open;
+          faqopen.open = !faqopen.open;
         } else {
-          faq.open = false;
+          faqopen.open = false;
         }
-        return faq;
+        return faqopen;
       })
     );
   };

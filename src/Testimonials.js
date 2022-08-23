@@ -1,7 +1,6 @@
 import React from "react";
 
 const Testimonials = (testimonials) => {
-  console.log(testimonials)
   return (
     <div className="row mt-5 row-cols-lg-3 row-col-md-2 row-cols-sm-2 row-cols-1 g-2">
       {testimonials.testimonials.map((testimonial) => (

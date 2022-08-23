@@ -12,12 +12,12 @@ const Dashboard = () => {
   // const userData = sessionStorage.getItem("token");
   const userData = JSON.parse(sessionStorage.getItem("token"));
   const userToken=userData.token
-  const activities="https://heuristic-wescoff.128-199-28-111.plesk.page/api/activities"
+  const activities="https://elscript.co/github/emperor-backend/api/activities"
   const [activity,setActivity]=useState([]);
   const [activityAvailable,setActivityAvailable]=useState(false);
   const [loading,setLoading]=useState(true)
   const [uniInfo,setUniInfo]=useState();
-  const getUni="https://heuristic-wescoff.128-199-28-111.plesk.page/api/get-universities"
+  const getUni="https://elscript.co/github/emperor-backend/api/get-universities"
 
   useEffect(() => {
     Promise.all([
@@ -259,7 +259,7 @@ setActivityAvailable(true);
           </Link>
         </div>
         <div className='university-card-wrapper mt-3 mb-5 d-flex'>
-            {loading && <UniversityCard university={uniInfo}/>}
+            {!loading && <UniversityCard university={uniInfo}/>}
 
         </div>
       </div>

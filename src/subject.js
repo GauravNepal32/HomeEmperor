@@ -13,7 +13,7 @@ const Subject = () => {
   const [allSubject,setAllSubject]=useState();
   const [renderApp,setRenderApp]=useState(false);
 useEffect(()=>{
-  axios.get("https://heuristic-wescoff.128-199-28-111.plesk.page/api/courses").then((response)=>{
+  axios.get("https://elscript.co/github/emperor-backend/api/courses").then((response)=>{
     response.data.data.map((subject)=>{
       if(subject.id.toString() === id.toString() ){
         setAllSubject(subject)
@@ -29,7 +29,6 @@ useEffect(()=>{
     <div className='main-container my-5'>
       {!renderApp ? <Loading/> : (
          <div className='container px-md-5 px-2'>
-        {console.log(allSubject)}
         {allSubject && (
           <div className='row m-0 '>
             <div className='col-md-8 col-12'>

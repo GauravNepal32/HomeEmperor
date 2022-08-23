@@ -6,7 +6,7 @@ const UniversityCard = (university) => {
     const [fav,setFav]=useState();
     const navigate = useNavigate();
     const userData = JSON.parse(sessionStorage.getItem("token"));
-    const uniPostURL="https://heuristic-wescoff.128-199-28-111.plesk.page/api/add-university"
+    const uniPostURL="https://elscript.co/github/emperor-backend/api/add-university"
 
     const addUniv=async(UniID)=>{
          try {

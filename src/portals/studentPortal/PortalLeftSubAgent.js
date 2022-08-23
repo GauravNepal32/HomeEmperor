@@ -1,5 +1,6 @@
 const PortalLeftSubAgent = () => {
-    return (  );
+    return (<>
+    </>);
 }
 
 export default PortalLeftSubAgent;

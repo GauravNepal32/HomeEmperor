@@ -12,20 +12,35 @@ import axios from "axios";
 import Loading from "./Loading";
 import NoResponse from "./NoResponse";
 import {Helmet} from "react-helmet";
+import team from "./images/emperor/team.png";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const Home = () => {
   const [countries, setCountries] = useState();
   const [testimonials, setTestimonials] = useState();
   const [renderApp, setRenderApp] = useState(false);
 
+  const showsuccessToastMessage = () => {
+    toast.success('Number recieved successfully!', {
+      position: toast.POSITION.BOTTOM_RIGHT
+    });
+  };
+  const showserrorToastMessage = () => {
+    toast.error('Unable to get Number!', {
+      position: toast.POSITION.BOTTOM_RIGHT
+    });
+  };
+
   useEffect(() => {
     axios
-      .get("https://heuristic-wescoff.128-199-28-111.plesk.page/api/countries")
+      .get("https://elscript.co/github/emperor-backend/api/countries")
       .then((response) => {
         setCountries(response.data.data.slice(response.data.data.length-4,response.data.data.length));
       });
     axios
-      .get("https://heuristic-wescoff.128-199-28-111.plesk.page/api/testimonials")
+      .get("https://elscript.co/github/emperor-backend/api/testimonials")
       .then((response) => {
         setTestimonials(response.data.data);
         setRenderApp(true);
@@ -35,14 +50,37 @@ const Home = () => {
         <NoResponse />;
       });
   }, []);
+
+  const handleCall = async (e) => {
+    e.preventDefault();
+    const phone = document.getElementById('callback-phone').value;
+
+    console.log(phone)
+    try {
+      const response = await axios.post('https://elscript.co/github/emperor-backend/api/phone-number', { phone })
+      console.log(Number(response.data.statusCode))
+      if (response.data.statusCode === 200) {
+        console.log("success")
+        showsuccessToastMessage();
+      }
+      else {
+        console.log("error")
+        showserrorToastMessage();
+      }
+      console.log(response)
+    } catch (err) {
+      showserrorToastMessage();
+    }
+  }
   return (
     // Search box container
     <>
       {renderApp ? (
         <div id='' className='main-container'>
+          <ToastContainer />
           <Helmet>
             <title>Home | Emperor</title>
-            <meta name="description" content="Helmet application" />
+            <meta name="description" content="Emperor Education" />
              <link rel="canonical" href="http://mysite.com/example" />
           </Helmet>
           <div className='front-main-container'>
@@ -231,13 +269,18 @@ const Home = () => {
                   </div>
                 </div>
                 <div className='d-flex'>
-                  <input
+                  <form onSubmit={handleCall} className="d-flex" action="">
+                    <input
                     className='front-mobile-input p-2 rounded'
-                    type='text'
+                      type='tel'
+                      pattern="[0-9]{10}"
+                      id='callback-phone'
                     name='callback-phone'
                     placeholder='Mobile Number'
                   />
-                  <button className='btn ms-1 btn-type-1'>Get a Call</button>
+                    <input type="submit" value={'Get a Call'} className='btn ms-1 btn-type-1' />
+                  </form>
+
                 </div>
               </div>
             </div>
@@ -247,7 +290,10 @@ const Home = () => {
             <div className='row mb-200'>
               <div className='container'>
                 <div className='row row-cols-md-2 row-cols-1'>
-                  <div className='col order-md-0 order-1'></div>
+                  <div className='col order-md-0 order-1'>
+                    <img src={team} className='img-fluid' alt='' srcset='' />
+
+                  </div>
                   <div className='col order-md-1 order-0'>
                     <h1 className='main-heading'>
                       Friendly, Cooperative & Knowldegable Team
@@ -282,27 +328,6 @@ const Home = () => {
               <div className='testimonials-container'>
                 <div className=''>
                   <Testimonials testimonials={testimonials} />
-                  {/* <Testimonials
-                clientText='Emperor Education is a premier educational consulting firm located in Kathmandu, Nepal. They provide real and legitimate information on studying overseas. If you are searching for admission to a prestigious university in Australia, I strongly advise prospective students to visit Emperor Education.'
-                clientName='Ravi Shrestha'
-                clientImg={raviImg}
-                cilentDestination='Australia'
-                cardNum='1'
-              />
-              <Testimonials
-                clientText='Emperor Education is one of the top study in Canada consultancies in Nepal. Keshav Sir and Nishant Sir are the top counselors for Canada study help and 100% support at Emperor Education. I am delighted to inform you that, thanks to the efforts of the whole Emperor team, I have been admitted as a Loyalist College postgraduate student in the program Hospitality Management- Canadian Hotel and Resort. Best wishes!'
-                clientName='Shreya Basnet'
-                clientImg={shreyaImg}
-                cilentDestination='Canada'
-                cardNum='2'
-              />
-              <Testimonials
-                clientText='I am grateful to the entire Emperor Education team, especially Keshav Dhungana sir and Nishat sir. I received my visa and the greatest advice to help me attain my objective. Choosing Emperor Education was the best move I ever made.'
-                clientName='Krishna Acharya'
-                clientImg={krishnaImg}
-                cilentDestination='USA'
-                cardNum='3'
-              /> */}
                 </div>
               </div>
             </div>

@@ -1,87 +1,31 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import Select from "react-select";
-import useFetch from "./useFetch";
 import axios from "axios";
-import NoResponse from "./NoResponse";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const SearchBox = () => {
-
-  const [countryName, setCountryName] = useState([]);
-  const countryList = [];
-  const degreeList = [];
-  const [degree, setDegree] = useState([]);
-  const courseList = [];
-  const [courses, setCourses] = useState([]);
   const [isShown, setIsShown] = useState("all");
   const navigate = useNavigate();
 
-  useEffect(() => {
-    axios
-      .get("https://heuristic-wescoff.128-199-28-111.plesk.page/api/countries")
-      .then((response) => {
-        {
-          response.data.data.map((countryArray) => {
-            const countryListObject = {
-              label: `${countryArray.name}`,
-              value: `${countryArray.id}`,
-            };
-            countryList.push(countryListObject);
-          });
-          setCountryName(countryList);
-        }
+  const handleSubmit = async (url, postname) => {
+    if (isShown === "degree" || isShown === "courses") {
+      try {
+        const response = await axios.post(url, { title: postname, }, {
+          headers: { "Content-Type": "application/json" },
       })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
-
-  useEffect(() => {
-    axios
-      .get("https://heuristic-wescoff.128-199-28-111.plesk.page/api/degrees")
-      .then((response) => {
-        {
-          response.data.data.map((degreeArray) => {
-            const degreeListObject = {
-              label: `${degreeArray.title}`,
-              value: `${degreeArray.id}`,
-            };
-            degreeList.push(degreeListObject);
-          });
-          setDegree(degreeList);
-        }
+        navigate("/searchResult", { state: { result: response.data, category: "title", keyword: postname } })
+      } catch (err) {
+        console.log(err)
+      }
+    } else {
+      try {
+        const response = await axios.post(url, { name: postname }, {
+          headers: { "Content-Type": "application/json" },
       })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
-
-  useEffect(() => {
-    axios
-      .get("https://heuristic-wescoff.128-199-28-111.plesk.page/api/courses")
-      .then((response) => {
-        {
-          response.data.data.map((courseArray) => {
-            const courseListObject = {
-              label: `${courseArray.title}`,
-              value: `${courseArray.id}`,
-            };
-            courseList.push(courseListObject);
-          });
-          setCourses(courseList);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
-
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    navigate("/searchResult")
-
+        navigate("/searchResult", { state: { result: response.data, category: "name", keyword: postname } })
+      } catch (err) {
+        console.log(err)
+      }
+    }
   }
 
   return (
@@ -90,28 +34,28 @@ const SearchBox = () => {
         <div className="d-flex search-box-btn ">
           <button
             onClick={() => { setIsShown('all') }}
-            className={isShown === 'all' ? "ms-3 active" : "ms-3 degree-btn"}>
-            <i className='fa-solid fa-building-columns me-2'></i>All
+            className={isShown === 'all' ? "ms-sm-3 p-2 active" : "ms-sm-3 p-2 degree-btn"}>
+            All
           </button>
           <button onClick={
             () => {
               setIsShown('degree')
             }
-          } className={isShown === 'degree' ? "ms-3 active" : "ms-3 degree-btn"}>
+          } className={isShown === 'degree' ? "ms-sm-3 p-2 ms-1 active" : "ms-sm-3 p-2 ms-1 degree-btn"}>
             Degree
           </button>
           <button onClick={
             () => {
               setIsShown('courses')
             }
-          } className={isShown === 'courses' ? "ms-3 active" : "ms-3 degree-btn"}>
+          } className={isShown === 'courses' ? "ms-sm-3 p-2 ms-1 active" : "ms-sm-3 p-2 ms-1 degree-btn"}>
             Courses
           </button>
           <button onClick={
             () => {
               setIsShown('uni')
             }
-          } className={isShown === 'uni' ? "ms-3 active" : "ms-3 degree-btn"}>
+          } className={isShown === 'uni' ? "ms-sm-3 p-2 ms-1 active" : "ms-sm-3 p-2 ms-1 degree-btn"}>
             University
           </button>
           {/* <Link to="/UniList" className='uni-btn p-md-3 p-2 ms-3' disabled>
@@ -121,38 +65,30 @@ const SearchBox = () => {
 
         <div className='search-form-container text-center mt-4'>
           <div className=''>
-            <form action="" method="post">
+            <form action="" method="">
               <div className="d-flex">
-                {isShown === "all" && <input type="text" className="form-control" placeholder="Search..." />}
-                {isShown === "degree" && <input type="text" className="form-control" placeholder="Search for Degree..." />}
-                {isShown === "courses" && <input type="text" className="form-control" placeholder="Search for Courses..." />}
-                {isShown === "uni" && <input type="text" className="form-control" placeholder="Search for University..." />}
-                <button onClick={handleSubmit} className='search-box-active-btn text-decoration-none text-uppercase fw-bold'>
-                  <i className='fa-solid  fa-magnifying-glass me-2'></i>Search
+                {isShown === "all" && <input type="text" id="allInput" className="form-control" placeholder="Search..." />}
+                {isShown === "degree" && <input type="text" id="degreeInput" name="degree" className="form-control" placeholder="Search for Degree..." />}
+                {isShown === "courses" && <input type="text" id="coursesInput" className="form-control" placeholder="Search for Courses..." />}
+                {isShown === "uni" && <input type="text" id="universityInput" className="form-control" placeholder="Search for University..." />}
+                <button onClick={
+                  (e) => {
+                    e.preventDefault();
+                    if (isShown === "all") {
+                      handleSubmit("all", document.getElementById("allInput").value, "name");
+                    } else if (isShown === "degree") {
+                      handleSubmit("https://heuristic-wescoff.128-199-28-111.plesk.page/api/search-degrees", document.getElementById("degreeInput").value, "title");
+                    } else if (isShown === "courses") {
+                      handleSubmit("https://heuristic-wescoff.128-199-28-111.plesk.page/api/search-courses", document.getElementById("coursesInput").value, "title");
+                    } else if (isShown === "uni") {
+                      handleSubmit("https://heuristic-wescoff.128-199-28-111.plesk.page/api/search-universities", document.getElementById("universityInput").value, "name");
+                    }
+                  }
+                } className='search-box-active-btn text-decoration-none text-uppercase fw-bold'>
+                  <i className='fa-solid  fa-magnifying-glass me-sm-2 me-1'></i><span>Search</span>
                 </button>
               </div>
             </form>
-
-
-            {/* <div className='row g-1'>
-              <div className='col-lg-3 col-md-4 col-12'>
-                <Select options={degree} placeholder='Select Degree..' />
-              </div>
-              <div className='col-lg-3 col-md-4 col-12'>
-                <Select options={countryName} placeholder='Select Country..' />
-              </div>
-              <div className='col-lg-4 col-md-4 col-12'>
-                <Select options={courses} placeholder='Select Course..' />
-              </div>
-              <div className='col-lg-2 col-12 d-flex'>
-                {" "}
-                <Link
-                  to='/searchresult'
-                  className='search-box-btn text-decoration-none w-100 text-uppercase fw-bold'>
-                  <i className='fa-solid  fa-magnifying-glass me-2'></i>Search
-                </Link>
-              </div>
-            </div> */}
           </div>
         </div>
       </div>
