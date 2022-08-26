@@ -1,9 +1,9 @@
 {
   "files": {
-    "main.css": "/HomeEmperor/static/css/main.e8474ba2.css",
-    "main.js": "/HomeEmperor/static/js/main.7fb6fafc.js",
-    "static/media/people-office.jpg": "/HomeEmperor/static/media/people-office.38c97f9e03b2a36f7e7d.jpg",
+    "main.css": "/HomeEmperor/static/css/main.2f11013a.css",
+    "main.js": "/HomeEmperor/static/js/main.b143185c.js",
     "static/media/testStudent.png": "/HomeEmperor/static/media/testStudent.98e6cf0536a4d27a4168.png",
+    "static/media/landing.png": "/HomeEmperor/static/media/landing.8fd375b5511683820d41.png",
     "static/media/ceo.png": "/HomeEmperor/static/media/ceo.9d63f6954eb054b00dc4.png",
     "static/media/profile.png": "/HomeEmperor/static/media/profile.077f459bb4ad27566691.png",
     "static/media/satThumbnail.png": "/HomeEmperor/static/media/satThumbnail.cd844fd5bf282edf0da4.png",
@@ -12,7 +12,6 @@
     "static/media/companyLogoWhite.png": "/HomeEmperor/static/media/companyLogoWhite.4460fc80f4a4ae742a16.png",
     "static/media/no.png": "/HomeEmperor/static/media/no.7ca1790afb8f3d69b3a7.png",
     "static/media/consultant-disha-small.png": "/HomeEmperor/static/media/consultant-disha-small.3b13ffa57f74be7fd0a4.png",
-    "static/media/landing.png": "/HomeEmperor/static/media/landing.95d5c5a6d5da60af1107.png",
     "static/media/companyLogo.png": "/HomeEmperor/static/media/companyLogo.bcba7f8eac1a5cdf9e51.png",
     "static/media/consultant-mohit-small.png": "/HomeEmperor/static/media/consultant-mohit-small.0ac0b6cb6b3842e0a389.png",
     "static/media/partner.jpg": "/HomeEmperor/static/media/partner.cd759f28f0bb525a3754.jpg",
@@ -21,11 +20,11 @@
     "static/media/new-nepal-map.png": "/HomeEmperor/static/media/new-nepal-map.8df3e3ea2966e5a836a9.png",
     "static/media/lost.svg": "/HomeEmperor/static/media/lost.ec370f7907d21f0631f4bae1a0b7c66f.svg",
     "index.html": "/HomeEmperor/index.html",
-    "main.e8474ba2.css.map": "/HomeEmperor/static/css/main.e8474ba2.css.map",
-    "main.7fb6fafc.js.map": "/HomeEmperor/static/js/main.7fb6fafc.js.map"
+    "main.2f11013a.css.map": "/HomeEmperor/static/css/main.2f11013a.css.map",
+    "main.b143185c.js.map": "/HomeEmperor/static/js/main.b143185c.js.map"
   },
   "entrypoints": [
-    "static/css/main.e8474ba2.css",
-    "static/js/main.7fb6fafc.js"
+    "static/css/main.2f11013a.css",
+    "static/js/main.b143185c.js"
   ]
 }
