@@ -37,6 +37,7 @@ import SubAgentSetting from "./portals/subagent/SubAgentSetting"
 import SubAgentOverView from "./portals/subagent/SubAgentOverView";
 import CountryDetails from "./CountryDetails";
 import {Helmet} from "react-helmet";
+import RestPassword from "./RestPassword";
 
 
 const App = () => {
@@ -46,7 +47,7 @@ const App = () => {
       <Router>
         <div id='scroll-container' className='App'>
             <Helmet>
-              <title>App Title</title>
+              <title>Emperor Education Network</title>
               <meta name="description" content="App Description" />
               <meta name="theme-color" content="#008f68" />
           </Helmet>
@@ -73,6 +74,8 @@ const App = () => {
               {/* Calling Login container */}
               {/* <Route path='/login' element={<Login />}></Route> */}
               <Route path='/login' element={<Login />}></Route>
+              <Route path='/resetPassword' element={<RestPassword />}></Route>
+
               <Route
                 path='/portalSelection'
                 element={

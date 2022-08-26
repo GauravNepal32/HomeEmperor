@@ -2,30 +2,26 @@ import axios from 'axios';
 import React from 'react'
 import { useEffect } from 'react';
 import { useState } from 'react';
+import courseImg from "../../images/coursesThumbnail/satThumbnail.png";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const UniversityCard = () => {
-    const uniGetURL = "https://elscript.co/github/emperor-backend/api/get-universities"
-    const uniRemoveURL = "https://elscript.co/github/emperor-backend/api/remove-university"
+const MyCourses = () => {
+    const courseGetURL = "https://elscript.co/github/emperor-backend/api/get-courses"
+    const courseRemoveURL = "https://elscript.co/github/emperor-backend/api/remove-course"
     const userData = JSON.parse(sessionStorage.getItem("token"));
-    const [allUniversity, setAllUniversity] = useState([]);
+    const [allCourses, setAllCourses] = useState([]);
 
 
     const showsuccessToastMessage = () => {
-        toast.success('University removed!', {
-            position: toast.POSITION.BOTTOM_RIGHT
-        });
-    };
-    const showerrorToastMessage = () => {
-        toast.error('Unable to removed university!', {
+        toast.success('Course removed!', {
             position: toast.POSITION.BOTTOM_RIGHT
         });
     };
 
     const loadData = async () => {
         try {
-            const response = await axios.get(uniGetURL,
+            const response = await axios.get(courseGetURL,
                 {
                     headers: {
                         "Content-Type": "application/json",
@@ -33,7 +29,9 @@ const UniversityCard = () => {
                     }
                 }
             )
-            setAllUniversity(response.data.data);
+            setAllCourses(response.data.data);
+            console.log(response.data.data)
+
         } catch (err) {
             console.log(err)
         }
@@ -43,48 +41,47 @@ const UniversityCard = () => {
     }, [])
 
 
-    const handleFav = async (uni_id) => {
+    const handleFav = async (course_id) => {
         try {
-            const response = await axios.post(uniRemoveURL, { university_id: uni_id }, {
+            const response = await axios.post(courseRemoveURL, { course_id }, {
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${userData.token}`
                 }
             })
-            console.log(response)
+            console.log(response.data)
             if (Number(response.data.statusCode) === 200) {
                 showsuccessToastMessage();
                 loadData();
-            } else {
-                showerrorToastMessage();
             }
         } catch (err) {
             console.log(err)
         }
     }
+    const checkLike = () => {
+
+    }
 
     return (
         <div>
-            {allUniversity !== null ? <>
+            {allCourses !== null ? <>
                 <div className='course-card-wrapper mt-3 mb-5 d-flex'>
                     <ToastContainer />
-                    {allUniversity.map((uni) => (
+                    {allCourses.map((course) => (
                         <div className='course-card'>
+                            {console.log(course.course)}
                             <div className='card'>
                                 <div className='card-thumbnail'>
-                                    <img className='img-fluid' src={uni.university.image} alt='' />
+                                    <img className='img-fluid' src={courseImg} alt='' />
                                 </div>
                                 <div className='card-body d-flex'>
                                     <div className='course-card-heading d-flex'>
-                                        <h5>{uni.university.name}</h5>
-                                        <button onClick={() => { handleFav(uni.university_id) }} className="btn favourite-btn">
+                                        <h5>{course.course.title}</h5>
+                                        <button onClick={() => { handleFav(course.course.id) }} className="btn favourite-btn">
                                             <span id="favourite-icon" className="material-symbols-outlined text-end favourite-icon text-danger addedItem">
                                                 favorite
                                             </span>
                                         </button>
-                                    </div>
-                                    <div className="course-card-text">
-                                        <p>{uni.university.description}</p>
                                     </div>
                                 </div>
                             </div>
@@ -97,4 +94,4 @@ const UniversityCard = () => {
     )
 }
 
-export default UniversityCard
+export default MyCourses

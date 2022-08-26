@@ -4,7 +4,7 @@ import useFetch from "./useFetch";
 import axios from "axios";
 import { useAuth } from "./auth";
 import { ToastContainer, toast } from "react-toastify";
-
+import { Helmet } from "react-helmet";
 
 const LOGIN_URL = "https://elscript.co/github/emperor-backend/api/login";
 const Login = () => {
@@ -79,6 +79,11 @@ const Login = () => {
   };
   return (
     <div className='main-container'>
+      <Helmet>
+        <title>
+          Sign In | Emperor Education Network
+        </title>
+      </Helmet>
       <div id='login-container' className='login-container'>
         <div className='container-fluid '>
           <div className='row d-flex px-0'>
@@ -146,9 +151,11 @@ const Login = () => {
                       />}
 
                     </div>
-                    <p className='text-center text-decoration-underline login-problem'>
+                    <div className="text-center">
+                      <Link to="/resetPassword" className='text-center text-decoration-underline login-problem'>
                       Having trouble to Log In?
-                    </p>
+                      </Link>
+                    </div>
                   </form>
                 </div>
               </div>

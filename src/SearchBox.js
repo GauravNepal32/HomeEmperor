@@ -1,12 +1,14 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import { useAuth } from "./auth";
 const SearchBox = () => {
   const [isShown, setIsShown] = useState("all");
+  const [searching,setSearching]=useState(false)
   const navigate = useNavigate();
-
+  const auth=useAuth();
   const handleSubmit = async (url, postname) => {
+    setSearching(true)
     if (isShown === "degree" || isShown === "courses") {
       try {
         const response = await axios.post(url, { title: postname, }, {
@@ -16,7 +18,17 @@ const SearchBox = () => {
       } catch (err) {
         console.log(err)
       }
-    } else {
+    } else if (isShown==="all"){
+      try{
+        const response=await axios.post(url,{title:postname},{headers:{"Content-Type":"application/json"}})
+        console.log(response.data)
+        navigate('/searchResult',{state:{result:response.data,searchType:"all"},keyword:postname})
+      }catch(err){
+        console.log(err)
+      }
+    }
+
+     else {
       try {
         const response = await axios.post(url, { name: postname }, {
           headers: { "Content-Type": "application/json" },
@@ -75,17 +87,19 @@ const SearchBox = () => {
                   (e) => {
                     e.preventDefault();
                     if (isShown === "all") {
-                      handleSubmit("all", document.getElementById("allInput").value, "name");
+                      handleSubmit(`${auth.baseURL}/api/search-all`, document.getElementById("allInput").value, "title");
                     } else if (isShown === "degree") {
-                      handleSubmit("https://heuristic-wescoff.128-199-28-111.plesk.page/api/search-degrees", document.getElementById("degreeInput").value, "title");
+                      handleSubmit(`${auth.baseURL}/api/search-degrees`, document.getElementById("degreeInput").value, "title");
                     } else if (isShown === "courses") {
-                      handleSubmit("https://heuristic-wescoff.128-199-28-111.plesk.page/api/search-courses", document.getElementById("coursesInput").value, "title");
+                      handleSubmit(`${auth.baseURL}/api/search-courses`, document.getElementById("coursesInput").value, "title");
                     } else if (isShown === "uni") {
-                      handleSubmit("https://heuristic-wescoff.128-199-28-111.plesk.page/api/search-universities", document.getElementById("universityInput").value, "name");
+                      handleSubmit(`${auth.baseURL}/api/search-universities`, document.getElementById("universityInput").value, "name");
                     }
                   }
                 } className='search-box-active-btn text-decoration-none text-uppercase fw-bold'>
+                  {searching?<>Searching...</>:<>
                   <i className='fa-solid  fa-magnifying-glass me-sm-2 me-1'></i><span>Search</span>
+                  </>}
                 </button>
               </div>
             </form>

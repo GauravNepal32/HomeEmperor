@@ -2,14 +2,12 @@ import React,{useState,useEffect} from "react";
 import axios from "axios";
 import profileImg from "../../images/portal/profileImg.webp";
 import Loading from "../../Loading";
+import { Helmet } from "react-helmet";
 
 
 const ChangeProfile = () => {
   const userData = JSON.parse(sessionStorage.getItem("token"));
     const [profileDetails, setProfileDetails] = useState();
-      const [editInfo, setEditInfo] = useState(true);
-  const [editedName, setEditedName] = useState("");
-  const [editedPhone, setEditedPhone] = useState("");
   const userToken = userData.token;
   const [loading, setLoading] = useState(true);
   const [changeProfileSuccess, setChangeProfileSuccess] = useState(false);
@@ -95,7 +93,7 @@ const ChangeProfile = () => {
         <>
         {
             loading ? <Loading/> : (
-<div className='profile-info-container mt-5'>
+        <div className='profile-info-container mt-5'>
             <div className='profile-image-container'>
               <img className='img-fluid' src={profileImg} alt='' />
             </div>

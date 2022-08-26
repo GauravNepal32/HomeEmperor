@@ -1553,56 +1553,30 @@ input[type="file"]::-ms-browse {
     text-align: center;
     padding: 10px 20px;
 }
+.reset-password-container {
+    background-color: white;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    width: 450px;
+    height: 300px;
+}
+
+#notification-container {
+    display: none;
+}
+.course-card-heading {
+    position: relative;
+}
+.course-card-heading .favourite-btn {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
 /* Test End */
 /* Mobile screen */
 
-@media only screen and (max-width: 576px) {
-    .stats-odd,
-    .stats-even {
-        margin: 10px 0px;
-    }
-    .year-service-container h1 {
-        font-size: 100px;
-    }
-    .main-heading {
-        font-size: 40px;
-    }
-    .major-content-holder {
-        position: relative;
-        left: -30px;
-    }
-    .pillar-container{
-        padding: 10px;
-    }
-    .waves-image{
+@media only screen and(max-width:576px) {
 
-    }
-    .test-main-heading{
-        font-size: 50px;
-    }
-    .test-image-holder{
-        margin-top: 10px;
-        padding: 10px;
-    }
-    .info-paragraph{
-        font-size: 14px;
-    }
-    .contact-sub-container{
-        bottom: 80px;
-    }
-#portal-menu li{
-    font-size: 12px;
-}
-.straight-line-container{
-    position: relative;
-    left: -30px;
-  }
-  .processing-timline-child{
-    font-size: 10px;
-  }
-}
-
-.document-sub-container{
+    .document-sub-container {
     background-color: #efefef;
     padding: 10px;
     border-radius: 20px;
@@ -1635,7 +1609,6 @@ border: 1px solid black;
     right: 50%;
 }
 #notification-container {
-
     right: 20px;
     width: 300px;
     height: auto;
@@ -1656,6 +1629,66 @@ border: 1px solid black;
 
 .no-result-img {
     width: 300px;
+}
+}
+
+@media only screen and (max-width: 576px) {
+
+    .stats-odd,
+    .stats-even {
+        margin: 10px 0px;
+    }
+
+    .year-service-container h1 {
+        font-size: 100px;
+    }
+
+    .main-heading {
+        font-size: 40px;
+    }
+
+    .major-content-holder {
+        position: relative;
+        left: -30px;
+    }
+
+    .pillar-container {
+        padding: 10px;
+    }
+
+    .test-main-heading {
+        font-size: 50px;
+    }
+
+    .test-image-holder {
+        margin-top: 10px;
+        padding: 10px;
+    }
+
+    .info-paragraph {
+        font-size: 14px;
+    }
+
+    .contact-sub-container {
+        bottom: 80px;
+    }
+
+    #portal-menu li {
+        font-size: 12px;
+    }
+
+    .straight-line-container {
+        position: relative;
+        left: -30px;
+    }
+
+    .processing-timline-child {
+        font-size: 10px;
+    }
+
+    .reset-password-container {
+        width: 300px;
+    }
 }
 
 /* Landscape Mobile screen */

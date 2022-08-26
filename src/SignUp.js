@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
+import { Helmet } from "react-helmet";
 
 const SignUp = () => {
   const [password, setPassword] = useState("");
@@ -152,6 +153,11 @@ const SignUp = () => {
   return (
     <div>
       <div id='signup-container' className='login-container'>
+        <Helmet>
+          <title>
+            Sign Up | Emperor Education Network
+          </title>
+        </Helmet>
         <div className='container-fluid'>
           <ToastContainer />
           <div className='row d-flex px-0'>

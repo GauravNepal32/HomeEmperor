@@ -3,6 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import Loading from "../../Loading";
 import ProcessingActivity from "./ProcessingActivity";
+import { Helmet } from "react-helmet";
 
 
 const Processing = () => {
@@ -38,6 +39,11 @@ setActivityAvailable(true);
 })
   return (
     <div className='main-container px-md-5 p-md-4 p-2 p-0 mb-5 container'>
+      <Helmet>
+        <title>
+          Processing | Emperor Education Network
+        </title>
+      </Helmet>
       {loading ? <Loading/> : <ProcessingActivity activity={activity} activityAvailable={activityAvailable}/> }
 
 

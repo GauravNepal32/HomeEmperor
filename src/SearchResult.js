@@ -2,21 +2,33 @@ import React from "react";
 import { useLocation,Link } from "react-router-dom";
 import NoResult from "./NoResult";
 import SearchBox from "./SearchBox";
+import AllSearch from "./searchEngine/AllSearch";
 
 const SearchResult = () => {
   const {state} = useLocation();
   return (
     <div className='main-container'>
       <SearchBox />
-{(state !==null)?(
+      {(state !== null) ? (
   <>
-  {state.result.search_results.length !== 0 ? (
-<div className='row mt-5 px-md-5'>
+          {state.searchType === "all" ? <>
+            {(state.result.countries.length !== 0 || state.result.courses.length !== 0 || state.result.degrees.length !== 0 || state.result.universities.length !== 0) ? <>
+              <>
+                <AllSearch result={state.result} />
+              </>
+            </> : <>
+              <NoResult keyword={state.keyword} />
+            </>}
+          </> : <>
+              {state.result.search_results.length !== 0 ? (
+                <div className='row mt-5 px-md-5'>
         <div className='search-result-info-container ms-3'>
+                    {/* Displaying Number of result found */}
           <h5 className='sub-heading'>{state.result.search_results.length} result found</h5>
         </div>
         <div className='search-card-container d-flex justify-content-sm-start justify-content-center px-0 mt-5'>
           <div className='row d-flex justify-content-center'>
+                      {/* Running loops on search result to display in cards */}
             {state.result.search_results.map((found)=>(
               <div className='col' key={found.id}>
                 <div className='search-result-card card'>
@@ -32,6 +44,7 @@ const SearchResult = () => {
                     <p className='card-text'>
                     {found.description}
                     </p>
+                    {/* Redirect to dedicated links */}
                     <Link to='/HomeEmperor' className='btn btn-type-1 p-2'>
                       View Details
                     </Link>
@@ -43,44 +56,10 @@ const SearchResult = () => {
         </div>
       </div>
   ):<NoResult keyword={state.keyword}/>}
-
+          </>}
   </>
 
-       ):<NoResult keyword={""}/>}
-
-      {/* // <div className='pagination-container  d-flex justify-content-center my-5'>
-      //   <nav aria-label='Page navigation example'>
-      //     <ul className='pagination'>
-      //       <li className='page-item'>
-      //         <a className='page-link' aria-label='Previous'>
-      //           <span aria-hidden='true'>&laquo;</span>
-      //           <span className='sr-only'>Previous</span>
-      //         </a>
-      //       </li>
-      //       <li className='page-item active'>
-      //         <a className='page-link '>1</a>
-      //       </li>
-      //       <li className='page-item'>
-      //         <a className='page-link '>2</a>
-      //       </li>
-      //       <li className='page-item'>
-      //         <a className='page-link '>3</a>
-      //       </li>
-      //       <li className='page-item'>
-      //         <a className='page-link '>4</a>
-      //       </li>
-      //       <li className='page-item'>
-      //         <a className='page-link '>5</a>
-      //       </li>
-      //       <li className='page-item'>
-      //         <a className='page-link' aria-label='Next'>
-      //           <span aria-hidden='true'>&raquo;</span>
-      //           <span className='sr-only'>Next</span>
-      //         </a>
-      //       </li>
-      //     </ul>
-      //   </nav>
-      // </div> */}
+      ) : <NoResult keyword={""} />}
     </div>
   );
 };

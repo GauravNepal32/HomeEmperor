@@ -27,40 +27,8 @@
         "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
         "URL": "/major",
         "id": 4
-    }],
-    "Test":[{
-        "examName":"IELTS",
-        "examText": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui expedita nostrum repudiandae consequatur, ipsam odit facere eligendi maiores at porro commodi necessitatibus ipsum,minima corporis."
-        ,"id":1,
-        "totalTime":"2 hours 45 minutes",
-        "landingImage":"../images/test/10 SCENE.svg"
-    },
-    {
-        "examName":"SAT",
-        "examText": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui expedita nostrum repudiandae consequatur, ipsam odit facere eligendi maiores at porro commodi necessitatibus ipsum,minima corporis."
-        ,"id":2,
-        "totalTime":"3 hours"
-
-
-    },
-    {
-        "examName":"PTE",
-        "examText": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui expedita nostrum repudiandae consequatur, ipsam odit facere eligendi maiores at porro commodi necessitatibus ipsum,minima corporis.",
-        "id":3,
-        "totalTime":"2 hours 15 minutes"
-
-
-    },
-    {
-        "examName":"TOFEL",
-        "examText": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui expedita nostrum repudiandae consequatur, ipsam odit facere eligendi maiores at porro commodi necessitatibus ipsum,minima corporis.",
-        "id":4,
-        "totalTime":"~ 3 hours"
-
-
-
     }
-    ],
+],
 
     "major": [{
             "majorName": "MBA",

@@ -1,5 +1,4 @@
 import React,{useEffect,useState} from "react";
-import courseImg from "../../images/coursesThumbnail/satThumbnail.png";
 import { Link } from "react-router-dom";
 // import acceptedImg from "../images/process/accepted.png";
 import Loading from "../../Loading"
@@ -7,6 +6,8 @@ import NoActivity from "./NoActivity"
 import axios from "axios";
 import ActivityGraph from "./ActivityGraph";
 import UniversityCard from "./UniversityCard";
+import MyCourses from "./MyCourses";
+import { Helmet } from "react-helmet";
 
 const Dashboard = () => {
   // const userData = sessionStorage.getItem("token");
@@ -53,62 +54,15 @@ setActivityAvailable(true);
 })
   return (
     <div className='main-container '>
+      <Helmet>
+        <title>
+          Dashboard | Emperor
+        </title>
+      </Helmet>
       {loading ? <Loading/>: (
         <div className="px-sm-5 p-4 p-0 mb-5 container">
          <div className='row row-cols-1'>
         <div className='col order-1'>
-
-          <h4 className='mt-4'>Continue Watching</h4>
-          <div className='courses-card-container d-flex mt-3'>
-            <div className='course-card'>
-              <div className='card'>
-                <div className='card-thumbnail'>
-                  <img className='img-fluid' src={courseImg} alt='' />
-                  <div className='course-completion-time px-2'>1 hrs</div>
-                </div>
-                <div className='card-body'>
-                  <div className='course-card-heading'>
-                    <h5>SAT Preparation Course</h5>
-                  </div>
-                  <div className='course-card-creator'>
-                    <p>John Smith</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className='course-card'>
-              <div className='card'>
-                <div className='card-thumbnail'>
-                  <img className='img-fluid' src={courseImg} alt='' />
-                  <div className='course-completion-time px-2'>1 hrs</div>
-                </div>
-                <div className='card-body'>
-                  <div className='course-card-heading'>
-                    <h5>SAT Preparation Course</h5>
-                  </div>
-                  <div className='course-card-creator'>
-                    <p>John Smith</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className='course-card'>
-              <div className='card'>
-                <div className='card-thumbnail'>
-                  <img className='img-fluid' src={courseImg} alt='' />
-                  <div className='course-completion-time px-2'>1 hrs</div>
-                </div>
-                <div className='card-body'>
-                  <div className='course-card-heading'>
-                    <h5>SAT Preparation Course</h5>
-                  </div>
-                  <div className='course-card-creator'>
-                    <p>John Smith</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
         <div className='col order-0 my-5 my-md-0'>
           <div className='processing-status-details p-3'>
@@ -144,119 +98,12 @@ setActivityAvailable(true);
       <div className='my-courses-container mt-5'>
         <div className='courses-heading d-flex justify-content-between'>
           <h4>My Courses</h4>
-          <Link
-            className='text-black fw-bold more-content-link'
-            to={"/portal/courses"}>
-            View All
-          </Link>
         </div>
-        <div className='course-card-wrapper mt-3 mb-5 d-flex'>
-          <div className='course-card'>
-            <div className='card'>
-              <div className='card-thumbnail'>
-                <img className='img-fluid' src={courseImg} alt='' />
-                <div className='course-completion-time px-2'>1 hrs</div>
-              </div>
-              <div className='card-body'>
-                <div className='course-card-heading'>
-                  <h5>SAT Preparation Course</h5>
-                </div>
-                <div className='course-card-creator'>
-                  <p>John Smith</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className='course-card'>
-            <div className='card'>
-              <div className='card-thumbnail'>
-                <img className='img-fluid' src={courseImg} alt='' />
-                <div className='course-completion-time px-2'>1 hrs</div>
-              </div>
-              <div className='card-body'>
-                <div className='course-card-heading'>
-                  <h5>SAT Preparation Course</h5>
-                </div>
-                <div className='course-card-creator'>
-                  <p>John Smith</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className='course-card'>
-            <div className='card'>
-              <div className='card-thumbnail'>
-                <img className='img-fluid' src={courseImg} alt='' />
-                <div className='course-completion-time px-2'>1 hrs</div>
-              </div>
-              <div className='card-body'>
-                <div className='course-card-heading'>
-                  <h5>SAT Preparation Course</h5>
-                </div>
-                <div className='course-card-creator'>
-                  <p>John Smith</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className='course-card'>
-            <div className='card'>
-              <div className='card-thumbnail'>
-                <img className='img-fluid' src={courseImg} alt='' />
-                <div className='course-completion-time px-2'>1 hrs</div>
-              </div>
-              <div className='card-body'>
-                <div className='course-card-heading'>
-                  <h5>SAT Preparation Course</h5>
-                </div>
-                <div className='course-card-creator'>
-                  <p>John Smith</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className='course-card'>
-            <div className='card'>
-              <div className='card-thumbnail'>
-                <img className='img-fluid' src={courseImg} alt='' />
-                <div className='course-completion-time px-2'>1 hrs</div>
-              </div>
-              <div className='card-body'>
-                <div className='course-card-heading'>
-                  <h5>SAT Preparation Course</h5>
-                </div>
-                <div className='course-card-creator'>
-                  <p>John Smith</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className='course-card'>
-            <div className='card'>
-              <div className='card-thumbnail'>
-                <img className='img-fluid' src={courseImg} alt='' />
-                <div className='course-completion-time px-2'>1 hrs</div>
-              </div>
-              <div className='card-body'>
-                <div className='course-card-heading'>
-                  <h5>SAT Preparation Course</h5>
-                </div>
-                <div className='course-card-creator'>
-                  <p>John Smith</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <MyCourses/>
       </div>
       <div className='my-university-container'>
         <div className='courses-heading d-flex justify-content-between'>
           <h4>My University</h4>
-          <Link
-            className='text-black fw-bold more-content-link'
-            to={"/portal/university"}>
-            View All
-          </Link>
         </div>
         <div className='university-card-wrapper mt-3 mb-5 d-flex'>
             {!loading && <UniversityCard university={uniInfo}/>}

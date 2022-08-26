@@ -8,6 +8,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import StudentUpdatePass from "./StudentUpdatePass";
 import Loading from "../../Loading";
+import { Helmet } from "react-helmet";
 
 
 const Setting = () => {
@@ -98,6 +99,11 @@ const Setting = () => {
                 <>
                     <div className='main-contianer container my-5 px-md-5'>
                         <ToastContainer />
+                        <Helmet>
+                            <title>
+                                Setting | Emperor Education Network
+                            </title>
+                        </Helmet>
 
                         <div className='row justify-content-between'>
                             <div className='logout-container text-end mb-3'>

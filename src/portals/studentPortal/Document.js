@@ -1,10 +1,11 @@
-import emptyImage from "../../images/portal/noData.png";
+
 import axios from "axios";
 import { useState } from "react";
 import { useEffect } from "react";
 import Loading from "../../Loading";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Helmet } from "react-helmet";
 const DocumentDetails = () => {
   const [availableDocument, setAvailableDocument] = useState([])
   const userToken = JSON.parse(sessionStorage.getItem('token')).token;
@@ -70,6 +71,11 @@ const DocumentDetails = () => {
       <ToastContainer />
       {renderApp ? <>
       <div className='citizenship-conatiner document-sub-container'>
+        <Helmet>
+          <title>
+            Document | Emperor Education Network
+          </title>
+        </Helmet>
           <h3>Add Documents</h3>
           <div className=''>
             <form onSubmit={handleSubmit} action="">

@@ -4,7 +4,7 @@ import CallBack from "./CallBack";
 import useFetch from "./useFetch";
 import axios from "axios";
 import Loading from "./Loading";
-
+import { Helmet } from "react-helmet";
 const Major = () => {
   const { id } = useParams();
   const [major, setMajor] = useState();
@@ -32,6 +32,9 @@ const Major = () => {
       <div className='container px-sm-5'>
         {!renderApp ? <Loading/> : (
           <div className='row justify-content-between'>
+            <Helmet><title>
+              {major.title} | Emperor
+              </title></Helmet>
             <div className='col-md-8 col-12'>
               <div className='d-flex'>
                 <div className='color-container'></div>
@@ -48,7 +51,7 @@ const Major = () => {
                       <li
                         className='breadcrumb-item text-black'
                         aria-current='page'>
-                        {/* {major.country} */}
+                        {major.country}
                       </li>
                       <li
                         className='breadcrumb-item text-grey'
