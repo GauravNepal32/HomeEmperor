@@ -8,7 +8,6 @@ const SearchResult = () => {
   const {state} = useLocation();
   return (
     <div className='main-container'>
-      <SearchBox />
       {(state !== null) ? (
   <>
           {state.searchType === "all" ? <>

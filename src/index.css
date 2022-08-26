@@ -10,6 +10,9 @@ body {
 
 
 
+.primary-color {
+    color: #0a2243;
+}
 /* Header CSS */
 
 .navbar-brand {
@@ -194,14 +197,6 @@ header .long-dropdown {
     /* Firefox */
 }
 
-.search-box-container {
-    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)), url('./images/people-office.jpg');
-    background-position: center;
-    background-color: #cccccc;
-    height: 400px;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
 
 .landing-container {}
 
@@ -654,8 +649,11 @@ header .long-dropdown {
     padding: 7px 10px;
 }
 
-.search-box-btn .active,
-.search-box-active-btn {
+.search-box-btn .form-check-label {
+    color: black !important;
+}
+
+.search-box-btn .active {
     background-color: #0F7A9B;
     color: white;
     border-radius: 3px;
@@ -663,11 +661,23 @@ header .long-dropdown {
 }
 
 .search-box-active-btn {
-    padding: 7px 20px;
-    width: 160px;
-    font-weight: 14px;
+        width: 30px;
+            height: 30px;
+            margin: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            position: absolute;
+            padding: 10px;
+            font-weight: 14px;
+        right: 4px;
+            top: 4px;
+            z-index: 2;
+            background-color: #0a2243;
+            color: WHITE;
+        }
 
-}
 
 .bootstrap-select .dropdown-menu li a{
     padding: 10px;
@@ -684,12 +694,36 @@ header .long-dropdown {
 
 /* About page Css */
 
-.search-form-container input {}
+.search-form-container input {
+    width: 100%;
+    border: 1px solid #0a2243;
+    padding: 7px;
+}
 
+.plane-container {
+    width: 100px;
+    height: 50px;
+    object-fit: contain;
+    position: absolute;
+    top: 60px;
+    right: 60px;
+}
+
+.plane-container2 {
+    width: 100px;
+    height: 50px;
+    object-fit: contain;
+    position: absolute;
+    bottom: 100px;
+    /* transform: rotate(220deg); */
+}
 .search-form-container button {
 
 }
 
+.search-input-holder {
+    width: 280px;
+}
 
 .ceo-image-wrapper{
     width: 300px;
@@ -1571,6 +1605,9 @@ input[type="file"]::-ms-browse {
     right: 0;
     top: 0;
 }
+.form-check-label {
+    color: white;
+}
 /* Test End */
 /* Mobile screen */
 
@@ -1624,6 +1661,7 @@ border: 1px solid black;
 }
 
 .search-box-active-btn span {
+    margin-left: 10px;
     font-size: 12px;
 }
 

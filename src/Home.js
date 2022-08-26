@@ -76,30 +76,29 @@ const Home = () => {
     // Search box container
     <>
       {renderApp ? (
-        <div id='' className='main-container'>
+        <div id='' className='main-container position-relative'>
           <ToastContainer />
           <Helmet>
             <title>Home | Emperor</title>
             <meta name="description" content="Emperor Education" />
              <link rel="canonical" href="http://mysite.com/example" />
           </Helmet>
-          <div className='front-main-container'>
-            <div className='search-container'>
-              {/* Calling search box components */}
-              <SearchBox />
-            </div>
-          </div>
           <div className='main-container container mt-5 px-md-5'>
             <div className='row mb-200 mt-5 pt-5 row-cols-sm-2 row-cols-1 landing-container'>
               <div className='col d-flex pt-5 order-sm-0 order-1'>
                 {/* Landing page */}
-                <div className='landing-page-container'>
+                <div className='landing-page-container position-relative'>
+                  <div className="light-background-container"></div>
                   <div className='container px-0'>
                     <div className=''>
-                      <h1 className='main-heading'>
+                      <h1 className='main-heading primary-color'>
                         Leading Consultancy <br /> in Nepal
                       </h1>
                       <h3 className='mt-5'>Emperor Education Network</h3>
+                      <div className='search-container'>
+                        {/* Calling search box components */}
+                        <SearchBox />
+                      </div>
                       {/* <button className='btn mt-5 btn-type-1'>
                     JOIN US<i className='bi ms-3 bi-arrow-right'></i>
                   </button> */}
@@ -108,7 +107,7 @@ const Home = () => {
                 </div>
               </div>
               <div className='col d-sm-block d-none order-sm-1 order-0 ps-5 ps-sm-0 d-flex justify-content-center my-5'>
-                <div className='landing-image-wrapper ps-5'>
+                <div className='landing-image-wrapper position-relative ps-5'>
                   <img
                     className='img-fluid landing-image'
                     src={landingImage}

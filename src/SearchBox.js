@@ -41,35 +41,33 @@ const SearchBox = () => {
   }
 
   return (
-    <div className='search-box-container d-flex flex-column justify-content-center align-content-center'>
-      <div className='container px-sm-5 my-auto'>
+    <div className='search-box-container d-flex flex-column justify-content-center mt-5 align-content-center'>
+      <div className='container px-0 my-auto'>
         <div className="d-flex search-box-btn ">
-          <button
-            onClick={() => { setIsShown('all') }}
-            className={isShown === 'all' ? "ms-sm-3 p-2 active" : "ms-sm-3 p-2 degree-btn"}>
-            All
-          </button>
-          <button onClick={
-            () => {
-              setIsShown('degree')
-            }
-          } className={isShown === 'degree' ? "ms-sm-3 p-2 ms-1 active" : "ms-sm-3 p-2 ms-1 degree-btn"}>
-            Degree
-          </button>
-          <button onClick={
-            () => {
-              setIsShown('courses')
-            }
-          } className={isShown === 'courses' ? "ms-sm-3 p-2 ms-1 active" : "ms-sm-3 p-2 ms-1 degree-btn"}>
-            Courses
-          </button>
-          <button onClick={
-            () => {
-              setIsShown('uni')
-            }
-          } className={isShown === 'uni' ? "ms-sm-3 p-2 ms-1 active" : "ms-sm-3 p-2 ms-1 degree-btn"}>
-            University
-          </button>
+          <div class="form-check me-md-3 me-1">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" onChange={() => { setIsShown('all') }} />
+            <label class="form-check-label" for="flexRadioDefault1">
+              All
+            </label>
+          </div>
+          <div class="form-check me-md-3 me-1">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" onChange={() => { setIsShown('degree') }} />
+            <label class="form-check-label" for="flexRadioDefault2">
+              Degree
+            </label>
+          </div>
+          <div class="form-check me-md-3 me-1">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3" onChange={() => { setIsShown('courses') }} />
+            <label class="form-check-label" for="flexRadioDefault3">
+              Courses
+            </label>
+          </div>
+          <div class="form-check me-md-3 me-1">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4" />
+            <label class="form-check-label" for="flexRadioDefault4">
+              University
+            </label>
+          </div>
           {/* <Link to="/UniList" className='uni-btn p-md-3 p-2 ms-3' disabled>
             <i className='fa-solid fa-building-columns me-2'></i>View All University
           </Link> */}
@@ -78,7 +76,7 @@ const SearchBox = () => {
         <div className='search-form-container text-center mt-4'>
           <div className=''>
             <form action="" method="">
-              <div className="d-flex">
+              <div className="d-flex position-relative search-input-holder">
                 {isShown === "all" && <input type="text" id="allInput" className="form-control" placeholder="Search..." />}
                 {isShown === "degree" && <input type="text" id="degreeInput" name="degree" className="form-control" placeholder="Search for Degree..." />}
                 {isShown === "courses" && <input type="text" id="coursesInput" className="form-control" placeholder="Search for Courses..." />}
@@ -97,8 +95,13 @@ const SearchBox = () => {
                     }
                   }
                 } className='search-box-active-btn text-decoration-none text-uppercase fw-bold'>
-                  {searching?<>Searching...</>:<>
-                  <i className='fa-solid  fa-magnifying-glass me-sm-2 me-1'></i><span>Search</span>
+                  {searching ? <>
+                    <button class="btn" type="button" disabled>
+                      <span class="spinner-border spinner-border-sm text-white" role="status" aria-hidden="true"></span>
+                      <span class="visually-hidden">Loading...</span>
+                    </button>
+                  </> : <>
+                    <i className='fa-solid  fa-magnifying-glass'></i>
                   </>}
                 </button>
               </div>
@@ -106,9 +109,7 @@ const SearchBox = () => {
           </div>
         </div>
       </div>
-      <p className='text-center text-white fw-bold'>
-        Find best University with our advance search
-      </p>
+
     </div>
   );
 };
