@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import CallBack from "./CallBack";
-import useFetch from "./useFetch";
 import axios from "axios";
 import Loading from "./Loading";
 import { Helmet } from "react-helmet";
@@ -9,11 +8,14 @@ const Major = () => {
   const { id } = useParams();
   const [major, setMajor] = useState();
   const [renderApp,setRenderApp]=useState(false)
+
+  // Getting data from api call
   useEffect(() => {
     axios
       .get("https://elscript.co/github/emperor-backend/api/degrees")
       .then((response) => {
         response.data.data.map((major)=>{
+// Comparing major data from api with required ID
           if(major.id.toString()===id.toString()){
              setMajor(major);
             setRenderApp(true)
@@ -30,6 +32,7 @@ const Major = () => {
   return (
     <div className='main-container my-5'>
       <div className='container px-sm-5'>
+        {/* Checking if api call is resolved or not */}
         {!renderApp ? <Loading/> : (
           <div className='row justify-content-between'>
             <Helmet><title>

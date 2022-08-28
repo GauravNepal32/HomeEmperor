@@ -6,6 +6,7 @@ const TestList = (props) => {
     const { test } = props;
     return (
         <div className='test-List'>
+            {/* Running loop on all test available */}
             {test.map((Test) => (
                 <div>
                     <div className={Test.id % 2 !== 0 ? "odd-prep-container py-5 mb-5" : "even-prep-container py-5 mb-5"}>

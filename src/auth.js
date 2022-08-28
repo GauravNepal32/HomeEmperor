@@ -8,16 +8,19 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const baseURL="https://elscript.co/github/emperor-backend"
 
+// Login user function
   const login = (user) => {
     setUser(user);
     setIsLogin(true)
   };
+  // Logout User function
   const logout = () => {
     setUser(null);
     sessionStorage.setItem("token", null);
     setIsLogin(false)
   };
 
+  // Getting already login user details
   useEffect(()=>{
     if (userData===null){
       setIsLogin(false)
@@ -26,6 +29,7 @@ export const AuthProvider = ({ children }) => {
     }
   },[userData])
   return (
+    // Returning UseContext value
     <AuthContext.Provider value={{ user, isLogin,baseURL, login, logout }}>
       {children}
     </AuthContext.Provider>

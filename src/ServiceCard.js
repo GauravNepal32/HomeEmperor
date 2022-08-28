@@ -1,9 +1,9 @@
 import React from "react";
-import Icons from "./Icons";
 
 const ServiceCard = (props) => {
   const cardID = props.cardNum;
   return (
+    // check if card is even or not for color selection
     <div className={cardID % 2 === 0 ? "service-odd col" : "service-even col"}>
       <div className='service-card p-2'>
         <div className='card-body'>

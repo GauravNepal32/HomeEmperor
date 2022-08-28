@@ -10,12 +10,11 @@ import About from "./About";
 import Contact from "./Contact";
 import TestPrep from "./testPrep";
 import TestChild from "./TestChild";
-import SearchResult from "./SearchResult";
+import SearchResult from "./searchEngine/SearchResult";
 import Login from "./Login";
 import SignUp from "./SignUp";
 import Dashboard from "./portals/studentPortal/Dashboard";
 import Portal from "./portals/portal";
-import Courses from "./portals/studentPortal/Courses";
 import DocumentDetails from "./portals/studentPortal/Document";
 import Processing from "./portals/studentPortal/Processing";
 import University from "./portals/studentPortal/University";
@@ -75,7 +74,7 @@ const App = () => {
               {/* <Route path='/login' element={<Login />}></Route> */}
               <Route path='/login' element={<Login />}></Route>
               <Route path='/resetPassword' element={<RestPassword />}></Route>
-
+              {/* Portal Selection  */}
               <Route
                 path='/portalSelection'
                 element={
@@ -94,13 +93,6 @@ const App = () => {
                     </RequireAuth>
                   }
                 />
-                <Route
-                  path='courses'
-                  element={
-                    <RequireAuth>
-                      <Courses />
-                    </RequireAuth>
-                  }></Route>
                 <Route
                   path='dashboard'
                   element={

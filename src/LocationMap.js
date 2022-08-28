@@ -1,5 +1,5 @@
 import React from "react";
-import NepalImg from "./images/new-nepal-map.png";
+import NepalImg from "./images/location.png";
 
 const LocationMap = () => {
   return (
@@ -8,7 +8,7 @@ const LocationMap = () => {
       <p className='info-paragraph text-center'>
         We are located in major cities of Nepal
       </p>
-      <div className='nepal-map-container text-center'>
+      <div className='nepal-map-container position-realtive text-center'>
         <img className='img-fluid' src={NepalImg} alt='Nepal New Map' />
       </div>
     </>

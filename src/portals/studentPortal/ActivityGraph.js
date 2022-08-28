@@ -5,6 +5,7 @@ const ActivityGraph = (userActivity) => {
     return (
         <>
             <div className='d-flex flex-column'>
+                {/* Displaying two processes only */}
                 {userActivity.userActivity.slice(0, 2).map((activities) => (
                     <div className='processing-timline-child d-flex align-items-center'>
                         <div className='date-container'>{(activities.created_at).substring(0, 10)}</div>

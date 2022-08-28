@@ -1,39 +1,55 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "./auth";
+import { useAuth } from "../auth";
 const SearchBox = () => {
   const [isShown, setIsShown] = useState("all");
-  const [searching,setSearching]=useState(false)
+  const [searching, setSearching] = useState(false)
   const navigate = useNavigate();
-  const auth=useAuth();
+  const auth = useAuth();
   const handleSubmit = async (url, postname) => {
     setSearching(true)
-    if (isShown === "degree" || isShown === "courses") {
+    // If degree is search
+    if (isShown === "degree") {
       try {
         const response = await axios.post(url, { title: postname, }, {
           headers: { "Content-Type": "application/json" },
-      })
-        navigate("/searchResult", { state: { result: response.data, category: "title", keyword: postname } })
+        })
+        // Navigate to degree result container
+        navigate("/searchResult", { state: { result: response.data.search_results, searchType: "degree", keyword: postname } })
       } catch (err) {
         console.log(err)
       }
-    } else if (isShown==="all"){
-      try{
-        const response=await axios.post(url,{title:postname},{headers:{"Content-Type":"application/json"}})
-        console.log(response.data)
-        navigate('/searchResult',{state:{result:response.data,searchType:"all"},keyword:postname})
-      }catch(err){
+      // If all is search
+    } else if (isShown === "all") {
+      try {
+        const response = await axios.post(url, { title: postname }, { headers: { "Content-Type": "application/json" } })
+        // Navigate to all result container
+        navigate('/searchResult', { state: { result: response.data, searchType: "all" }, keyword: postname })
+      } catch (err) {
+        console.log(err)
+      }
+      // If courses is search
+    } else if (isShown === 'courses') {
+      try {
+        const response = await axios.post(url, { title: postname, }, {
+          headers: { "Content-Type": "application/json" },
+        })
+        // Navigate to courses result container
+        navigate("/searchResult", { state: { result: response.data.search_results, searchType: "courses", keyword: postname } })
+
+      } catch (err) {
         console.log(err)
       }
     }
-
-     else {
+    // If university is search
+    else {
       try {
         const response = await axios.post(url, { name: postname }, {
           headers: { "Content-Type": "application/json" },
-      })
-        navigate("/searchResult", { state: { result: response.data, category: "name", keyword: postname } })
+        })
+        // Navigate to university result container
+        navigate("/searchResult", { state: { result: response.data.search_results, searchType: "uni", keyword: postname } })
       } catch (err) {
         console.log(err)
       }
@@ -63,7 +79,7 @@ const SearchBox = () => {
             </label>
           </div>
           <div class="form-check me-md-3 me-1">
-            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4" />
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4" onChange={() => { setIsShown('uni') }} />
             <label class="form-check-label" for="flexRadioDefault4">
               University
             </label>

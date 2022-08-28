@@ -1,5 +1,6 @@
 import NoImg from "./images/error/no.png"
-const NoResult = ({ keyword }) => {
+import { Link } from "react-router-dom";
+const NoResult = (keyword) => {
     return (
         <>
             <div className="main-container my-5">
@@ -8,8 +9,13 @@ const NoResult = ({ keyword }) => {
                         <img className="img-fluid" src={NoImg} alt="" />
                     </div>
                     <h1 className="text-center no-result-text">
-                        No Result found for "{keyword}"
+                        No Result found
                     </h1>
+                    <div className="text-center">
+                        <Link to="/HomeEmperor" className="redirect-link text-center text-black ">
+                            Go Back
+                        </Link>
+                    </div>
                 </div>
             </div>
         </>

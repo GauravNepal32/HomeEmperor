@@ -5,12 +5,14 @@ import CoursesCard from './CoursesCard'
 import MasterCard from './MasterCard';
 import UniversityCard from './UniversityCard';
 const AllSearch = (result) => {
+
     const [countries,setCountries]=useState([]);
     const [courses,setCourses]=useState([]);
     const [degree,setDegree]=useState([]);
     const [universities,setUniversities]=useState([]);
     const [renderCard,setRenderCard]=useState('')
     useEffect(()=>{
+        // Checking response from the server to display responsive result
         if(result.result.courses.length>0){
             setCourses(result.result.courses)
             setRenderCard('courses')
@@ -27,6 +29,7 @@ const AllSearch = (result) => {
     },[])
   return (
     <div>
+        {/* Calling componet according to the response from the server */}
         {renderCard==='courses'&& <CoursesCard courses={courses}/> }
         {renderCard==='universities' && <UniversityCard university={universities}/> }
         {renderCard==='degrees' && <MasterCard master={degree}/>}

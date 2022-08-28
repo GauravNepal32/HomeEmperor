@@ -5,6 +5,7 @@ const PortalLeft = () => {
   const location = useLocation().pathname;
   const [activePortal, setActivePortal] = useState("Dashboard");
   useEffect(() => {
+    // Portal selection  for student
     if (location == "/portal/courses") {
       setActivePortal("Courses");
     } else if (location === "/portal/dashboard") {

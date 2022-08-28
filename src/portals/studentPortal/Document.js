@@ -1,4 +1,3 @@
-
 import axios from "axios";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -11,34 +10,44 @@ const DocumentDetails = () => {
   const userToken = JSON.parse(sessionStorage.getItem('token')).token;
   const [renderApp, setRenderApp] = useState(false)
 
-
+// Success Message Function
   const showsuccessToastMessage = (message) => {
     toast.success(message, {
       position: toast.POSITION.BOTTOM_RIGHT
     });
   };
+
+// Error Message Function
   const showserrorToastMessage = (message) => {
     toast.error(message, {
       position: toast.POSITION.BOTTOM_RIGHT
     });
   };
+
+  // Sumbit function
   const handleSubmit = async (e) => {
     e.preventDefault();
     const title = document.getElementById('filename').value;
+    // getting file from input
     const file = document.getElementById('fileattachment').files[0];
     const userToken = JSON.parse(sessionStorage.getItem('token')).token;
     try {
+      // calling post api
       const response = await axios.post('https://elscript.co/github/emperor-backend/api/store-file', { title: title, file: file }, {
         headers: {
           "Content-Type": "multipart/form-data",
+          // Passing token
           Authorization: `Bearer ${userToken}`,
         },
       })
       console.log(response.data)
       if (response.data.statusCode === 200) {
+        // If success reload data
         loadData();
+        // Show success message
         showsuccessToastMessage(response.data.message);
       } else {
+        // If error show error message
         showserrorToastMessage(response.data.message);
       }
     } catch (err) {
@@ -49,12 +58,15 @@ const DocumentDetails = () => {
 
   const loadData = async () => {
     try {
+      // Calling get API
       const response = await axios.get('https://elscript.co/github/emperor-backend/api/get-files', {
         headers: {
           "Content-Type": "application/json",
+          // Passing token
           Authorization: `Bearer ${userToken}`,
         }
       })
+      // Setting response from API
       setAvailableDocument(response.data.data)
       setRenderApp(true)
     } catch (err) {
@@ -73,6 +85,7 @@ const DocumentDetails = () => {
       <div className='citizenship-conatiner document-sub-container'>
         <Helmet>
           <title>
+            {/* Setting title to the page */}
             Document | Emperor Education Network
           </title>
         </Helmet>
@@ -98,7 +111,7 @@ const DocumentDetails = () => {
         </div>
         <div className="your-document-container document-sub-container my-5">
           <h3>All Documents</h3>
-
+{/* Showing user uploaded document */}
           <table class="table document-table px-3">
             <thead >
               <tr>

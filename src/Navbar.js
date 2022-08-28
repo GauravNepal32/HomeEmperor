@@ -21,13 +21,15 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const myRef = useRef();
 
-
+// Logging out the user
   const handleLogout = () => {
+    // Calling auth from auth component for logout
     auth.logout();
   }
 
   useEffect(() => {
 
+// Running multiple promise
 Promise.all([
   axios
     .get("https://elscript.co/github/emperor-backend/api/degrees"),
@@ -35,6 +37,7 @@ Promise.all([
   axios.get('https://elscript.co/github/emperor-backend/api/courses')
 
 ]).then(allResponse =>{
+  // setting response from ppromise to array
   setMajorList(allResponse[0].data.data);
   setCountries(allResponse[1].data.data.slice(0,allResponse[1].data.data.length-4));
   setCoursesList(allResponse[2].data.data);
@@ -43,19 +46,24 @@ Promise.all([
 
   }, []);
 
+// disable scroll when navbar is open
   function disableScroll() {
     document.getElementById("scroll-container").classList.add("avoid-Scroll");
   }
+  // Enable scroll when navbar is close
   function enableScroll() {
     document
       .getElementById("scroll-container")
       .classList.remove("avoid-Scroll");
   }
+  // onclick hide the navbar for small screen
   function toggleNav() {
     setNavOpen((state) => !state);
     enableScroll();
   }
 
+
+// toggle notification for the uer
   function toggleDiv(id, event) {
     setIsOpen(!isOpen);
     var div = document.getElementById(id);
@@ -69,6 +77,7 @@ Promise.all([
 
   return (
     <header className='mx-0 px-0'>
+      {/* Checking if the api call was resolved or not */}
       {renderApp && <nav className='navbar navbar-expand-lg main-navbar'>
         <div className='container-md  px-sm-5'>
           <NavLink className='navbar-brand' to='/HomeEmperor'>
@@ -89,6 +98,7 @@ Promise.all([
             ) : (
               <div className="d-flex align-items-center">
                 <div className="">
+                  {/* Notification icons */}
                   <div className="btn my-auto ms-auto p-0 account-btn">
                     <button ref={myRef} onClick={() => {
                       toggleDiv('notification-container')
@@ -98,17 +108,20 @@ Promise.all([
                       </span>
                         <span className="d-flex justify-content-center align-items-center" id="notification-num">3</span>
                       </button>
+                      {/* Notification container */}
                       <div id="notification-container" className="notification-container">
                         <Notification />
                       </div>
                     </div>
 
                   </div>
+                  {/* Logout button */}
                   <div onClick={handleLogout} className="btn my-auto me-md-3 me-2 p-0">
                     <span class="material-symbols-outlined">
                       logout
                     </span>
                   </div>
+                  {/* Portal redirect button */}
                   <Link to='/portalSelection' className='text-black'>
                     <span className='material-symbols-outlined'>account_circle</span>
                   </Link>
@@ -227,6 +240,7 @@ Promise.all([
                   </ul>
                 </li>
                 <li className='nav-item usa-dropDown dropdown'>
+                  {/* Navbar for USA */}
                   <div
                     className='nav-link dropdown-link dropDownTrigger d-flex usa-dropDown'
                     id='usa-dropDown'
@@ -249,6 +263,7 @@ Promise.all([
                           className='col sub-first-col p-3'>
                           <div className='long-sub-1'>
                             {majorList && (
+                              // Displaying all major list for USA
                               <MajorList
                                 majorList={majorList}
                                 countryName='USA'
@@ -267,6 +282,7 @@ Promise.all([
                             <ul className='list-unstyled'>
                               <li className='alphabet-heading'>A-H</li>
                               {coursesList && (
+                                // Displaying the subject list for column 1 for USA
                                 <SubjectList
                                   colNumber='1'
                                   countryCourses={coursesList}
@@ -287,6 +303,7 @@ Promise.all([
                             <ul className='list-unstyled'>
                               <li className='alphabet-heading'>I-O</li>
                               {coursesList && (
+                                // Displaying the subject list for column 2 for USA
                                 <SubjectList
                                   colNumber='2'
                                   countryCourses={coursesList}
@@ -307,6 +324,7 @@ Promise.all([
                             <ul className='list-unstyled'>
                               <li className='alphabet-heading'>P-Z</li>
                               {coursesList && (
+                                // Displaying the subject list for column 3 for USA
                                 <SubjectList
                                   colNumber='3'
                                   countryCourses={coursesList}
@@ -324,6 +342,7 @@ Promise.all([
                   </ul>
                 </li>
                 <li className='nav-item uk-dropDown'>
+                  {/* Navbar for UK */}
                   <div
                     className='nav-link dropdown-link d-flex dropDownTrigger uk-dropDown'
                     id='uk-dropDown'
@@ -346,6 +365,7 @@ Promise.all([
                           className='col sub-first-col p-3'>
                           <div className='long-sub-1'>
                             {majorList && (
+                              // Displaying all major lis tfor UK
                               <MajorList
                                 majorList={majorList}
                                 countryName='UK'
@@ -362,6 +382,7 @@ Promise.all([
                             <ul className='list-unstyled'>
                               <li className='alphabet-heading'>A-H</li>
                               {coursesList && (
+                                // Displaying subject list for column 1 for UK
                                 <SubjectList
                                   colNumber='1'
                                   countryCourses={coursesList}
@@ -380,6 +401,8 @@ Promise.all([
                             <ul className='list-unstyled'>
                               <li className='alphabet-heading'>I-O</li>
                               {coursesList && (
+                                // Displaying subject list for column 2 for UK
+
                                 <SubjectList
                                   colNumber='2'
                                   countryCourses={coursesList}
@@ -398,6 +421,7 @@ Promise.all([
                             <ul className='list-unstyled'>
                               <li className='alphabet-heading'>P-Z</li>
                               {coursesList && (
+                                // Displaying subject list for column 3 for UK
                                 <SubjectList
                                   colNumber='3'
                                   countryCourses={coursesList}
@@ -413,6 +437,7 @@ Promise.all([
                   </ul>
                 </li>
                 <li className='nav-item canada-dropDown'>
+                  {/* Navbar for canada */}
                   <div
                     className='nav-link dropdown-link dropDownTrigger d-flex canada-dropDown'
                     id='canada-dropDown'
@@ -433,6 +458,7 @@ Promise.all([
                           className='col sub-first-col p-3'>
                           <div className='long-sub-1'>
                             {majorList && (
+                              // Displaying all major for canada
                               <MajorList
                                 majorList={majorList}
                                 countryName='Canada'
@@ -449,6 +475,7 @@ Promise.all([
                             <ul className='list-unstyled'>
                               <li className='alphabet-heading'>A-H</li>
                               {coursesList && (
+                                // Displaying subject column 1 for Canada
                                 <SubjectList
                                   colNumber='1'
                                   countryCourses={coursesList}
@@ -467,6 +494,8 @@ Promise.all([
                             <ul className='list-unstyled'>
                               <li className='alphabet-heading'>I-O</li>
                               {coursesList && (
+                                // Displaying subject column 2 for Canada
+
                                 <SubjectList
                                   colNumber='2'
                                   countryCourses={coursesList}
@@ -485,6 +514,7 @@ Promise.all([
                             <ul className='list-unstyled'>
                               <li className='alphabet-heading'>P-Z</li>
                               {coursesList && (
+                                // Displaying subject column 3 for Canada
                                 <SubjectList
                                   colNumber='3'
                                   countryCourses={coursesList}
@@ -499,6 +529,7 @@ Promise.all([
                     </li>
                   </ul>
                 </li>
+                {/* Navbar for Australia */}
                 <li className='nav-item aus-dropDown'>
                   <div className='nav-link d-flex aus-dropDown' role='button'>
                     Australia
@@ -516,6 +547,7 @@ Promise.all([
                           onMouseLeave={enableScroll}
                           className='col sub-first-col p-3'>
                           <div className='long-sub-1'>
+                            {/* Major list display for australia */}
                             {majorList && (
                               <MajorList
                                 majorList={majorList}
@@ -526,6 +558,7 @@ Promise.all([
                           </div>
                         </div>
                         <div
+                        // Subject list display for australia
                           onMouseOver={disableScroll}
                           onMouseLeave={enableScroll}
                           className='col p-3 overflow-hidden'>
@@ -533,6 +566,7 @@ Promise.all([
                             <ul className='list-unstyled'>
                               <li className='alphabet-heading'>A-H</li>
                               {coursesList && (
+                                // Australia first column
                                 <SubjectList
                                   colNumber='1'
                                   countryCourses={coursesList}
@@ -551,6 +585,8 @@ Promise.all([
                             <ul className='list-unstyled'>
                               <li className='alphabet-heading'>I-O</li>
                               {coursesList && (
+                                // Australia second column
+
                                 <SubjectList
                                   colNumber='2'
                                   countryCourses={coursesList}
@@ -570,6 +606,8 @@ Promise.all([
                             <ul className='list-unstyled'>
                               <li className='alphabet-heading'>P-Z</li>
                               {coursesList && (
+                                // Australia third column
+
                                 <SubjectList
                                   colNumber='3'
                                   countryCourses={coursesList}
@@ -597,6 +635,7 @@ Promise.all([
                       <i className='bi bi-chevron-down'></i>
                     </span>
                   </div>
+                  {/* Navbar to dispay other country */}
                  <OtherCountry countries={countries} disableScroll={disableScroll} enableScroll={enableScroll} toggleNav={toggleNav}/>
                 </li>
               </ul>

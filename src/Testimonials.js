@@ -3,10 +3,12 @@ import React from "react";
 const Testimonials = (testimonials) => {
   return (
     <div className="row mt-5 row-cols-lg-3 row-col-md-2 row-cols-sm-2 row-cols-1 g-2">
+      {/* Running loop for all the testimonials available  */}
       {testimonials.testimonials.map((testimonial) => (
         <div
           key={testimonial.id}
           className={
+            // Checking testimonal id for setting respective color
             testimonial.id % 2 === 1
               ? "col service-even p-3"
               : "col service-odd p-3"

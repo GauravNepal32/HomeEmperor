@@ -16,6 +16,7 @@ const Lost = () => {
             <h1 className='lost-heading text-center'>404</h1>
             <h5 className='text-center'>Looks like you are lost!!</h5>
             <div className='text-center'>
+              {/* Redirect to Home page  */}
               <Link
                 className='text-decoration-none text-center text-black'
                 to='/HomeEmperor'>

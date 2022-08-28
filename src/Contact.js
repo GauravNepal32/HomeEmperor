@@ -9,15 +9,19 @@ const Contact = () => {
 
   useEffect(() => {
     axios
+    // Calling get api for faqs
       .get("https://elscript.co/github/emperor-backend/api/faqs")
       .then((response) => {
         {
           response.data.data.map((faqArray) => {
+            // Converting response to custom array
             const faqListObject = {
               question: `${faqArray.title}`,
               answer: `${faqArray.description}`,
+              // adding open boolean to check if faq is open or not
               open: false,
             };
+            // Pushing  the new array
             faqList.push(faqListObject);
           });
           setfaqs(faqList);
@@ -29,11 +33,12 @@ const Contact = () => {
   }, []);
 
   // Toggle FAQ section
-
   const toggleFAQ = (index) => {
     setfaqs(
+
       faqs.map((faqopen, i) => {
         if (i === index) {
+          // If click open the faq
           faqopen.open = !faqopen.open;
         } else {
           faqopen.open = false;

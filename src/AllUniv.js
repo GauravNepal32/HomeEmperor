@@ -7,14 +7,19 @@ const AllUniv = () => {
     const [university, setUniversity] = useState({});
     const uniURL = "https://elscript.co/github/emperor-backend/api/universities"
     const [loading, setLoading] = useState(true)
+    // Fetching data from API
     useEffect(() => {
         axios.get(uniURL).then((response) => {
+            // Setting result from the API
             setUniversity(response.data.data)
             setLoading(false)
+        }).catch((err)=>{
+            console.log(err)
         })
     }, []);
     return (
         <div className="main-container">
+            {/* Wating for API request to resolve */}
             {loading ? <Loading /> : <div className="container my-5 px-5">
                 <h1>All University</h1>
                 <div class='search-card-container d-flex justify-content-md-start justify-content-center mt-5'>

@@ -16,6 +16,7 @@ const Processing = () => {
   const [activityAvailable,setActivityAvailable]=useState(false);
 
 
+// Calling get API to get all activity
   useEffect(() => {
     axios.get(activities,{
           headers: {

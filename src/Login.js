@@ -1,15 +1,12 @@
 import React, { useEffect, useRef, useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import useFetch from "./useFetch";
 import axios from "axios";
 import { useAuth } from "./auth";
-import { ToastContainer, toast } from "react-toastify";
 import { Helmet } from "react-helmet";
 
 const LOGIN_URL = "https://elscript.co/github/emperor-backend/api/login";
 const Login = () => {
   // Password visibility toggler
-  const[success,setSuccess]=useState(false)
   const [visibleIcon, setVisibleIcon] = useState("visibility");
   const [visibility, setVisibility] = useState(false);
   const [loadBtn, setLoadBtn] = useState(false);
@@ -28,6 +25,7 @@ const Login = () => {
   const userRef = useRef();
   const errRef = useRef();
 
+// Inital state
   const [userID, setUserID] = useState("");
   const [pwd, setPwd] = useState("");
   const [errMsg, setErrMsg] = useState("");
@@ -39,17 +37,26 @@ const Login = () => {
   //     position: toast.POSITION.BOTTOM_RIGHT,
   //   });
   // },[])
+
+  // controable input
   useEffect(() => {
     userRef.current.focus();
   }, []);
+
+  // setting error message on state change of userID and password
   useEffect(() => {
     setErrMsg("");
   }, [userID, pwd]);
 
+
+// Submit function for login
   const HandleSubmit = async (e) => {
     e.preventDefault();
+
     try {
+      // Setting loading to wait for api response
       setLoadBtn(true)
+      // calling post api for login
       const response = await axios.post(
         LOGIN_URL,
         { email: userID, password: pwd },
@@ -58,14 +65,18 @@ const Login = () => {
         }
       );
       if (response.data.statusCode === 200) {
+        // if logged in successfully call auth with user details
         auth.login(response.data.data);
+        // store the user token
         sessionStorage.setItem("token", JSON.stringify(response.data.data));
+        // After login rediret user to portal
         navigate("/portalSelection", { replace: true });
         setUserID("");
         setPwd("");
         setLoadBtn(false)
       }
       if (response.data.statusCode === 401) {
+        // if error displaying error message
         setErrMsg("Invalid Username/Password");
         setLoadBtn(false)
       }
@@ -119,6 +130,7 @@ const Login = () => {
                         type={visibility ? "text" : "password"}
                         required
                       />
+                      {/* Passowrd Visible Toogler */}
                       <button onClick={visiblePassword} className='btn'>
                         <span className='material-symbols-outlined'>
                           {visibleIcon}
@@ -134,6 +146,7 @@ const Login = () => {
                       />
                       <label htmlFor='rememberLogin'>Remember me</label>
                     </div>
+                    {/* Error message container */}
                     <p
                       ref={errRef}
                       className={errMsg ? "errMsg" : "offscreen"}
@@ -151,6 +164,7 @@ const Login = () => {
                       />}
 
                     </div>
+                    {/* Reset password Redirect container */}
                     <div className="text-center">
                       <Link to="/resetPassword" className='text-center text-decoration-underline login-problem'>
                       Having trouble to Log In?
@@ -160,6 +174,7 @@ const Login = () => {
                 </div>
               </div>
             </div>
+            {/* Signup Redirect container */}
             <div className='col-sm-4 p-0'>
               <div
                 id='open-signup'

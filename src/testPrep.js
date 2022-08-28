@@ -1,10 +1,10 @@
 import React from "react";
 import examStudent from "./images/test/testStudent.png";
-import useFetch from "./useFetch";
 import TestList from "./TestList";
 import { Helmet } from "react-helmet";
 
 const TestPrep = () => {
+  // Add manual data for the all the test
   const test=
   [{
         "examName":"IELTS",
@@ -43,9 +43,11 @@ const TestPrep = () => {
   return (
     <div class='main-container px-0'>
     <Helmet>
+      {/* Adding title for the page */}
       <title>Test Preparation | Emperor</title>
     </Helmet>
       <div class='mt-5 px-0'>
+        {/* landing page for the test */}
         <div class='test-landing-container px-0 mb-200'>
           <div class='container px-md-0 px-2'>
             <div className='container px-md-5 px-2  p-0'>
@@ -75,6 +77,7 @@ const TestPrep = () => {
             </div>
           </div>
         </div>
+        {/* Calling test list to display test list */}
         <div class='tests-type-container mt-5'>
           {test && <TestList test={test} />}
         </div>

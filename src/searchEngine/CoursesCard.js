@@ -1,10 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-const CoursesCard = (courses) => {
+import NoResult from '../NoResult'
+const CoursesCard = (courses,keyword) => {
+  console.log(keyword)
   return (
     <div>
          <div className='row mt-5 px-md-5'>
-        <div className='search-result-info-container ms-3'>
+          {!courses.courses.length===0 ? <>
+           <div className='search-result-info-container ms-3'>
                     {/* Displaying Number of result found */}
           <h5 className='sub-heading'>{courses.courses.length} result found</h5>
         </div>
@@ -37,6 +40,9 @@ const CoursesCard = (courses) => {
             ))}
           </div>
         </div>
+          </>:
+          <NoResult keyword={keyword.keyword}/>}
+
       </div>
     </div>
   )

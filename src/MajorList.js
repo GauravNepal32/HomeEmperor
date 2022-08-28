@@ -5,6 +5,7 @@ const MajorList = (props) => {
   const { majorList, countryName, toggleNav } = props;
   return (
     <div className='majorList-List'>
+      {/* Running loop to display all the major list */}
       {majorList.map((Subject) => (
         <div key={Subject.id}>
           <ul className='list-unstyled'>

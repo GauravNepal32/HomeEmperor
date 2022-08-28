@@ -5,7 +5,7 @@ import assistantImage2 from "./images/assistant/consultant-disha-small.png";
 import assistantImage3 from "./images/assistant/consultant-mohit-small.png";
 import ServiceCard from "./ServiceCard";
 import Testimonials from "./Testimonials";
-import SearchBox from "./SearchBox";
+import SearchBox from "./searchEngine/SearchBox";
 import landingImage from "./images/landing.png";
 import LocationMap from "./LocationMap";
 import axios from "axios";
@@ -22,24 +22,30 @@ const Home = () => {
   const [testimonials, setTestimonials] = useState();
   const [renderApp, setRenderApp] = useState(false);
 
+// Success Toast function
   const showsuccessToastMessage = () => {
     toast.success('Number recieved successfully!', {
       position: toast.POSITION.BOTTOM_RIGHT
     });
   };
+  // Error toast function
   const showserrorToastMessage = () => {
     toast.error('Unable to get Number!', {
       position: toast.POSITION.BOTTOM_RIGHT
     });
   };
 
+// Getting data from api
   useEffect(() => {
     axios
+    // Getting data for countries through api
       .get("https://elscript.co/github/emperor-backend/api/countries")
       .then((response) => {
+        // setting response to array but only 4 countries are displayed
         setCountries(response.data.data.slice(response.data.data.length-4,response.data.data.length));
       });
     axios
+    // Getting data for testimonial through api
       .get("https://elscript.co/github/emperor-backend/api/testimonials")
       .then((response) => {
         setTestimonials(response.data.data);
@@ -51,23 +57,26 @@ const Home = () => {
       });
   }, []);
 
+  // Handle submit function
   const handleCall = async (e) => {
+    // Stopping form to reload page
     e.preventDefault();
+    // Getting value from form input
     const phone = document.getElementById('callback-phone').value;
 
-    console.log(phone)
     try {
+      // Calling post api to store call request
       const response = await axios.post('https://elscript.co/github/emperor-backend/api/phone-number', { phone })
       console.log(Number(response.data.statusCode))
       if (response.data.statusCode === 200) {
-        console.log("success")
+        // If success display success message
         showsuccessToastMessage();
       }
       else {
+        // If error display error message
         console.log("error")
         showserrorToastMessage();
       }
-      console.log(response)
     } catch (err) {
       showserrorToastMessage();
     }
@@ -186,6 +195,7 @@ const Home = () => {
                 </h1>
                 <div className='container mt-5'>
                   <div className='row row-cols-lg-4 row-col-md-2 row-cols-sm-2 row-cols-1 g-2 '>
+                    {/* Passing content manually */}
                     <ServiceCard
                       cardTitle='carrer counseling'
                       iconURL='school'

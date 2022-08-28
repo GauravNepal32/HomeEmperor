@@ -20,6 +20,8 @@ const Dashboard = () => {
   const [uniInfo,setUniInfo]=useState();
   const getUni="https://elscript.co/github/emperor-backend/api/get-universities"
 
+
+// Calling multiple API
   useEffect(() => {
     Promise.all([
        axios.get(activities,{
@@ -34,6 +36,7 @@ const Dashboard = () => {
           }})
 
     ]).then(allResponse =>{
+      // Setting response of promises accordingly
       setActivity(allResponse[0].data.data);
       setUniInfo(allResponse[1].data.data)
       setLoading(false)
@@ -55,6 +58,7 @@ setActivityAvailable(true);
   return (
     <div className='main-container '>
       <Helmet>
+        {/* Setting Title */}
         <title>
           Dashboard | Emperor
         </title>
@@ -64,6 +68,7 @@ setActivityAvailable(true);
          <div className='row row-cols-1'>
         <div className='col order-1'>
         </div>
+        {/* Displaying processing status */}
         <div className='col order-0 my-5 my-md-0'>
           <div className='processing-status-details p-3'>
               {activityAvailable ? (
@@ -98,6 +103,7 @@ setActivityAvailable(true);
       <div className='my-courses-container mt-5'>
         <div className='courses-heading d-flex justify-content-between'>
           <h4>My Courses</h4>
+          {/* Displaying all the courses user have added */}
         </div>
         <MyCourses/>
       </div>
@@ -106,6 +112,7 @@ setActivityAvailable(true);
           <h4>My University</h4>
         </div>
         <div className='university-card-wrapper mt-3 mb-5 d-flex'>
+          {/* Displaying all the univeresity user have added */}
             {!loading && <UniversityCard university={uniInfo}/>}
 
         </div>

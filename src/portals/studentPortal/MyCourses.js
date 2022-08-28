@@ -12,15 +12,17 @@ const MyCourses = () => {
     const userData = JSON.parse(sessionStorage.getItem("token"));
     const [allCourses, setAllCourses] = useState([]);
 
-
+    // Success toast function
     const showsuccessToastMessage = () => {
         toast.success('Course removed!', {
             position: toast.POSITION.BOTTOM_RIGHT
         });
     };
 
+// Getting all liked courses by the user
     const loadData = async () => {
         try {
+            // Calling get API
             const response = await axios.get(courseGetURL,
                 {
                     headers: {
@@ -29,18 +31,20 @@ const MyCourses = () => {
                     }
                 }
             )
+            // Setting response from the api
             setAllCourses(response.data.data);
-            console.log(response.data.data)
-
         } catch (err) {
             console.log(err)
         }
     }
+
+    // Calling load data fucntion on first render
     useEffect(() => {
         loadData();
     }, [])
 
 
+// Removing courses from suer favourite list
     const handleFav = async (course_id) => {
         try {
             const response = await axios.post(courseRemoveURL, { course_id }, {
@@ -51,6 +55,7 @@ const MyCourses = () => {
             })
             console.log(response.data)
             if (Number(response.data.statusCode) === 200) {
+                // Show success message if success response from the server
                 showsuccessToastMessage();
                 loadData();
             }
@@ -58,10 +63,6 @@ const MyCourses = () => {
             console.log(err)
         }
     }
-    const checkLike = () => {
-
-    }
-
     return (
         <div>
             {allCourses !== null ? <>
@@ -69,7 +70,6 @@ const MyCourses = () => {
                     <ToastContainer />
                     {allCourses.map((course) => (
                         <div className='course-card'>
-                            {console.log(course.course)}
                             <div className='card'>
                                 <div className='card-thumbnail'>
                                     <img className='img-fluid' src={courseImg} alt='' />

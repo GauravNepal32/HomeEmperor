@@ -18,12 +18,16 @@ const Subject = () => {
   const coursePostURL = "https://elscript.co/github/emperor-backend/api/add-course"
   const courseGetURL = "https://elscript.co/github/emperor-backend/api/get-courses"
 
+
+// Adding course to favourite function
   useEffect(() => {
     if (userData !== null) {
+      // checking if user have added the course
       axios.get(courseGetURL,
         {
           headers: {
             "Content-Type": "application/json",
+            // Sending user token
             Authorization: `Bearer ${userData.token}`
           }
         }
@@ -31,20 +35,19 @@ const Subject = () => {
         response.data.data.map((allFav) => {
           if (Number(allFav.course_id) === Number(id)) {
             setLikeCourse(allFav)
-            // console.log("Found")
-            // setFav(true)
-            // setRenderApp(false)
+
           } else {
-            // setFav(false)
-            // setRenderApp(false)
+
           }
         })
       })
     }
   }, [id])
+  // Getting course details from API
 useEffect(()=>{
   axios.get("https://elscript.co/github/emperor-backend/api/courses").then((response)=>{
     response.data.data.map((subject)=>{
+      // Checking if the course id match with required ID
       if(subject.id.toString() === id.toString() ){
         setAllSubject(subject)
         setRenderApp(false);
@@ -55,9 +58,10 @@ useEffect(()=>{
 },[id])
 
 
-
+// Adding course to favourite
   const addCourse = async (courseID) => {
     try {
+      // Calling post API to add course
       const response =
         await axios.post(coursePostURL, {
           course_id: courseID
@@ -82,6 +86,7 @@ useEffect(()=>{
       addCourse(courseID);
     }
   }
+  // Getting all countries list to check respective country for the courses
   useEffect(() => {
     if (allSubject.length !== null) {
       axios.get('https://elscript.co/github/emperor-backend/api/countries').then((response) => {
@@ -95,6 +100,7 @@ useEffect(()=>{
     }
   }, [allSubject])
 
+// Chekcing if the user have added course to their favourite
   const checkLike = (a) => {
     console.log(a)
     if (a.length !== 0) {

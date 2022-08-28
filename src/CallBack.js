@@ -1,5 +1,47 @@
 import React from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import axios from 'axios'
+
 const CallBack = () => {
+
+  // SuccessToast function
+  const showsuccessToastMessage = () => {
+    toast.success('Number recieved successfully!', {
+      position: toast.POSITION.BOTTOM_RIGHT
+    });
+  };
+  // Error Toast Function
+  const showserrorToastMessage = () => {
+    toast.error('Unable to get Number!', {
+      position: toast.POSITION.BOTTOM_RIGHT
+    });
+  };
+
+  // Handle submit function
+  const handleCall = async (e) => {
+    // Stopping form to reload page
+    e.preventDefault();
+    // Getting value from form input
+    const phone = document.getElementById('callback-phone').value;
+
+    try {
+      // Calling post api to store call request
+      const response = await axios.post('https://elscript.co/github/emperor-backend/api/phone-number', { phone })
+      console.log(Number(response.data.statusCode))
+      if (response.data.statusCode === 200) {
+        // If success display success message
+        showsuccessToastMessage();
+      }
+      else {
+        // If error display error message
+        console.log("error")
+        showserrorToastMessage();
+      }
+    } catch (err) {
+      showserrorToastMessage();
+    }
+  }
     return (
       <div className='col-md-4 d-md-block d-none col-12 d-flex justify-content-end'>
         <div className='h-100'>
@@ -18,7 +60,7 @@ const CallBack = () => {
                   placeholder='Mobile Number'
                 />
                 <div className=''>
-                  <button className='btn btn-type-2 mt-3 text-nowrap p-2 w-100'>
+                  <button onClick={handleCall} className='btn btn-type-2 mt-3 text-nowrap p-2 w-100'>
                     Request callback
                   </button>
                 </div>

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import CallBack from "./CallBack";
-import useFetch from "./useFetch";
 import axios from "axios";
 import Loading from "./Loading";
 const CountryDetails = () => {
@@ -9,11 +8,13 @@ const CountryDetails = () => {
       const { id } = useParams();
   const [major, setMajor] = useState();
   const [renderApp,setRenderApp]=useState(false)
+  // Getting all countries from api
   useEffect(() => {
     axios
       .get("https://elscript.co/github/emperor-backend/api/countries")
       .then((response) => {
         response.data.data.map((major)=>{
+          // Matching all countries with id
           if(major.name.toString()===id.toString()){
              setMajor(major);
             setRenderApp(true)
@@ -27,8 +28,10 @@ const CountryDetails = () => {
   }, [id]);
     return (
         <>
+        {/* Dispalying content of Country */}
             <div className='main-container my-5'>
       <div className='container px-sm-5'>
+        {/* Wating for api to resolve */}
         {!renderApp ? <Loading/> : (
           <div className='row justify-content-between'>
             <div className='col-md-8 col-12'>

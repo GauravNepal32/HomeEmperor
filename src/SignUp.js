@@ -47,7 +47,9 @@ const SignUp = () => {
         }
       );
       if (response.data.statusCode === 200) {
+        // If response for API is sucess show suceess message
         showToastMessage();
+        // redirect the user to login after 1 second
         setTimeout(()=>{navigate("/login")},1000)
       } else if (response.data.statusCode === 401) {
         setErrMsg(response.data.message);
@@ -56,6 +58,7 @@ const SignUp = () => {
       console.log(err);
     }
   };
+  // Password visibliity toggler
   const visiblePassword = (e) => {
     e.preventDefault();
     setVisibility(!visibility);
@@ -66,11 +69,14 @@ const SignUp = () => {
     }
   };
 
+
   const [enableSubmit, setEnableSubmit] = useState(false);
+  // Password check container
   const openCheckContainer = () => {
     document.getElementById("password-check-container").style.display = "block";
   };
 
+// Only enable submit button when all data are entered correctly
   const enableButton = (isValid) => {
     if (!isValid) {
       setEnableSubmit(true);
@@ -79,21 +85,28 @@ const SignUp = () => {
     }
   };
 
+
+// checking validation for entered phone number
   function validatePhoneNumber(input_str) {
     var Phonere = /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/;
     return Phonere.test(input_str);
   }
+
+  // checking validation for entered email
   function validateEmail(input_str) {
     var Emailre =
       /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return Emailre.test(input_str);
   }
+
+  // Submit function for signup
   const handleSubmit = (e) => {
     var validEmail = false;
     var validPhone = false;
     var validAgreement = false;
     var validFname = false;
     e.preventDefault();
+    // Cheking if user have checked T&C Button
     if (!document.getElementById("agreementTC").checked) {
       document.getElementById("error-agreement").style.display = "block";
       validAgreement = false;
@@ -101,6 +114,7 @@ const SignUp = () => {
       document.getElementById("error-agreement").style.display = "none";
       validAgreement = true;
     }
+    // Checking if user phone number is valid
     const registerPhone = document.getElementById("registeredPhone").value;
     if (!validatePhoneNumber(registerPhone)) {
       document.getElementById("error-phone").style.display = "block";
@@ -114,6 +128,8 @@ const SignUp = () => {
       validPhone = true;
     }
 
+
+// Checking if usee entered email is valid
     const registerEmail = document.getElementById("registeredEmail").value;
     if (!validateEmail(registerEmail)) {
       validEmail = false;
@@ -127,6 +143,8 @@ const SignUp = () => {
         .classList.remove("border-danger");
     }
 
+
+// Checkoing validaiton for the name
     if (document.getElementById("studentFname").value.length > 1) {
       document.getElementById("error-Fname").style.display = "none";
       document.getElementById("studentFname").classList.remove("border-danger");
@@ -136,7 +154,7 @@ const SignUp = () => {
       document.getElementById("studentFname").classList.add("border-danger");
       validFname = false;
     }
-
+// If all the entered field is valid
     if (validEmail && validAgreement && validPhone && validFname) {
       const studentFullName = document.getElementById("studentFname").value;
       const studentEmail = document.getElementById("registeredEmail").value;
@@ -299,6 +317,7 @@ const SignUp = () => {
                 </div>
               </div>
             </div>
+            {/* Login redirect container */}
             <div className='col-sm-4 order-0 p-0'>
               <div
                 id='open-login'

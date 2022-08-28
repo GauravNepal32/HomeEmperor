@@ -8,6 +8,7 @@ const TestChild = () => {
   const [test, setTest] = useState();
   const [major, setMajor] = useState();
   const [renderApp, setRenderApp] = useState(false)
+  // Passing test data manually
   const tests =
     [{
       "examName": "IELTS",
@@ -66,6 +67,8 @@ const TestChild = () => {
       "totalTime": "~ 3 hours"
     }
     ]
+
+    // Checking if required test match with requrested test
   useEffect(() => {
     tests.map((test) => {
       if (Number(test.id) === Number(id)) {

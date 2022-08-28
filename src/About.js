@@ -11,11 +11,15 @@ const About = () => {
   const [testimonials, setTestimonials] = useState(null);
   const [renderApp, setRenderApp] = useState(false);
 
+
+// Get API call
   useEffect(() => {
     axios
       .get("https://elscript.co/github/emperor-backend/api/testimonials")
       .then((response) => {
+        // Setting response
         setTestimonials(response.data.data);
+        // Allowing app to render
         setRenderApp(true);
       })
       .catch((err) => {
@@ -25,9 +29,11 @@ const About = () => {
 
   return (
     <>
+    {/* Checking if API request is resolve or not */}
       {renderApp ? (
         <div className='main-container my-5'>
           <Helmet>
+            {/* Setting title for the page */}
             <title>About | Emperor</title>
             <meta name="description" content="About application" />
              <link rel="canonical" href="http://mysite.com/example" />
@@ -148,18 +154,21 @@ const About = () => {
               </h1>
               <div className='testimonials-container'>
                 <div className=''>
+                  {/* Calling Testimonials component */}
                   <Testimonials testimonials={testimonials} />
                 </div>
               </div>
             </div>
             {/* <!-- Company Location  --> */}
             <div className='row'>
+              {/* Calling Location component */}
               <LocationMap />
             </div>
           </div>
         </div>
       ) : (
         <>
+        {/* Loading Screen while waiting for rendering app */}
           <Loading />
         </>
       )}

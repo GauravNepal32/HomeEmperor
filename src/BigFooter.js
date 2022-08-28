@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import footerLogo from "./images/emperor/companyLogoWhite.png";
 
 const BigFooter = () => {
-
+// Getting current time
   const currentTime=new Date()
   return (
     <div className='container-fluid footer py-5'>

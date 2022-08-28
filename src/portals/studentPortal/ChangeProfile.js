@@ -11,21 +11,18 @@ const ChangeProfile = () => {
   const userToken = userData.token;
   const [loading, setLoading] = useState(true);
   const [changeProfileSuccess, setChangeProfileSuccess] = useState(false);
-
-
-
-
-
   const getProfileURL = "https://elscript.co/github/emperor-backend/api/profile";
   const changeProfileURL =
     "https://elscript.co/github/emperor-backend/api/edit-profile";
 
 
+//  API call to get user details
     useEffect(() => {
     axios.get(getProfileURL,
       {
         headers: {
           "Content-Type": "application/json",
+          // Passing token
           Authorization: `Bearer ${userToken}`,
         },
       }
@@ -65,6 +62,7 @@ const ChangeProfile = () => {
   // };
 
   // Profile edited function
+
   const submitHandle = (a,b) => {
     if (a === "") {
       a = profileDetails.name;
@@ -72,6 +70,7 @@ const ChangeProfile = () => {
     if (b === "") {
       b = profileDetails.phone;
     }
+    // Post API to update profile
     axios.post(changeProfileURL,{
       name:a,
       phone:b,
@@ -79,6 +78,7 @@ const ChangeProfile = () => {
      {
           headers: {
             "Content-Type": "application/json",
+            // Passing token
             Authorization: `Bearer ${userToken}`,
           },}
     ).then((response)=>{
@@ -92,6 +92,7 @@ const ChangeProfile = () => {
     return (
         <>
         {
+          // Checking if API is resolved
             loading ? <Loading/> : (
         <div className='profile-info-container mt-5'>
             <div className='profile-image-container'>

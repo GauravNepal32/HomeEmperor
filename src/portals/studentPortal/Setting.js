@@ -17,8 +17,8 @@ const Setting = () => {
     const [renderApp, setRenderApp] = useState(false)
     const auth = useAuth();
     const [errMessage, setErrMsg] = useState({});
-    const profileURL = "https://elscript.co/github/emperor-backend/api/profile"
-    const updateProfileURL = "https://elscript.co/github/emperor-backend/api/edit-profile";
+    const profileURL = `${auth.baseURL}/api/profile`
+    const updateProfileURL = `${auth.baseURL}/api/edit-profile`
 
 
     const showErrorMessage = (message) => {
@@ -27,6 +27,7 @@ const Setting = () => {
         });
     }
 
+// Update User profile
     const updateProfile = async (editedname, editedPhone) => {
         try {
             const response =
@@ -48,16 +49,19 @@ const Setting = () => {
 
     }
 
+// Success toast message
     const showToastMessage = () => {
         toast.success("Password Changed Successfully !", {
             position: toast.POSITION.BOTTOM_RIGHT,
         });
     };
+    // Error toast message
     const showErrorToastMessage = () => {
         toast.error("Unable to change password !", {
             position: toast.POSITION.BOTTOM_RIGHT,
         });
     };
+// Success toast message
 
     const showSuccessMessage = (message) => {
         toast.success(message, {
@@ -65,6 +69,7 @@ const Setting = () => {
         });
     }
 
+// Getting user details from API
     useEffect(() => {
         axios.get(profileURL, {
             headers: {
@@ -79,6 +84,7 @@ const Setting = () => {
             setRenderApp(true)
         })
     }, [userDetails])
+    // Hnadle Sumbit for changing profile
     const handleSubmit = (e) => {
         e.preventDefault();
         var editedname = document.getElementById('name').value;
@@ -95,12 +101,14 @@ const Setting = () => {
 
     return (
         <>
+        {/* Checking if API is resloved */}
             {renderApp ? (
                 <>
                     <div className='main-contianer container my-5 px-md-5'>
                         <ToastContainer />
                         <Helmet>
                             <title>
+                                {/* Setting page Heading */}
                                 Setting | Emperor Education Network
                             </title>
                         </Helmet>

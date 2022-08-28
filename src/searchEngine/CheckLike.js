@@ -2,11 +2,13 @@ import React,{useState,useEffect} from 'react'
 import axios from 'axios'
 
 const CheckLike = (checkID) => {
+
     const uniGetURL="https://elscript.co/github/emperor-backend/api/get-universities"
     const [likeUni,setLikeUni]=useState([])
     const userData = JSON.parse(sessionStorage.getItem("token"));
     const [found,setFound]=useState(false)
 
+// Getting all the liked university from API
     const loadLikeUni=async()=>{
       try{
         const response=await axios.get(uniGetURL,{headers:{"Content-Type":"application/json",Authorization:`Bearer ${userData.token}`}})
