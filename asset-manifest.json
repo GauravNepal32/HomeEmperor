@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/HomeEmperor/static/css/main.2f11013a.css",
-    "main.js": "/HomeEmperor/static/js/main.51594a51.js",
+    "main.css": "/HomeEmperor/static/css/main.d42dfe75.css",
+    "main.js": "/HomeEmperor/static/js/main.5df77f7e.js",
     "static/media/location.png": "/HomeEmperor/static/media/location.a909d560f8ca506490f7.png",
     "static/media/testStudent.png": "/HomeEmperor/static/media/testStudent.98e6cf0536a4d27a4168.png",
     "static/media/landing.png": "/HomeEmperor/static/media/landing.8fd375b5511683820d41.png",
@@ -18,13 +18,14 @@
     "static/media/partner.jpg": "/HomeEmperor/static/media/partner.cd759f28f0bb525a3754.jpg",
     "static/media/ielts.png": "/HomeEmperor/static/media/ielts.271e6cb81dba428b5171.png",
     "static/media/team.png": "/HomeEmperor/static/media/team.fc6a37dd09ac6a0a03d5.png",
+    "static/media/server.png": "/HomeEmperor/static/media/server.67a29cb337db68345e96.png",
     "static/media/lost.svg": "/HomeEmperor/static/media/lost.ec370f7907d21f0631f4bae1a0b7c66f.svg",
     "index.html": "/HomeEmperor/index.html",
-    "main.2f11013a.css.map": "/HomeEmperor/static/css/main.2f11013a.css.map",
-    "main.51594a51.js.map": "/HomeEmperor/static/js/main.51594a51.js.map"
+    "main.d42dfe75.css.map": "/HomeEmperor/static/css/main.d42dfe75.css.map",
+    "main.5df77f7e.js.map": "/HomeEmperor/static/js/main.5df77f7e.js.map"
   },
   "entrypoints": [
-    "static/css/main.2f11013a.css",
-    "static/js/main.51594a51.js"
+    "static/css/main.d42dfe75.css",
+    "static/js/main.5df77f7e.js"
   ]
 }
