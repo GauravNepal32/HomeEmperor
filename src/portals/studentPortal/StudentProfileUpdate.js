@@ -1,5 +1,7 @@
 import profileImg from "../../images/profile/profile.png"
+import { useState } from "react";
 const StudentProfileUpdate = ({ userDetails, handleSubmit }) => {
+    const [phoneNumber,setPhoneNumber]=useState(userDetails.phone)
     return (
         <div className='profile-info-container mt-5'>
             <div className='profile-image-container'>
@@ -21,7 +23,24 @@ const StudentProfileUpdate = ({ userDetails, handleSubmit }) => {
                             <label htmlFor="phone">
                                 Phone Number
                             </label>
-                            <input className="form-control" defaultValue={userDetails.phone} type="text" name="phone" id="phone" required/>
+                            <input className="form-control" defaultValue={phoneNumber}
+                             type='tel'
+                            maxLength={10}
+                            pattern='[0-9]{10}'
+                             onChange={(e) => {
+                            const re = /^[0-9\b]+$/;
+
+                        // if value is not blank, then test the regex
+
+                        if (e.target.value === '' || re.test(e.target.value)) {
+                            setPhoneNumber(e.target.value)
+                        }
+                    }
+                    }
+                    id='phone'
+                    name='callback-phone'
+                    placeholder='Mobile Number'
+                    required/>
                         </div>
                     </div>
                     <div className='row mt-3 row-cols-sm-2 row-cols-1'>

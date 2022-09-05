@@ -37,6 +37,8 @@ import SubAgentOverView from "./portals/subagent/SubAgentOverView";
 import CountryDetails from "./CountryDetails";
 import {Helmet} from "react-helmet";
 import RestPassword from "./RestPassword";
+import ScrollToTop from "./portals/ScrollToTop";
+import ServerError from "./ServerError";
 
 
 const App = () => {
@@ -53,10 +55,11 @@ const App = () => {
           {/* Calling Navbar Component */}
           <Navbar />
           <div className='content'>
-            <Routes>
-              {/* Home Component */}
+            <ScrollToTop>
+              <Routes>
+                {/* Home Component */}
               <Route path='/HomeEmperor' element={<Home />}></Route>
-
+              <Route path="/error" element={<ServerError/>}></Route>
               {/* Major For every country */}
               <Route path='/major/:id' element={<Major />}></Route>
               {/* Subject for every country */}
@@ -205,6 +208,7 @@ const App = () => {
               <Route path='/test/:id' element={<TestChild />}></Route>
               <Route path='*' element={<Lost />}></Route>
             </Routes>
+            </ScrollToTop>
           </div>
           <Footer />
         </div>

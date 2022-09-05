@@ -2,11 +2,15 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Loading from "./Loading";
 import UniversityCard from "./UniversityCard";
-
+import { useAuth } from "./auth";
+import { useNavigate } from "react-router-dom";
 const AllUniv = () => {
     const [university, setUniversity] = useState({});
-    const uniURL = "https://elscript.co/github/emperor-backend/api/universities"
+    const auth=useAuth();
+    const uniURL = `${auth.baseURL}/api/universities`
     const [loading, setLoading] = useState(true)
+  const navigate=useNavigate();
+
     // Fetching data from API
     useEffect(() => {
         axios.get(uniURL).then((response) => {
@@ -14,6 +18,7 @@ const AllUniv = () => {
             setUniversity(response.data.data)
             setLoading(false)
         }).catch((err)=>{
+            navigate('/error')
             console.log(err)
         })
     }, []);

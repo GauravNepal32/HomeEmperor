@@ -1,47 +1,52 @@
-import React from "react";
+import React,{useState} from "react";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios'
+import { useAuth } from "./auth";
 
 const CallBack = () => {
+   const auth = useAuth();
+    const [phoneNumber, setPhoneNumber] = useState('');
 
-  // SuccessToast function
-  const showsuccessToastMessage = () => {
-    toast.success('Number recieved successfully!', {
-      position: toast.POSITION.BOTTOM_RIGHT
-    });
-  };
-  // Error Toast Function
-  const showserrorToastMessage = () => {
-    toast.error('Unable to get Number!', {
-      position: toast.POSITION.BOTTOM_RIGHT
-    });
-  };
+    // Success Toast function
+    const showsuccessToastMessage = () => {
+        toast.success('Number recieved successfully!', {
+            position: toast.POSITION.BOTTOM_RIGHT
+        });
+    };
+    // Error toast function
+    const showserrorToastMessage = () => {
+        toast.error('Unable to get Number!', {
+            position: toast.POSITION.BOTTOM_RIGHT
+        });
+    };
+    // Handle submit function
+    const handleCall = async (e) => {
+        // Stopping form to reload page
+        e.preventDefault();
+        // Getting value from form input
+        const phone = document.getElementById('callback-phone').value;
+        console.log(phone)
+        try {
+            // Calling post api to store call request
+            const response = await axios.post(`${auth.baseURL}/api/phone-number`, { phone })
+            console.log(response)
 
-  // Handle submit function
-  const handleCall = async (e) => {
-    // Stopping form to reload page
-    e.preventDefault();
-    // Getting value from form input
-    const phone = document.getElementById('callback-phone').value;
+            if (response.data.statusCode === 200) {
+                // If success display success message
+                showsuccessToastMessage();
+                setPhoneNumber('');
+            }
+            else {
+                // If error display error message
+                console.log("error")
+                showserrorToastMessage();
+            }
+        } catch (err) {
 
-    try {
-      // Calling post api to store call request
-      const response = await axios.post('https://elscript.co/github/emperor-backend/api/phone-number', { phone })
-      console.log(Number(response.data.statusCode))
-      if (response.data.statusCode === 200) {
-        // If success display success message
-        showsuccessToastMessage();
-      }
-      else {
-        // If error display error message
-        console.log("error")
-        showserrorToastMessage();
-      }
-    } catch (err) {
-      showserrorToastMessage();
+            showserrorToastMessage();
+        }
     }
-  }
     return (
       <div className='col-md-4 d-md-block d-none col-12 d-flex justify-content-end'>
         <div className='h-100'>
@@ -53,11 +58,24 @@ const CallBack = () => {
                   Application fee waiver - Appl Assistance - upto 100%
                   scholarship - SOP Prep
                 </p>
-                <input
-                  className='w-100 p-2 rounded'
-                  type='text'
-                  name='callback-phone'
-                  placeholder='Mobile Number'
+                 <input
+                    className='w-100 p-2 rounded'
+                    type='tel'
+                    maxLength={10}
+                    value={phoneNumber}
+                    onChange={(e) => {
+                        const re = /^[0-9\b]+$/;
+
+                        // if value is not blank, then test the regex
+
+                        if (e.target.value === '' || re.test(e.target.value)) {
+                            setPhoneNumber(e.target.value)
+                        }
+                    }
+                    }
+                    id='callback-phone'
+                    name='callback-phone'
+                    placeholder='Mobile Number'
                 />
                 <div className=''>
                   <button onClick={handleCall} className='btn btn-type-2 mt-3 text-nowrap p-2 w-100'>

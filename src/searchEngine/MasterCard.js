@@ -2,9 +2,9 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 const MasterCard = (master) => {
   return (
-    <div>
-         <div className='row mt-5 px-md-5'>
-        <div className='search-result-info-container ms-3'>
+    <div className='container'>
+      <div className='row mt-5 px-5'>
+        <div className='search-result-info-container'>
                     {/* Displaying Number of result found */}
           <h5 className='sub-heading'>{master.master.length} result found</h5>
         </div>

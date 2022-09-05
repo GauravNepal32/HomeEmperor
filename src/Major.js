@@ -1,18 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import CallBack from "./CallBack";
 import axios from "axios";
 import Loading from "./Loading";
 import { Helmet } from "react-helmet";
+import { useAuth } from "./auth";
 const Major = () => {
   const { id } = useParams();
   const [major, setMajor] = useState();
   const [renderApp,setRenderApp]=useState(false)
+  const auth = useAuth();
+  const navigate = useNavigate();
 
   // Getting data from api call
   useEffect(() => {
     axios
-      .get("https://elscript.co/github/emperor-backend/api/degrees")
+      .get(`${auth.baseURL}/api/degrees`)
       .then((response) => {
         response.data.data.map((major)=>{
 // Comparing major data from api with required ID
@@ -24,16 +27,17 @@ const Major = () => {
         // if(id== response.data.data.id)
       })
       .catch((error) => {
-        console.log(error);
+        console.log(error)
+        navigate('/error')
       });
   }, [id]);
 
 
   return (
     <div className='main-container my-5'>
-      <div className='container px-sm-5'>
-        {/* Checking if api call is resolved or not */}
-        {!renderApp ? <Loading/> : (
+      {!renderApp ? <Loading /> : (
+        <div className='container px-sm-5'>
+          {/* Checking if api call is resolved or not */}
           <div className='row justify-content-between'>
             <Helmet><title>
               {major.title} | Emperor
@@ -51,11 +55,11 @@ const Major = () => {
                           Home
                         </a>
                       </li>
-                      <li
+                      {/* <li
                         className='breadcrumb-item text-black'
                         aria-current='page'>
                         {major.country}
-                      </li>
+                      </li> */}
                       <li
                         className='breadcrumb-item text-grey'
                         aria-current='page'>
@@ -108,8 +112,8 @@ const Major = () => {
             </div>
             <CallBack />
           </div>
-        )}
       </div>
+      )}
     </div>
   );
 };

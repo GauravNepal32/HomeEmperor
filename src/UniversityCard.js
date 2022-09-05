@@ -1,13 +1,14 @@
 import React,{useState} from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useAuth } from "./auth";
 
 const UniversityCard = (university) => {
     const [fav,setFav]=useState();
     const navigate = useNavigate();
     const userData = JSON.parse(sessionStorage.getItem("token"));
-    const uniPostURL="https://elscript.co/github/emperor-backend/api/add-university"
-
+    const auth=useAuth();
+    const uniPostURL=`${auth.baseURL}/api/add-university`
     const addUniv=async(UniID)=>{
          try {
             const response =

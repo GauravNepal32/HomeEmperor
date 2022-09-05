@@ -4,10 +4,10 @@ import NoResult from '../NoResult'
 const CoursesCard = (courses,keyword) => {
   console.log(keyword)
   return (
-    <div>
-         <div className='row mt-5 px-md-5'>
+    <div className='container'>
+      <div className='row mt-5 px-5'>
           {!courses.courses.length===0 ? <>
-           <div className='search-result-info-container ms-3'>
+          <div className='search-result-info-container'>
                     {/* Displaying Number of result found */}
           <h5 className='sub-heading'>{courses.courses.length} result found</h5>
         </div>

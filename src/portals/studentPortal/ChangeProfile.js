@@ -3,7 +3,7 @@ import axios from "axios";
 import profileImg from "../../images/portal/profileImg.webp";
 import Loading from "../../Loading";
 import { Helmet } from "react-helmet";
-
+import { useAuth } from "../../auth";
 
 const ChangeProfile = () => {
   const userData = JSON.parse(sessionStorage.getItem("token"));
@@ -11,9 +11,10 @@ const ChangeProfile = () => {
   const userToken = userData.token;
   const [loading, setLoading] = useState(true);
   const [changeProfileSuccess, setChangeProfileSuccess] = useState(false);
-  const getProfileURL = "https://elscript.co/github/emperor-backend/api/profile";
+  const auth = useAuth();
+  const getProfileURL = `${auth.baseURL}/api/profile`
   const changeProfileURL =
-    "https://elscript.co/github/emperor-backend/api/edit-profile";
+    `${auth.baseURL}/api/edit-profile`;
 
 
 //  API call to get user details

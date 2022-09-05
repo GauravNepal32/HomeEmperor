@@ -2,15 +2,19 @@ import React, { useState, useEffect } from "react";
 import contactTop from "./images/contact/contact.jpeg";
 import FAQ from "./FAQ";
 import axios from "axios";
-
+import { useAuth } from "./auth";
+import { useNavigate } from "react-router-dom";
+import ContactForm from "./ContactForm";
 const Contact = () => {
   const faqList = [];
   const [faqs, setfaqs] = useState([]);
+  const auth=useAuth();
+  const navigate=useNavigate();
 
   useEffect(() => {
     axios
     // Calling get api for faqs
-      .get("https://elscript.co/github/emperor-backend/api/faqs")
+      .get(`${auth.baseURL}/api/faqs`)
       .then((response) => {
         {
           response.data.data.map((faqArray) => {
@@ -28,7 +32,7 @@ const Contact = () => {
         }
       })
       .catch((err) => {
-        console.log(err);
+        navigate('/error')
       });
   }, []);
 
@@ -93,80 +97,7 @@ const Contact = () => {
             </div>
           </div>
         </div>
-        <div className='email-form-container mb-200 container px-md-5 mb-5'>
-          <h1 className='sub-heading text-center email-form-sub mx-auto'>
-            EMAIL
-          </h1>
-          <h1 className='main-heading text-capitalize text-center mt-4'>
-            Get in touch with us
-          </h1>
-          <div className='form-container mt-5'>
-            <div className='row row-cols-md-2 row-cols-1 g-4'>
-              <div className='col-md'>
-                <div className='form-floating'>
-                  <input
-                    type='text'
-                    className='form-control'
-                    id='floatingInputGrid'
-                    placeholder='John'
-                  />
-                  <label htmlFor='floatingInputGrid'>First Name</label>
-                </div>
-              </div>
-              <div className='col-md'>
-                <div className='form-floating'>
-                  <input
-                    type='text'
-                    className='form-control'
-                    id='floatingInputGrid'
-                    placeholder='Smith'
-                  />
-                  <label htmlFor='floatingInputGrid'>Last Name</label>
-                </div>
-              </div>
-              <div className='col-md'>
-                <div className='form-floating'>
-                  <input
-                    type='email'
-                    className='form-control'
-                    id='floatingInputGrid'
-                    placeholder='john@example.com'
-                  />
-                  <label htmlFor='floatingInputGrid'>Email address</label>
-                </div>
-              </div>
-              <div className='col-md'>
-                <div className='form-floating'>
-                  <input
-                    type='text'
-                    className='form-control'
-                    id='floatingInputGrid'
-                    placeholder='99999999'
-                  />
-                  <label htmlFor='floatingInputGrid'>Phone Number</label>
-                </div>
-              </div>
-              <div className='col-md w-100'>
-                <div className='form-floating'>
-                  <textarea
-                    className='form-control'
-                    style={{ height: "150px" }}
-                    placeholder='Leave a comment here'
-                    id='floatingTextarea'></textarea>
-                  <label htmlFor='floatingTextarea'>Message</label>
-                </div>
-              </div>
-            </div>
-            <div className='form-submit-container text-end mt-4'>
-              <input
-                style={{ backgroundColor: "#0A2343", color: "white" }}
-                className='btn p-3 contact-submit-btn'
-                type='submit'
-                value='SEND MESSAGE'
-              />
-            </div>
-          </div>
-        </div>
+       <ContactForm/>
         <div class='faq-containers mb-5'>
           <div class='container px-md-5'>
             <h4 class='text-center mx-auto contact-heading underline main-heading'>

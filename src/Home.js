@@ -13,40 +13,30 @@ import Loading from "./Loading";
 import NoResponse from "./NoResponse";
 import {Helmet} from "react-helmet";
 import team from "./images/emperor/team.png";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
+import { useAuth } from "./auth";
+import GetCallInput from "./GetCallInput";
 
 const Home = () => {
   const [countries, setCountries] = useState();
   const [testimonials, setTestimonials] = useState();
   const [renderApp, setRenderApp] = useState(false);
+  const auth = useAuth();
 
-// Success Toast function
-  const showsuccessToastMessage = () => {
-    toast.success('Number recieved successfully!', {
-      position: toast.POSITION.BOTTOM_RIGHT
-    });
-  };
-  // Error toast function
-  const showserrorToastMessage = () => {
-    toast.error('Unable to get Number!', {
-      position: toast.POSITION.BOTTOM_RIGHT
-    });
-  };
+
+
 
 // Getting data from api
   useEffect(() => {
     axios
     // Getting data for countries through api
-      .get("https://elscript.co/github/emperor-backend/api/countries")
+      .get(`${auth.baseURL}/api/countries`)
       .then((response) => {
         // setting response to array but only 4 countries are displayed
         setCountries(response.data.data.slice(response.data.data.length-4,response.data.data.length));
       });
     axios
     // Getting data for testimonial through api
-      .get("https://elscript.co/github/emperor-backend/api/testimonials")
+      .get(`${auth.baseURL}/api/testimonials`)
       .then((response) => {
         setTestimonials(response.data.data);
         setRenderApp(true);
@@ -57,36 +47,12 @@ const Home = () => {
       });
   }, []);
 
-  // Handle submit function
-  const handleCall = async (e) => {
-    // Stopping form to reload page
-    e.preventDefault();
-    // Getting value from form input
-    const phone = document.getElementById('callback-phone').value;
 
-    try {
-      // Calling post api to store call request
-      const response = await axios.post('https://elscript.co/github/emperor-backend/api/phone-number', { phone })
-      console.log(Number(response.data.statusCode))
-      if (response.data.statusCode === 200) {
-        // If success display success message
-        showsuccessToastMessage();
-      }
-      else {
-        // If error display error message
-        console.log("error")
-        showserrorToastMessage();
-      }
-    } catch (err) {
-      showserrorToastMessage();
-    }
-  }
   return (
     // Search box container
     <>
       {renderApp ? (
         <div id='' className='main-container position-relative'>
-          <ToastContainer />
           <Helmet>
             <title>Home | Emperor</title>
             <meta name="description" content="Emperor Education" />
@@ -244,10 +210,14 @@ const Home = () => {
               </div>
             </div>
           </div>
-          <div className='row mb-200 p-0 mx-0 contact-container'>
+
+          {/* <!-- Team Intro Container --> */}
+          <div className='main-container container mb-200 mt-5 px-md-5'>
+            <div className="row mb-200">
+              <div className='mx-0 main-container'>
             <div className='contact-sub-container'></div>
-            <div className='px-sm-5'>
-              <div className='px-sm-5'>
+                <div className=''>
+                  <div className=''>
                 <h1 className='main-heading'>
                   Get the Global Education Abroad
                 </h1>
@@ -276,26 +246,12 @@ const Home = () => {
                       alt='Team member 3'
                     />
                   </div>
-                </div>
-                <div className='d-flex'>
-                  <form onSubmit={handleCall} className="d-flex" action="">
-                    <input
-                    className='front-mobile-input p-2 rounded'
-                      type='tel'
-                      pattern="[0-9]{10}"
-                      id='callback-phone'
-                    name='callback-phone'
-                    placeholder='Mobile Number'
-                  />
-                    <input type="submit" value={'Get a Call'} className='btn ms-1 btn-type-1' />
-                  </form>
-
+                    </div>
+                    <GetCallInput submitValue={"Get a Call"} />
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          {/* <!-- Team Intro Container --> */}
-          <div className='main-container container mb-200 mt-5 px-md-5'>
             <div className='row mb-200'>
               <div className='container'>
                 <div className='row row-cols-md-2 row-cols-1'>

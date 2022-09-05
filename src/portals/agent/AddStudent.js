@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
-
+import { useAuth } from "../../auth";
 
 const AddStudent = () => {
     const userData = JSON.parse(sessionStorage.getItem("token"));
@@ -14,7 +14,8 @@ const AddStudent = () => {
   const [visibility, setVisibility] = useState(false);
   const [success, setSuccess] = useState(false);
   const [passwordAgain, setPasswordAgain] = useState("");
-  const registerURL = "https://elscript.co/github/emperor-backend/api/register";
+  const auth=useAuth();
+  const registerURL = `${auth.baseURL}/api/register`;
   const [errMsg, setErrMsg] = useState("");
   const errRef = useRef();
   const navigate = useNavigate();

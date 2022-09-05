@@ -4,7 +4,6 @@ import axios from "axios";
 import { useAuth } from "./auth";
 import { Helmet } from "react-helmet";
 
-const LOGIN_URL = "https://elscript.co/github/emperor-backend/api/login";
 const Login = () => {
   // Password visibility toggler
   const [visibleIcon, setVisibleIcon] = useState("visibility");
@@ -32,6 +31,7 @@ const Login = () => {
   const auth = useAuth();
   const navigate = useNavigate();
 
+const LOGIN_URL = `${auth.baseURL}/api/login`;
   // useEffect(()=>{
   //   toast.success("Registered Successfully. Please Login !", {
   //     position: toast.POSITION.BOTTOM_RIGHT,

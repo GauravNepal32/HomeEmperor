@@ -5,10 +5,12 @@ import Loading from "../../Loading";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Helmet } from "react-helmet";
+import { useNavigate } from "react-router-dom";
 const DocumentDetails = () => {
   const [availableDocument, setAvailableDocument] = useState([])
   const userToken = JSON.parse(sessionStorage.getItem('token')).token;
   const [renderApp, setRenderApp] = useState(false)
+  const navigate=useNavigate();
 
 // Success Message Function
   const showsuccessToastMessage = (message) => {
@@ -70,6 +72,7 @@ const DocumentDetails = () => {
       setAvailableDocument(response.data.data)
       setRenderApp(true)
     } catch (err) {
+      navigate('/error')
       console.log(err)
     }
   }

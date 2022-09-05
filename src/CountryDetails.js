@@ -1,17 +1,22 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams,useNavigate } from "react-router-dom";
 import CallBack from "./CallBack";
 import axios from "axios";
 import Loading from "./Loading";
+import { useAuth } from "./auth";
+
 const CountryDetails = () => {
 
       const { id } = useParams();
   const [major, setMajor] = useState();
   const [renderApp,setRenderApp]=useState(false)
+  const auth=useAuth();
+  const navigate=useNavigate();
+
   // Getting all countries from api
   useEffect(() => {
     axios
-      .get("https://elscript.co/github/emperor-backend/api/countries")
+      .get(`${auth.baseURL}/api/countries`)
       .then((response) => {
         response.data.data.map((major)=>{
           // Matching all countries with id
@@ -23,7 +28,7 @@ const CountryDetails = () => {
         // if(id== response.data.data.id)
       })
       .catch((error) => {
-        console.log(error);
+        navigate('/error')
       });
   }, [id]);
     return (

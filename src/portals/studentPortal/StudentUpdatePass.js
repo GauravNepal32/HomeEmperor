@@ -2,6 +2,7 @@ import PasswordChecklist from "react-password-checklist";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useAuth } from "../../auth";
+import PasswordInput from "../../PasswordInput";
 const StudentUpdatePass = ({ showErrorToastMessage, showToastMessage, userToken }) => {
     const [password, setPassword] = useState("");
     const [passwordAgain, setPasswordAgain] = useState("");
@@ -40,6 +41,10 @@ const StudentUpdatePass = ({ showErrorToastMessage, showToastMessage, userToken 
 
             if (response.data.statusCode === 200) {
                 // If success show success message
+                document.getElementById('newPassword').value="";
+                document.getElementById('oldPassword').value="";
+                document.getElementById('newPasswordConfirm').value="";
+                document.getElementById("password-check-container").style.display = "none";
                 showToastMessage();
             } else if (response.data.statusCode === 401) {
                 // If error show error message
@@ -90,7 +95,9 @@ const StudentUpdatePass = ({ showErrorToastMessage, showToastMessage, userToken 
         <>
             <h3>Change Password</h3>
             <form className='mt-5' action=''>
-                <div className='d-flex password-container'>
+                <PasswordInput placeholder={"Old Password"} name={"oldPassword"} setInvalidPass={setInvalidPass}/>
+
+                {/* <div className='d-flex password-container'>
                     <input
                         className='form-control p-2 mb-3'
                         placeholder='Old Password'
@@ -103,43 +110,14 @@ const StudentUpdatePass = ({ showErrorToastMessage, showToastMessage, userToken 
                     <button onClick={visiblePassword} className='btn'>
                         <span className='material-symbols-outlined'>{visibleIcon}</span>
                     </button>
-                </div>
+                </div> */}
                 {invalidPass && (
                     <div className='invalid-oldPass text-danger'>
                         Invalid Old Password
                     </div>
                 )}
-
-                <div className='d-flex password-container'>
-                    <input
-                        className='form-control p-2 mb-3'
-                        placeholder='New Password'
-                        onClick={openCheckContainer}
-                        onChange={(e) => {
-                            setPassword(e.target.value);
-                        }}
-                        id='newPassword'
-                        type={visibility ? "text" : "password"}
-                    />
-                    <button onClick={visiblePassword} className='btn'>
-                        <span className='material-symbols-outlined'>{visibleIcon}</span>
-                    </button>
-                </div>
-                <div className='d-flex password-container'>
-                    <input
-                        className='form-control p-2 mb-3'
-                        placeholder='Confirm Password'
-                        onClick={openCheckContainer}
-                        onChange={(e) => {
-                            setPasswordAgain(e.target.value);
-                        }}
-                        id='newPasswordConfirm'
-                        type={visibility ? "text" : "password"}
-                    />
-                    <button onClick={visiblePassword} className='btn'>
-                        <span className='material-symbols-outlined'>{visibleIcon}</span>
-                    </button>
-                </div>
+                <PasswordInput placeholder={"New Password"} openCheckContainer={openCheckContainer} name={"newPassword"} setPassword={setPassword}/>
+                <PasswordInput placeholder={"Confirm Password"} openCheckContainer={openCheckContainer} name={"newPasswordConfirm"} setPassword={setPasswordAgain}/>
                 <div
                     id='password-check-container'
                     className='password-check-container mb-3'>

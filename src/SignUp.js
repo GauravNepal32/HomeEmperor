@@ -5,14 +5,16 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import { Helmet } from "react-helmet";
+import PasswordInput from "./PasswordInput";
+import { useAuth } from "./auth";
 
 const SignUp = () => {
-  const [password, setPassword] = useState("");
-  const [visibleIcon, setVisibleIcon] = useState("visibility");
-  const [visibility, setVisibility] = useState(false);
-  const [passwordAgain, setPasswordAgain] = useState("");
-  const registerURL = "https://elscript.co/github/emperor-backend/api/register";
+  const auth=useAuth();
+  const registerURL = `${auth.baseURL}/api/register`;
   const [errMsg, setErrMsg] = useState("");
+  const [passwordAgain, setPasswordAgain] = useState("");
+  const [password, setPassword] = useState("");
+
 
   const errRef = useRef();
   const navigate = useNavigate();
@@ -58,16 +60,7 @@ const SignUp = () => {
       console.log(err);
     }
   };
-  // Password visibliity toggler
-  const visiblePassword = (e) => {
-    e.preventDefault();
-    setVisibility(!visibility);
-    if (visibleIcon === "visibility") {
-      setVisibleIcon("visibility_off");
-    } else {
-      setVisibleIcon("visibility");
-    }
-  };
+
 
 
   const [enableSubmit, setEnableSubmit] = useState(false);
@@ -227,40 +220,8 @@ const SignUp = () => {
                       className='error error-phone text-danger'>
                       <p>Please enter a valid Phone Number</p>
                     </div>
-                    <div className='d-flex password-container'>
-                      <input
-                        className='form-control login-input p-2 mb-3'
-                        placeholder='Password'
-                        onClick={openCheckContainer}
-                        onChange={(e) => {
-                          setPassword(e.target.value);
-                        }}
-                        id='signupPassword'
-                        type={visibility ? "text" : "password"}
-                      />
-                      <button onClick={visiblePassword} className='btn'>
-                        <span className='material-symbols-outlined'>
-                          {visibleIcon}
-                        </span>
-                      </button>
-                    </div>
-                    <div className='d-flex password-container'>
-                      <input
-                        className='form-control login-input p-2 mb-3'
-                        placeholder='Confirm Password'
-                        onClick={openCheckContainer}
-                        onChange={(e) => {
-                          setPasswordAgain(e.target.value);
-                        }}
-                        id='signupConfirmPassword'
-                        type={visibility ? "text" : "password"}
-                      />
-                      <button onClick={visiblePassword} className='btn'>
-                        <span className='material-symbols-outlined'>
-                          {visibleIcon}
-                        </span>
-                      </button>
-                    </div>
+                    <PasswordInput placeholder={"Password"} name={"signupPassword"} setPassword={setPassword} openCheckContainer={openCheckContainer}/>
+                    <PasswordInput placeholder={"Confirm Password"} name={'signupConfirmPassword'} setPassword={setPasswordAgain}/>
                     <div
                       id='password-check-container'
                       className='password-check-container mb-3'>

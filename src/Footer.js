@@ -7,7 +7,6 @@ import SmallFooter from "./SmallFooter";
 const Footer = () => {
   const location = useLocation().pathname;
   const [withNav, setWithNav] = useState(true);
-
   useEffect(() => {
     // Checking the link to decide whether footer is required or not
     // Using string manupulation
@@ -18,6 +17,8 @@ if(location.substring(1,7)==="portal"){
       setWithNav(false)
     }
     else if(location.substring(1,15)==="PortalSubAgent"){
+      setWithNav(false)
+    }else if(location==="/error"){
       setWithNav(false)
     }
     else {

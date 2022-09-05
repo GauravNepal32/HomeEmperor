@@ -41,9 +41,9 @@ document.getElementById(`favourite-icon${universityID}`).classList.add('addedIte
 
 
   return (
-    <div>
-         <div className='row mt-5 px-md-5'>
-        <div className='search-result-info-container ms-3'>
+    <div className='container'>
+      <div className='row mt-5 px-5'>
+        <div className='search-result-info-container container'>
                     {/* Displaying Number of result found */}
           <h5 className='sub-heading'>{university.university.length} result found</h5>
         </div>

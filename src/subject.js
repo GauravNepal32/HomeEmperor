@@ -1,10 +1,10 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams,useNavigate } from "react-router-dom";
 import CallBack from "./CallBack";
-import { useNavigate } from "react-router-dom";
 import Loading from "./Loading"
 import { Helmet } from "react-helmet";
+import { useAuth } from "./auth";
 
 const Subject = () => {
   const {id}  = useParams();
@@ -12,11 +12,11 @@ const Subject = () => {
   const [renderApp,setRenderApp]=useState(false);
   const [country, setCountry] = useState([]);
   const userData = JSON.parse(sessionStorage.getItem("token"));
-
+  const auth=useAuth();
   const [likeCourse, setLikeCourse] = useState([])
   const navigate = useNavigate();
-  const coursePostURL = "https://elscript.co/github/emperor-backend/api/add-course"
-  const courseGetURL = "https://elscript.co/github/emperor-backend/api/get-courses"
+  const coursePostURL = `${auth.baseURL}/api/add-course`
+  const courseGetURL = `${auth.baseURL}/api/get-courses`
 
 
 // Adding course to favourite function
@@ -40,12 +40,14 @@ const Subject = () => {
 
           }
         })
+      }).catch((err)=>{
+        navigate('/error')
       })
     }
   }, [id])
   // Getting course details from API
 useEffect(()=>{
-  axios.get("https://elscript.co/github/emperor-backend/api/courses").then((response)=>{
+  axios.get(`${auth.baseURL}/api/courses`).then((response)=>{
     response.data.data.map((subject)=>{
       // Checking if the course id match with required ID
       if(subject.id.toString() === id.toString() ){
@@ -54,6 +56,8 @@ useEffect(()=>{
       }else{
       }
     })
+  }).catch((err)=>{
+    navigate('/error')
   })
 },[id])
 
@@ -76,6 +80,7 @@ useEffect(()=>{
       }
 
     } catch (err) {
+      navigate('error')
       console.log(err);
     }
   }
@@ -89,7 +94,7 @@ useEffect(()=>{
   // Getting all countries list to check respective country for the courses
   useEffect(() => {
     if (allSubject.length !== null) {
-      axios.get('https://elscript.co/github/emperor-backend/api/countries').then((response) => {
+      axios.get(`${auth.baseURL}/api/countries`).then((response) => {
         response.data.data.map((country) => {
           if (country.id === allSubject.country_id) {
             setCountry(country)

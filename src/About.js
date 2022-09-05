@@ -6,16 +6,18 @@ import LocationMap from "./LocationMap";
 import axios from "axios";
 import Loading from "./Loading";
 import {Helmet} from "react-helmet";
-
+import { useAuth } from "./auth";
+import { useNavigate } from "react-router-dom";
 const About = () => {
   const [testimonials, setTestimonials] = useState(null);
   const [renderApp, setRenderApp] = useState(false);
-
+  const navigate=useNavigate();
+  const auth=useAuth();
 
 // Get API call
   useEffect(() => {
     axios
-      .get("https://elscript.co/github/emperor-backend/api/testimonials")
+      .get(`${auth.baseURL}/api/testimonials`)
       .then((response) => {
         // Setting response
         setTestimonials(response.data.data);
@@ -23,7 +25,7 @@ const About = () => {
         setRenderApp(true);
       })
       .catch((err) => {
-        console.log(err);
+        navigate('/error')
       });
   }, []);
 

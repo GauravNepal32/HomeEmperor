@@ -15,7 +15,6 @@ const Navbar = () => {
   const [majorList, setMajorList] = useState();
   const [coursesList,setCoursesList]=useState();
   const [navOpen, setNavOpen] = useState(false);
-  const [isLogin, setIsLogin] = useState(false);
   const [countries, setCountries] = useState();
   const [renderApp,setRenderApp]=useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -32,9 +31,9 @@ const Navbar = () => {
 // Running multiple promise
 Promise.all([
   axios
-    .get("https://elscript.co/github/emperor-backend/api/degrees"),
-  axios.get('https://elscript.co/github/emperor-backend/api/countries'),
-  axios.get('https://elscript.co/github/emperor-backend/api/courses')
+    .get(`${auth.baseURL}/api/degrees`),
+  axios.get(`${auth.baseURL}/api/countries`),
+  axios.get(`${auth.baseURL}/api/courses`)
 
 ]).then(allResponse =>{
   // setting response from ppromise to array
@@ -211,14 +210,6 @@ Promise.all([
                         className='dropdown-item'
                         to='/about'>
                         About Us
-                      </NavLink>
-                    </li>
-                    <li>
-                      <NavLink
-                        onClick={toggleNav}
-                        className='dropdown-item'
-                        to='a'>
-                        Team
                       </NavLink>
                     </li>
                     <li>
