@@ -79,7 +79,7 @@ Promise.all([
       {/* Checking if the api call was resolved or not */}
       {renderApp && <nav className='navbar navbar-expand-lg main-navbar'>
         <div className='container-md  px-sm-5'>
-          <NavLink className='navbar-brand' to='/HomeEmperor'>
+          <NavLink className='navbar-brand' to='/'>
             <img
               src={NavbarMainLogo}
               alt='Company Logo'
@@ -157,7 +157,7 @@ Promise.all([
                   <NavLink
                     onClick={toggleNav}
                     className='navbar-brand'
-                    to='/HomeEmperor'>
+                    to='/'>
                     <img
                       src={NavbarMainLogo}
                       alt='Company Logo'

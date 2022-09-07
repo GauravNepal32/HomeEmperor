@@ -15,7 +15,7 @@ const ServerError = () => {
                     <span class="material-symbols-outlined me-3">
                         arrow_back
                     </span>
-                    <Link className='text-decoration-none text-black ' to="/HomeEmperor">Go to Homepage</Link>
+                    <Link className='text-decoration-none text-black ' to="/">Go to Homepage</Link>
                 </div>
             </div>
         </div>

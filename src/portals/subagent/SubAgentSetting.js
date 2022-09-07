@@ -17,8 +17,8 @@ const SubAgentSetting = () => {
     const auth = useAuth();
     const [errMessage, setErrMsg] = useState({});
     const navigate = useNavigate()
-    const profileURL = "https://elscript.co/github/emperor-backend/api/profile"
-    const updateProfileURL = "https://elscript.co/github/emperor-backend/api/edit-profile";
+    const profileURL = "https://heuristic-wescoff.128-199-28-111.plesk.page/panel/api/profile"
+    const updateProfileURL = "https://heuristic-wescoff.128-199-28-111.plesk.page/panel/api/edit-profile";
 
     const showErrorMessage = (message) => {
         toast.error(message, {
@@ -104,7 +104,7 @@ const SubAgentSetting = () => {
                                     className='btn btn-type-1'
                                     onClick={() => {
                                         auth.logout();
-                                        navigate("/HomeEmperor", { replace: true });
+                                        navigate("/", { replace: true });
                                     }}>
                                     Logout
                                 </button>

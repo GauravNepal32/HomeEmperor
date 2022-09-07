@@ -58,7 +58,7 @@ const App = () => {
             <ScrollToTop>
               <Routes>
                 {/* Home Component */}
-              <Route path='/HomeEmperor' element={<Home />}></Route>
+                <Route path='/' element={<Home />}></Route>
               <Route path="/error" element={<ServerError/>}></Route>
               {/* Major For every country */}
               <Route path='/major/:id' element={<Major />}></Route>

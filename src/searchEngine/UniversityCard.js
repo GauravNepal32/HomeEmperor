@@ -5,7 +5,7 @@ import CheckLike from './CheckLike'
 const UniversityCard = (university) => {
   const ref=React.createRef();
   const navigate = useNavigate();
-  const coursePostURL = "https://elscript.co/github/emperor-backend/api/add-university"
+  const coursePostURL = "https://heuristic-wescoff.128-199-28-111.plesk.page/panel/api/add-university"
   const userData = JSON.parse(sessionStorage.getItem("token"));
   const [liked,setLiked]=useState(true);
 

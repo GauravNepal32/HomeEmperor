@@ -10,7 +10,7 @@ const Processing = () => {
 
    const userData = JSON.parse(sessionStorage.getItem("token"));
   const userToken=userData.token
-  const activities="https://elscript.co/github/emperor-backend/api/activities"
+  const activities = "https://heuristic-wescoff.128-199-28-111.plesk.page/panel/api/activities"
   const [activity,setActivity]=useState([]);
   const [loading,setLoading]=useState(true)
   const [activityAvailable,setActivityAvailable]=useState(false);

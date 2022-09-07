@@ -35,7 +35,7 @@ const DocumentDetails = () => {
     const userToken = JSON.parse(sessionStorage.getItem('token')).token;
     try {
       // calling post api
-      const response = await axios.post('https://elscript.co/github/emperor-backend/api/store-file', { title: title, file: file }, {
+      const response = await axios.post('https://heuristic-wescoff.128-199-28-111.plesk.page/panel/api/store-file', { title: title, file: file }, {
         headers: {
           "Content-Type": "multipart/form-data",
           // Passing token
@@ -61,7 +61,7 @@ const DocumentDetails = () => {
   const loadData = async () => {
     try {
       // Calling get API
-      const response = await axios.get('https://elscript.co/github/emperor-backend/api/get-files', {
+      const response = await axios.get('https://heuristic-wescoff.128-199-28-111.plesk.page/panel/api/get-files', {
         headers: {
           "Content-Type": "application/json",
           // Passing token

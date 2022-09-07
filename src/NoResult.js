@@ -12,7 +12,7 @@ const NoResult = (keyword) => {
                         No Result found
                     </h1>
                     <div className="text-center">
-                        <Link to="/HomeEmperor" className="redirect-link text-center text-black ">
+                        <Link to="/" className="redirect-link text-center text-black ">
                             Go Back
                         </Link>
                     </div>

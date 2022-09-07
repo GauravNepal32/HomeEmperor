@@ -3,7 +3,7 @@ import axios from 'axios'
 
 const CheckLike = (checkID) => {
 
-    const uniGetURL="https://elscript.co/github/emperor-backend/api/get-universities"
+    const uniGetURL = "https://heuristic-wescoff.128-199-28-111.plesk.page/panel/api/get-universities"
     const [likeUni,setLikeUni]=useState([])
     const userData = JSON.parse(sessionStorage.getItem("token"));
     const [found,setFound]=useState(false)

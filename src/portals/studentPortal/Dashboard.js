@@ -13,12 +13,12 @@ const Dashboard = () => {
   // const userData = sessionStorage.getItem("token");
   const userData = JSON.parse(sessionStorage.getItem("token"));
   const userToken=userData.token
-  const activities="https://elscript.co/github/emperor-backend/api/activities"
+  const activities = "https://heuristic-wescoff.128-199-28-111.plesk.page/panel/api/activities"
   const [activity,setActivity]=useState([]);
   const [activityAvailable,setActivityAvailable]=useState(false);
   const [loading,setLoading]=useState(true)
   const [uniInfo,setUniInfo]=useState();
-  const getUni="https://elscript.co/github/emperor-backend/api/get-universities"
+  const getUni = "https://heuristic-wescoff.128-199-28-111.plesk.page/panel/api/get-universities"
 
 
 // Calling multiple API

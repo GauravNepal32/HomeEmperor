@@ -7,8 +7,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const MyCourses = () => {
-    const courseGetURL = "https://elscript.co/github/emperor-backend/api/get-courses"
-    const courseRemoveURL = "https://elscript.co/github/emperor-backend/api/remove-course"
+    const courseGetURL = "https://heuristic-wescoff.128-199-28-111.plesk.page/panel/api/get-courses"
+    const courseRemoveURL = "https://heuristic-wescoff.128-199-28-111.plesk.page/panel/api/remove-course"
     const userData = JSON.parse(sessionStorage.getItem("token"));
     const [allCourses, setAllCourses] = useState([]);
 

@@ -9,7 +9,7 @@ const SubAgentUpdatePass = ({showErrorToastMessage,showToastMessage,userToken}) 
     const [visibility, setVisibility] = useState(false);
     const [invalidPass, setInvalidPass] = useState(false);
      const changePassURL =
-        "https://elscript.co/github/emperor-backend/api/change-password";
+         "https://heuristic-wescoff.128-199-28-111.plesk.page/panel/api/change-password";
 
 
     const changePassword = async (

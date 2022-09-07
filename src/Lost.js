@@ -19,7 +19,7 @@ const Lost = () => {
               {/* Redirect to Home page  */}
               <Link
                 className='text-decoration-none text-center text-black'
-                to='/HomeEmperor'>
+                to='/'>
                 Go to Homepage
               </Link>
             </div>
